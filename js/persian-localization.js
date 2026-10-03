@@ -171,7 +171,31 @@
     'Podium': 'سکو',
     'First': 'اول',
     'Second': 'دوم',
-    'Third': 'سوم'
+    'Third': 'سوم',
+    'Scored': 'امتیاز ثبت‌شده',
+    'To Go': 'باقی‌مانده',
+    'NEW': 'جدید',
+    'HISTORY': 'تاریخچه',
+    'STATS': 'آمار',
+    'DEL': 'حذف',
+    'OK': 'تأیید',
+    'Checkout!': 'خروجی گرفتن!',
+    'How many darts used?': 'چند دارت استفاده شد؟',
+    'Random': 'تصادفی',
+    'Starting Player': 'بازیکن شروع‌کننده',
+    'Tie-Break': 'تای‌بریک',
+    'Documentation': 'مستندات',
+    'Contents': 'فهرست مطالب',
+    'Quick Start': 'شروع سریع',
+    'Tournament Formats': 'فرمت‌های مسابقات',
+    'Configuration': 'پیکربندی',
+    'Managing a Tournament': 'مدیریت مسابقه',
+    'Running Matches & Match Controls': 'اجرای مسابقات و کنترل آن‌ها',
+    'Chalker QR Workflow': 'روند کار QR چالکر',
+    'Results & Export': 'نتایج و خروجی',
+    'Developer Console': 'کنسول توسعه‌دهنده',
+    'Tips & Tricks': 'نکات و ترفندها',
+    'Everything you need to run a darts tournament with NewTon DC Tournament Manager.': 'هر آنچه برای اجرای یک مسابقه دارت با مدیریت مسابقات نیوتن نیاز دارید.'
   };
 
   const replacements = [
