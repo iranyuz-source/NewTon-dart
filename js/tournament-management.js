@@ -776,7 +776,7 @@ function renderSetupCurrent() {
     // The next step for the tournament's status: [title, hint, secondary button, main button]
     const toGo = all.length - done;
     const next = {
-        Setup: ['Register players',
+        Setup: ['ثبت‌نام بازیکنان',
             list.length ? 'Draw the bracket from the bracket page when everyone is in.' : 'Add the players who are taking part.',
             ['Open bracket', "showPage('tournament')"], ['Register players', "showPage('registration')"]],
         Active: ['Run the matches',
