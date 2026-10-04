@@ -137,3 +137,99 @@ img, svg, canvas { max-width: 100%; }
   #tournament .bv-status-row { gap: 4px 8px; }
   #tournament .bracket-canvas { min-width: 860px; min-height: 560px; }
 }
+
+
+/* Stage 5 — Match Command Center mobile layout */
+@media (max-width: 700px) {
+  #matchCommandCenterModal .modal-content,
+  #matchCommandCenterModal .dlg,
+  #matchCommandCenterModal .cc-modal {
+    width: min(96vw, 760px);
+    max-width: 96vw;
+    max-height: 92vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 4vh auto;
+    padding: 14px;
+    box-sizing: border-box;
+  }
+
+  #matchCommandCenterModal .cc-match-card {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+  }
+
+  #matchCommandCenterModal .cc-match-players {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  #matchCommandCenterModal .cc-match-action-btn,
+  #matchCommandCenterModal .cc-match-controls select,
+  #matchCommandCenterModal .cc-match-dropdown {
+    min-height: 44px;
+    font-size: 15px;
+  }
+
+  #matchCommandCenterModal .cc-match-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+    align-items: stretch;
+  }
+
+  #matchCommandCenterModal .cc-control-group {
+    display: grid;
+    grid-template-columns: minmax(70px, auto) 1fr;
+    gap: 8px;
+    align-items: center;
+  }
+
+  #matchCommandCenterModal .cc-control-label {
+    white-space: nowrap;
+  }
+
+  #matchCommandCenterModal .cc-match-controls > div[style*="flex: 1"] {
+    display: none;
+  }
+
+  #matchCommandCenterModal .cc-match-header,
+  #matchCommandCenterModal .cc-header,
+  #matchCommandCenterModal .cc-modal-header {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  #matchCommandCenterModal .cc-section,
+  #matchCommandCenterModal .cc-matches-section {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 420px) {
+  #matchCommandCenterModal .modal-content,
+  #matchCommandCenterModal .dlg,
+  #matchCommandCenterModal .cc-modal {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    border-radius: 0;
+    min-height: 100vh;
+    max-height: 100vh;
+    padding: 10px;
+  }
+
+  #matchCommandCenterModal .cc-match-card {
+    padding: 10px;
+  }
+
+  #matchCommandCenterModal .cc-control-group {
+    grid-template-columns: 1fr;
+  }
+
+  #matchCommandCenterModal .cc-match-players .cc-match-action-btn {
+    width: 100%;
+  }
+}
