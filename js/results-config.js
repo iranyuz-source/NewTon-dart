@@ -308,15 +308,15 @@ function saveApplicationSettings(options = {}) {
 const TOURNAMENT_FORMATS = [
     {
         id: 'DE',
-        name: 'Double Elimination Cup',
-        blurb: 'Players get a second chance through the backside',
+        name: 'جام حذفی دوگانه',
+        blurb: 'بازیکنان پس از یک باخت، فرصت دوباره در جدول بازنده‌ها دارند',
         minPlayers: 4,
         maxPlayers: 32
     },
     {
         id: 'SE',
-        name: 'Single Elimination Cup',
-        blurb: 'Players are eliminated after one loss',
+        name: 'جام حذفی تک‌مرحله‌ای',
+        blurb: 'هر بازیکن پس از یک باخت از مسابقات حذف می‌شود',
         minPlayers: 4,
         maxPlayers: 32
     }
