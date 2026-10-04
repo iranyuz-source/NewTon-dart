@@ -34,6 +34,20 @@
     'Dart':'دارت','Lane':'لاین','Lanes':'لاین‌ها','Referee':'داور','Referees':'داوران','Random':'تصادفی',
     'Tie-Break':'تای‌بریک','Starting Player':'بازیکن شروع‌کننده','How many darts used?':'چند دارت استفاده شد؟',
     'Checkout!':'چک‌اوت!','Scored':'امتیاز ثبت‌شده','To Go':'باقی‌مانده'
+    'Start Match':'شروع مسابقه','Stop Match':'توقف مسابقه','Upcoming':'پیش‌رو','UPCOMING':'پیش‌رو',
+    'LIVE':'زنده','Live Matches':'مسابقات زنده','Ready Matches':'مسابقات آماده','Upcoming Matches':'مسابقات پیش‌رو',
+    'No live matches':'مسابقه زنده‌ای وجود ندارد','No ready matches':'مسابقه آماده‌ای وجود ندارد','Lane:':'لاین:','Referee:':'داور:',
+    'Wins':'برنده شد','Result ✓':'نتیجه ✓','Transfer':'ارسال به چالکر','Show Chalker QR code':'نمایش QR چالکر',
+    'Send this match to a Chalker on the network':'ارسال این مسابقه به چالکر در شبکه',
+    'A result has arrived from the Chalker — review and accept it':'نتیجه‌ای از چالکر دریافت شده است — بررسی و تأیید کنید',
+    'Pending':'در انتظار','Started':'شروع‌شده','Unknown':'نامشخص','Blocked':'مسدود','Ready to Start':'آماده شروع',
+    'Cannot Undo':'امکان بازگردانی نیست','Can Undo':'قابل بازگردانی','Undo match':'بازگردانی مسابقه','Undo match + achievements':'بازگردانی مسابقه + دستاوردها',
+    'Could not find a completion for this match in the history to undo.':'رکورد پایان این مسابقه برای بازگردانی در تاریخچه پیدا نشد.',
+    'No other matches will be affected.':'هیچ مسابقه دیگری تحت تأثیر قرار نمی‌گیرد.',
+    'No bracket generated yet':'هنوز جدولی ایجاد نشده است','Achievements entered this session:':'دستاوردهای ثبت‌شده در این جلسه:',
+    'Achievements were recorded automatically from Chalker visit scores.':'دستاوردها به‌صورت خودکار از امتیازهای ثبت‌شده در چالکر ثبت شده‌اند.',
+    'Review the leaderboard.':'جدول رده‌بندی را بررسی کنید.'
+
   };
   const keys=Object.keys(extra).sort((a,b)=>b.length-a.length);
   const esc=s=>s.replace(/[.*+?^()|[\\]\\]/g,'\\$&');
