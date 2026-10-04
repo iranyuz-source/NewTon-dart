@@ -46,7 +46,7 @@
     'No other matches will be affected.':'هیچ مسابقه دیگری تحت تأثیر قرار نمی‌گیرد.',
     'No bracket generated yet':'هنوز جدولی ایجاد نشده است','Achievements entered this session:':'دستاوردهای ثبت‌شده در این جلسه:',
     'Achievements were recorded automatically from Chalker visit scores.':'دستاوردها به‌صورت خودکار از امتیازهای ثبت‌شده در چالکر ثبت شده‌اند.',
-    'Review the leaderboard.':'جدول رده‌بندی را بررسی کنید.'
+    'Review the leaderboard.':'جدول رده‌بندی را بررسی کنید.',
 
     'Tournament Complete!':'مسابقات به پایان رسید!','Congratulations to all players!':'به همه بازیکنان تبریک می‌گوییم!',
     'Silver':'نقره','Gold':'طلا','Bronze':'برنز','Tournament Achievements':'دستاوردهای مسابقات','Player Achievements':'دستاوردهای بازیکنان',
