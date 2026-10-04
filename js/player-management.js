@@ -193,7 +193,7 @@ function addPlayerFromList(playerName) {
 
     // Check if player already in tournament
     if (players.find(p => p.name.toLowerCase() === playerName.toLowerCase())) {
-        alert('Player already in tournament');
+        alert('این بازیکن قبلاً در مسابقه ثبت شده است.');
         return;
     }
 
