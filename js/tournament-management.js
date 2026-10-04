@@ -63,7 +63,7 @@ function getFormat() {
 function tournamentStatusLabel(t) {
     if (!t) return '-';
     if (t.status) {
-        return t.status.charAt(0).toUpperCase() + t.status.slice(1);
+        return t.status === 'setup' ? 'در حال تنظیم' : (t.status === 'active' ? 'در حال برگزاری' : (t.status === 'completed' ? 'پایان‌یافته' : t.status));
     }
     if (!t.bracket) return 'Setup';
     const matchesArr = t.matches || [];
@@ -116,9 +116,7 @@ function storageGateBlocks(action) {
         return false;
     }
     if (stats && stats.percentage >= 90) {
-        alert(`Browser storage is ${stats.percentage}% full — there may not be room to ${action}.\n\n` +
-              `Free up space first: open "Storage Space" on the Tournament Setup page to export and delete old ` +
-              `tournaments. Deleting a finalized tournament keeps its stats in Analytics.`);
+        alert(`فضای ذخیره‌سازی مرورگر ${stats.percentage}% پر است و ممکن است برای ${action} فضای کافی وجود نداشته باشد.\n\nابتدا فضای ذخیره‌سازی را آزاد کنید: در صفحه «تنظیمات مسابقات» بخش «فضای ذخیره‌سازی» را باز کنید و مسابقات قدیمی را خروجی بگیرید یا حذف کنید. حذف مسابقه نهایی‌شده، آمار آن را در «گزارش‌ها و آمار» نگه می‌دارد.`);
         return true;
     }
     return false;
@@ -129,18 +127,18 @@ function createTournament() {
     const date = document.getElementById('tournamentDate').value;
 
     if (!name || !date) {
-        alert('Please enter both tournament name and date');
+        alert('لطفاً نام مسابقه و تاریخ مسابقه را وارد کنید.');
         return;
     }
 
-    if (storageGateBlocks('create a new tournament')) return;
+    if (storageGateBlocks('ایجاد مسابقه جدید')) return;
 
     // Check for duplicate tournament with same name and date
     const existingTournaments = readTournamentsRegistry();
     const duplicateTournament = existingTournaments.find(t => t.name === name && t.date === date);
     
     if (duplicateTournament) {
-        alert(`A tournament named "${name}" on ${date} already exists.\n\nPlease choose a different name or date.`);
+        alert(`مسابقه‌ای با نام «${name}» در تاریخ ${date} از قبل وجود دارد.\n\nلطفاً نام یا تاریخ دیگری انتخاب کنید.`);
         // Clear fields after failed creation attempt
         clearTournamentFields();
         return;
@@ -198,7 +196,7 @@ function createTournament() {
     }
 
 
-    alert('✓ New tournament created successfully! Start by adding players.');
+    alert('✓ مسابقه جدید با موفقیت ایجاد شد. حالا بازیکنان را اضافه کنید.');
 
     // HELP SYSTEM INTEGRATION
     if (typeof onTournamentCreated === 'function') {
@@ -752,7 +750,7 @@ function renderSetupCurrent() {
     if (!panel) return;
     if (!tournament) {
         panel.className = 'st-panel';
-        panel.innerHTML = '<div class="st-empty"><b>No tournament loaded</b><span>Start a new one, or load one from the list below.</span></div>';
+        panel.innerHTML = '<div class="st-empty"><b>هیچ مسابقه‌ای بارگذاری نشده است</b><span>یک مسابقه جدید شروع کنید یا یکی از فهرست زیر را بارگذاری کنید.</span></div>';
         return;
     }
 
@@ -766,13 +764,13 @@ function renderSetupCurrent() {
     const format = hasBracket ? TOURNAMENT_FORMATS.find(f => f.id === getFormat()) : null;
     const lanes = live.map(m => m.lane).filter(Boolean).sort((a, b) => a - b);
 
-    let lastFact = ['Live now', '—'];
+    let lastFact = ['در حال برگزاری', '—'];
     if (status === 'Completed') {
         const winnerId = Object.keys(tournament.placements || {}).find(id => tournament.placements[id] === 1);
         const winner = winnerId && list.find(p => String(p.id) === winnerId);
-        lastFact = ['Winner', winner ? escapeHtml(winner.name) : '—'];
+        lastFact = ['برنده', winner ? escapeHtml(winner.name) : '—'];
     } else if (hasBracket) {
-        lastFact = ['Live now', `${live.length}${lanes.length ? ` <small>lane${lanes.length > 1 ? 's' : ''} ${lanes.join(', ')}</small>` : ''}`];
+        lastFact = ['در حال برگزاری', `${live.length}${lanes.length ? ` <small>لاین${lanes.length > 1 ? 'ها' : ''} ${lanes.join(', ')}</small>` : ''}`];
     }
 
     // The next step for the tournament's status: [title, hint, secondary button, main button]
