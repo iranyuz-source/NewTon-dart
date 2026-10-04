@@ -371,8 +371,8 @@ function rollbackAchievements(achievements) {
  * @returns {string}
  */
 function _bracketLabel(matchId) {
-    if (matchId === 'GRAND-FINAL') return 'Grand Final';
-    if (matchId === 'BS-FINAL') return 'Backside Final';
+    if (matchId === 'GRAND-FINAL') return 'فینال بزرگ';
+    if (matchId === 'BS-FINAL') return 'فینال جدول بازنده‌ها';
     if (matchId.startsWith('FS-')) return `Frontside Round ${matchId.split('-')[1]}`;
     if (matchId.startsWith('BS-')) return `Backside Round ${matchId.split('-')[1]}`;
     return matchId;
@@ -1196,8 +1196,8 @@ function getMatchFormatDescription(match) {
 
 // Helper function to get round description
 function getRoundDescription(match) {
-    if (match.id === 'GRAND-FINAL') return 'Grand Final';
-    if (match.id === 'BS-FINAL') return 'Backside Final';
+    if (match.id === 'GRAND-FINAL') return 'فینال بزرگ';
+    if (match.id === 'BS-FINAL') return 'فینال جدول بازنده‌ها';
 
     // SE tournaments: use getSERoundDisplayName for all FS- matches
     const format = typeof getFormat === 'function' ? getFormat() : null;
@@ -1208,10 +1208,10 @@ function getRoundDescription(match) {
 
     // DE: Check for semifinals
     if (typeof isFrontsideSemifinal === 'function' && isFrontsideSemifinal(match.id, tournament?.bracketSize)) {
-        return 'Frontside Semifinal';
+        return 'نیمه‌نهایی جدول برنده‌ها';
     }
     if (typeof isBacksideSemifinal === 'function' && isBacksideSemifinal(match.id, tournament?.bracketSize)) {
-        return 'Backside Semifinal';
+        return 'نیمه‌نهایی جدول بازنده‌ها';
     }
 
     // DE: Default round naming
@@ -1654,7 +1654,7 @@ function getRefereeSuggestions() {
             if (assignedMatch && assignedMatch.referee === loser.id) {
                 // This match was completed BEFORE the player's most recent ACTIVE referee assignment
                 // Remove this specific match result from the list
-                console.log(`🔄 Removing ${loser.name} (${loser.round}) from Recent Losers (active referee assignment at ${new Date(lastRefereeAssignment.timestamp).toISOString()} is more recent than match at ${new Date(matchCompletion).toISOString()})`);
+                console.log(`🔄 Removing ${loser.name} (${loser.round}) from بازیکنان حذف‌شده اخیر (active referee assignment at ${new Date(lastRefereeAssignment.timestamp).toISOString()} is more recent than match at ${new Date(matchCompletion).toISOString()})`);
                 return false;
             }
         }
@@ -1672,7 +1672,7 @@ function getRefereeSuggestions() {
             if (assignedMatch && assignedMatch.referee === winner.id) {
                 // This match was completed BEFORE the player's most recent ACTIVE referee assignment
                 // Remove this specific match result from the list
-                console.log(`🔄 Removing ${winner.name} (${winner.round}) from Recent Winners (active referee assignment at ${new Date(lastRefereeAssignment.timestamp).toISOString()} is more recent than match at ${new Date(matchCompletion).toISOString()})`);
+                console.log(`🔄 Removing ${winner.name} (${winner.round}) from برندگان اخیر (active referee assignment at ${new Date(lastRefereeAssignment.timestamp).toISOString()} is more recent than match at ${new Date(matchCompletion).toISOString()})`);
                 return false;
             }
         }
@@ -2212,13 +2212,13 @@ function showCommandCenterModal(matchData) {
                     const formatCards = offeredFormats.map(fmt => {
                         let buttonText, disabled = '';
                         if (paidPlayers < fmt.minPlayers) {
-                            buttonText = `Need ${fmt.minPlayers}+ players`;
+                            buttonText = `حداقل ${fmt.minPlayers} بازیکن`;
                             disabled = 'disabled';
                         } else if (paidPlayers > fmt.maxPlayers) {
-                            buttonText = `Max ${fmt.maxPlayers} players`;
+                            buttonText = `حداکثر ${fmt.maxPlayers} بازیکن`;
                             disabled = 'disabled';
                         } else {
-                            buttonText = `Generate ${calculateBracketSize(paidPlayers, fmt.id)}-Player Bracket`;
+                            buttonText = `ایجاد جدول ${calculateBracketSize(paidPlayers, fmt.id)} نفره`;
                         }
                         return `
                             <div style="${cardStyle}">
@@ -2229,14 +2229,14 @@ function showCommandCenterModal(matchData) {
                     }).join('');
 
                     refereeSetupMessage.innerHTML = `
-                        <p style="font-weight: 600; font-size: 16px; margin-bottom: 0;">Shuffle & Draw</p>
+                        <p style="font-weight: 600; font-size: 16px; margin-bottom: 0;">قرعه‌کشی تصادفی</p>
                         <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
                             ${formatCards}
                         </div>
                         <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
                             <p style="font-weight: 600; font-size: 16px; margin-bottom: 0;">Navigation</p>
-                            <button class="btn" onclick="popDialog(); showPage('registration')" style="padding: 8px 16px; font-size: 14px;">Player Registration Page</button>
-                            <button class="btn" onclick="popDialog(); showPage('config')" style="padding: 8px 16px; font-size: 14px;">Global Settings Page</button>
+                            <button class="btn" onclick="popDialog(); showPage('registration')" style="padding: 8px 16px; font-size: 14px;">صفحه ثبت‌نام بازیکنان</button>
+                            <button class="btn" onclick="popDialog(); showPage('config')" style="padding: 8px 16px; font-size: 14px;">صفحه تنظیمات کلی</button>
                         </div>
                     `;
                     refereeSetupMessage.style.display = 'block';
@@ -2273,11 +2273,11 @@ function showCommandCenterModal(matchData) {
 
                 if (losersSection) {
                     const header = losersSection.querySelector('.referee-subsection-header');
-                    if (header) header.textContent = 'Recent Losers';
+                    if (header) header.textContent = 'بازیکنان حذف‌شده اخیر';
                 }
                 if (winnersSection) {
                     const header = winnersSection.querySelector('.referee-subsection-header');
-                    if (header) header.textContent = 'Recent Winners';
+                    if (header) header.textContent = 'برندگان اخیر';
                 }
                 if (assignmentsSection) {
                     const header = assignmentsSection.querySelector('.referee-subsection-header');
