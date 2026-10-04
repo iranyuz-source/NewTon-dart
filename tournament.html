@@ -263,7 +263,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         </nav>
                     </div>
                     <div class="bv-head-center">
-                        <button type="button" class="bv-btn bv-btn-primary bv-nav-btn" onclick="showMatchCommandCenter()" title="Show LIVE and UPCOMING matches">Match Controls<span class="bv-badge" id="bvResultsWaiting" hidden></span></button>
+                        <button type="button" class="bv-btn bv-btn-primary bv-nav-btn" onclick="showMatchCommandCenter()" title="نمایش مسابقات زنده و پیش‌رو">کنترل مسابقات<span class="bv-badge" id="bvResultsWaiting" hidden></span></button>
                         <button type="button" class="bv-btn bv-nav-btn" onclick="showStatisticsModal()" title="View tournament statistics and rankings">جدول رده‌بندی</button>
                     </div>
                     <div class="bv-head-right">
@@ -275,9 +275,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                             <button type="button" class="bv-btn" onclick="resetZoom()" title="نمایش کامل جدول">نمایش کامل</button>
                             <div class="bv-seg bv-zoom">
-                                <button type="button" onclick="zoomOut()" title="Zoom out" aria-label="Zoom out">−</button>
+                                <button type="button" onclick="zoomOut()" title="کوچک‌نمایی" aria-label="کوچک‌نمایی">−</button>
                                 <output id="bvZoom">100%</output>
-                                <button type="button" onclick="zoomIn()" title="Zoom in" aria-label="Zoom in">+</button>
+                                <button type="button" onclick="zoomIn()" title="بزرگ‌نمایی" aria-label="بزرگ‌نمایی">+</button>
                             </div>
                         </div>
                         <time class="bv-clock" id="bvClock" aria-label="Current time">--:--</time>
@@ -285,12 +285,12 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <div class="bv-header-row bv-status-row">
                         <div class="bv-status" id="bvStatus"></div>
                         <div class="bv-legend">
-                            <span><i class="bv-sw bv-sw-live"></i>Live</span>
-                            <span><i class="bv-sw bv-sw-ready"></i>Ready</span>
-                            <span><i class="bv-sw bv-sw-done"></i>Completed</span>
-                            <span><i class="bv-sw bv-sw-pending"></i>Waiting</span>
+                            <span><i class="bv-sw bv-sw-live"></i>زنده</span>
+                            <span><i class="bv-sw bv-sw-ready"></i>آماده</span>
+                            <span><i class="bv-sw bv-sw-done"></i>تکمیل‌شده</span>
+                            <span><i class="bv-sw bv-sw-pending"></i>در انتظار</span>
                             <span><i class="bv-sw bv-sw-walkover"></i>صعود خودکار</span>
-                            <span><i class="bv-throw"></i>Throws first</span>
+                            <span><i class="bv-throw"></i>شروع‌کننده پرتاب</span>
                         </div>
                     </div>
                 </header>
@@ -1117,7 +1117,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <!-- Match Controls Modal -->
         <div id="matchCommandCenterModal" class="modal">
             <div class="modal-content match-controls-modal" style="width: 90%; height: 90%; max-width: 90%;">
-                <h3 id="commandCenterTitle">Match Controls</h3>
+                <h3 id="commandCenterTitle">کنترل مسابقات</h3>
 
                 <div class="match-controls-main-container">
                     <div class="match-controls-container">
