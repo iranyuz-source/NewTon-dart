@@ -168,7 +168,7 @@ const BracketView = (() => {
      */
     function slotOf(p) {
         if (!p || !p.name || p.name === 'TBD') return { kind: 'tbd' };
-        if (p.isBye || p.name === 'Walkover' || (p.id && p.id.toString().startsWith('walkover-'))) return { kind: 'bye' };
+        if (p.isBye || p.name === 'صعود خودکار' || (p.id && p.id.toString().startsWith('walkover-'))) return { kind: 'bye' };
         return { kind: 'player', id: p.id, name: p.name };
     }
 
@@ -201,12 +201,12 @@ const BracketView = (() => {
 
     const sourceLabel = (st, id, slot) => {
         const f = (st.feeds[id] || []).find(x => x.slot === slot);
-        return f ? (f.kind === 'winner' ? 'Winner ' : 'Loser ') + f.src : 'Awaiting player';
+        return f ? (f.kind === 'winner' ? 'برنده ' : 'بازنده ') + f.src : 'در انتظار بازیکن';
     };
 
     function cardHTML(st, v, id) {
         const m = v.match, s = v.state;
-        const label = v.resultWaiting ? 'Result' : s === 'live' ? 'Live' : s === 'ready' ? 'Ready' : '';
+        const label = v.resultWaiting ? 'نتیجه' : s === 'live' ? 'زنده' : s === 'ready' ? 'آماده' : '';
         const meta = `<span class="bv-id">${id}</span><span class="bv-grow"></span>` +
             (label ? `<span class="bv-state">${label}</span>` : '') +
             (m.lane && s !== 'completed' ? `<span class="bv-chip">L${escapeHtml(String(m.lane))}</span>` : '') +
@@ -328,12 +328,12 @@ const BracketView = (() => {
             const club = escapeHtml((typeof config !== 'undefined' && config.clubName) || 'NewTon DC');
             lbl(club, 0, -94, 'bv-club');
             const semis = st.maxFS - 2, bronze = `FS-${st.maxFS - 1}-1`, final = `FS-${st.maxFS}-1`;
-            const roundName = r => r === semis ? 'Semifinals' : r === semis - 1 ? 'Quarterfinals' : 'Round ' + r;
+            const roundName = r => r === semis ? 'نیمه‌نهایی' : r === semis - 1 ? 'یک‌چهارم نهایی' : 'دور ' + r;
             const topOf = r => Math.min(...st.ids.filter(i => roundOf(i) === r).map(i => pos[i].y));
             for (let r = 1; r <= semis; r++) lblMid(roundName(r), pos[`FS-${r}-1`].x, topOf(r) - LABEL_GAP);
-            lblMid('Bronze final', pos[bronze].x, pos[bronze].y - LABEL_GAP);
-            lblMid('3rd place', pos[bronze].x, pos[bronze].y + H + 8, 'bv-col-label bv-sub-label bv-finals-label');
-            lblMid('Final', pos[final].x, pos[final].y - LABEL_GAP);
+            lblMid('مسابقه رده‌بندی', pos[bronze].x, pos[bronze].y - LABEL_GAP);
+            lblMid('مقام سوم', pos[bronze].x, pos[bronze].y + H + 8, 'bv-col-label bv-sub-label bv-finals-label');
+            lblMid('فینال', pos[final].x, pos[final].y - LABEL_GAP);
             // application signature, centred under round 1 (checked by renderBracket())
             const lastR1 = st.ids.filter(i => roundOf(i) === 1).sort((a, b) => numOf(b) - numOf(a))[0];
             lblMid(String.fromCharCode(..._0x7a, ..._0x9b), pos[lastR1].x, L.ch + 44, 'bv-signature').id = 'tournament-watermark';
@@ -362,14 +362,14 @@ const BracketView = (() => {
             lblMid('◀ Backside', pos['BS-1-1'].x, -84, 'bv-side-label');
             const place = placings(size, st);
             const topOf = (side, r) => Math.min(...st.ids.filter(i => sideOf(i) === side && roundOf(i) === r).map(i => pos[i].y));
-            for (let r = 1; r <= st.maxFS; r++) lblMid(r === st.maxFS ? 'Frontside final' : 'Round ' + r, pos[`FS-${r}-1`].x, topOf('FS', r) - LABEL_GAP);
+            for (let r = 1; r <= st.maxFS; r++) lblMid(r === st.maxFS ? 'Frontside final' : 'دور ' + r, pos[`FS-${r}-1`].x, topOf('FS', r) - LABEL_GAP);
             for (let r = 1; r <= st.maxBS; r++) lblMid(`${place[r]} place`, pos[`BS-${r}-1`].x, topOf('BS', r) - LABEL_GAP);
             // the line from the backside final to the grand final runs behind these
             lblMid('Backside final', pos['BS-FINAL'].x, pos['BS-FINAL'].y - LABEL_GAP, 'bv-col-label bv-finals-label');
-            lblMid('3rd place', pos['BS-FINAL'].x, pos['BS-FINAL'].y + H + 8, 'bv-col-label bv-sub-label bv-finals-label');
+            lblMid('مقام سوم', pos['BS-FINAL'].x, pos['BS-FINAL'].y + H + 8, 'bv-col-label bv-sub-label bv-finals-label');
             lblMid('Grand final', pos['GRAND-FINAL'].x, pos['GRAND-FINAL'].y - LABEL_GAP, 'bv-col-label bv-finals-label');
             // FINALS sits just above the finals, in the style of BACKSIDE and FRONTSIDE
-            lblMid('Finals', pos['GRAND-FINAL'].x, pos['GRAND-FINAL'].y - LABEL_GAP - 40, 'bv-side-label');
+            lblMid('فینال‌ها', pos['GRAND-FINAL'].x, pos['GRAND-FINAL'].y - LABEL_GAP - 40, 'bv-side-label');
 
             // application signature, below the last first-round match (checked by renderBracket())
             const lastFS1 = st.ids.filter(i => /^FS-1-/.test(i)).sort((a, b) => numOf(b) - numOf(a))[0];
@@ -602,10 +602,10 @@ const BracketView = (() => {
     function hideMag() { clearTimeout(magTimer); magTimer = null; if (els) els.mag.hidden = true; }
     function progressText(id) {
         const p = cur.prog[id], m = cur.M[id].match, bits = [];
-        if (p.winner) bits.push(`Winner → <b>${p.winner[0]}</b>`); else bits.push('Winner takes 1st');
+        if (p.winner) bits.push(`Winner → <b>${p.winner[0]}</b>`); else bits.push('برنده مقام اول را می‌گیرد');
         if (p.loser) bits.push(`Loser → <b>${p.loser[0]}</b>`);
-        else if (id === 'GRAND-FINAL') bits.push('Loser takes 2nd');
-        else bits.push('Loser is out');
+        else if (id === 'GRAND-FINAL') bits.push('بازنده مقام دوم را می‌گیرد');
+        else bits.push('بازنده حذف می‌شود');
         if (m.referee) {
             const ref = (typeof players !== 'undefined' ? players : []).find(pl => pl.id === m.referee);
             if (ref) bits.push(`Ref ${escapeHtml(ref.name)}`);
@@ -647,7 +647,7 @@ const BracketView = (() => {
         const { out, inn } = connected(selected);
         out.forEach(d => {
             const isW = prog.winner && prog.winner[0] === d;
-            items.push({ id: d, cls: isW ? 'bv-winner' : 'bv-loser', text: isW ? 'Winner →' : 'Loser →' });
+            items.push({ id: d, cls: isW ? 'bv-winner' : 'bv-loser', text: isW ? 'برنده ←' : 'بازنده ←' });
         });
         if (cur.M[selected].state !== 'completed') inn.forEach(s => items.push({ id: s, cls: 'bv-from', text: 'From' }));
         items.forEach(it => {
@@ -703,11 +703,11 @@ const BracketView = (() => {
     function roundName(id) {
         const st = cur.st, r = roundOf(id);
         if (getFormat() === 'SE') {
-            if (r === st.maxFS) return 'Final';
-            if (r === st.maxFS - 1) return 'Bronze final';
+            if (r === st.maxFS) return 'فینال';
+            if (r === st.maxFS - 1) return 'مسابقه رده‌بندی';
             if (r === st.maxFS - 2) return 'Semifinal';
             if (r === st.maxFS - 3) return 'Quarterfinal';
-            return 'Round ' + r;
+            return 'دور ' + r;
         }
         if (id === 'GRAND-FINAL') return 'Grand final';
         if (id === 'BS-FINAL') return 'Backside final';
