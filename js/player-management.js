@@ -95,24 +95,24 @@ function renderRegistrationNext() {
     const minPlayers = formats.length ? Math.min(...formats.map(f => f.minPlayers)) : 4;
     const maxPlayers = formats.length ? Math.max(...formats.map(f => f.maxPlayers)) : 32;
 
-    let text = ['Draw the bracket', `Only paid players go into the bracket. ${unpaid ? `${unpaid} still unpaid.` : 'Everyone has paid.'}`];
-    let button = ['Open bracket →', "showPage('tournament')"];
+    let text = ['قرعه‌کشی جدول', `فقط بازیکنان پرداخت‌شده وارد جدول می‌شوند. ${unpaid ? `${unpaid} نفر هنوز پرداخت نکرده‌اند.` : 'همه بازیکنان پرداخت کرده‌اند.'}`];
+    let button = ['باز کردن جدول ←', "showPage('tournament')"];
     let enabled = true;
     if (!tournament) {
-        text = ['No tournament loaded', 'Create or load one on the Setup page.'];
-        button = ['Go to Setup →', "showPage('setup')"];
+        text = ['هیچ مسابقه‌ای بارگذاری نشده است', 'در صفحه تنظیمات مسابقات، یک مسابقه ایجاد یا بارگذاری کنید.'];
+        button = ['رفتن به تنظیمات ←', "showPage('setup')"];
     } else if (started && tournament.status === 'completed') {
-        text = ['Tournament completed', 'Final standings are in the Leaderboard.'];
+        text = ['مسابقه به پایان رسیده است', 'رده‌بندی نهایی در جدول رده‌بندی قرار دارد.'];
     } else if (started) {
         const toGo = matches.filter(m => !m.completed).length;
         const live = matches.filter(m => getMatchState(m) === 'live').length;
-        text = ['Run the matches', `${toGo} match${toGo === 1 ? '' : 'es'} to go${live ? `, ${live} being played now` : ''}.`];
+        text = ['اجرای مسابقات', `${toGo} مسابقه باقی مانده است${live ? `؛ ${live} مسابقه در حال برگزاری است` : ''}.`];
     } else if (paid < minPlayers) {
         const needed = minPlayers - paid;
-        text = [`Register at least ${minPlayers} paid players`, `${needed} more paid player${needed > 1 ? 's' : ''} needed before the draw.`];
+        text = [`حداقل ${minPlayers} بازیکن پرداخت‌شده لازم است`, `برای قرعه‌کشی هنوز ${needed} بازیکن پرداخت‌شده دیگر لازم است.`];
         enabled = false;
     } else if (paid > maxPlayers) {
-        text = ['Too many paid players', `A bracket holds at most ${maxPlayers} players, and ${paid} have paid.`];
+        text = ['تعداد بازیکنان پرداخت‌شده بیش از حد است', `این جدول حداکثر ${maxPlayers} بازیکن را پشتیبانی می‌کند و ${paid} نفر پرداخت کرده‌اند.`];
         enabled = false;
     }
 
@@ -139,7 +139,7 @@ function renderPlayerList() {
         .filter(name => !tournamentPlayerNames.has(name.toLowerCase()))
         .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
-    if (countSpan) countSpan.textContent = availablePlayers.length ? `${availablePlayers.length} not in this tournament` : '';
+    if (countSpan) countSpan.textContent = availablePlayers.length ? `${availablePlayers.length} بازیکن در این مسابقه ثبت نشده‌اند` : '';
 
     if (playerList.length === 0) {
         container.innerHTML = '<div class="st-empty"><span>هنوز بازیکن ذخیره‌شده‌ای وجود ندارد. هر بازیکنی که اضافه کنید برای دفعات بعد اینجا ذخیره می‌شود.</span></div>';
@@ -158,7 +158,7 @@ function renderPlayerList() {
     container.innerHTML = availablePlayers.map(name => {
         const idx = cardActions.push({ name }) - 1;
         const safe = escapeHtml(name);
-        return `<span class="rg-chip"><button type="button" class="rg-chip-add" data-pl-idx="${idx}"${canAdd ? ` title="Add ${safe} to the tournament"` : ' disabled'}>${safe}</button><button type="button" class="rg-chip-del" data-pl-delete="${idx}" title="Delete ${safe} from saved players" aria-label="Delete ${safe} from saved players">×</button></span>`;
+        return `<span class="rg-chip"><button type="button" class="rg-chip-add" data-pl-idx="${idx}"${canAdd ? ` title="افزودن ${safe} به مسابقه"` : ' disabled'}>${safe}</button><button type="button" class="rg-chip-del" data-pl-delete="${idx}" title="حذف ${safe} از بازیکنان ذخیره‌شده" aria-label="حذف ${safe} از بازیکنان ذخیره‌شده">×</button></span>`;
     }).join('');
 
     // One delegated click listener (attached once). Reads the numeric index from the
@@ -227,7 +227,7 @@ function addPlayerFromList(playerName) {
 
 // DELETE FROM PLAYER LIST
 function deleteFromPlayerList(playerName) {
-    if (!confirm(`Remove "${playerName}" from Saved Players?\n\nThis permanently deletes them from your saved players list.`)) {
+    if (!confirm(`آیا «${playerName}» از بازیکنان ذخیره‌شده حذف شود؟\n\nاین کار بازیکن را به‌طور دائمی از فهرست ذخیره‌شده حذف می‌کند.`)) {
         return;
     }
     removeFromPlayerList(playerName);
@@ -342,7 +342,7 @@ function confirmImportPlayerList() {
     // Close dialog and refresh UI
     closeImportDialog();
     renderPlayerList();
-    alert('✓ Player List imported successfully!');
+    alert('✓ فهرست بازیکنان با موفقیت درون‌ریزی شد.');
 }
 
 // CLOSE IMPORT DIALOG
@@ -652,7 +652,7 @@ function clearAllPlayers() {
 function addShortLeg() {
     const darts = parseInt(document.getElementById('statsShortLegDarts').value);
     if (!darts || darts < 9 || darts > 21) {
-        alert('Please enter valid dart count (9-21)');
+        alert('لطفاً تعداد معتبر پرتاب را وارد کنید (۹ تا ۲۱).');
         return;
     }
 
@@ -745,7 +745,7 @@ function _buildStatListItem(value, onRemove) {
     const chip = document.createElement('button');
     chip.type = 'button';
     chip.className = 'stat-list-item';
-    chip.title = 'Click to remove';
+    chip.title = 'برای حذف کلیک کنید';
     chip.onclick = onRemove;
 
     const valueSpan = document.createElement('span');
