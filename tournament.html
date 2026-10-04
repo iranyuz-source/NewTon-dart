@@ -21,26 +21,26 @@
     <link rel="stylesheet" href="css/bracket-view.css">
     <link rel="stylesheet" href="css/app-header.css">
 
-    <!-- Docker Configuration (only executes when served via PHP) -->
+    <!-- Docker تنظیمات کلیuration (only executes when served via PHP) -->
     <script><?php
     if (function_exists('getenv')) {
         $demoMode = getenv('NEWTON_DEMO_MODE') === 'true' ? 'true' : 'false';
-        $githubUrl = getenv('NEWTON_GITHUB_URL') ?: 'https://github.com/skrodahl/NewTon';
-        // ?tm switches an analytics-only deployment into the full Tournament Manager,
+        $githubUrl = getenv('NEWTON_GITHUB_URL') ?: 'https://github.com/skrodahl/New۱۰۰+';
+        // ?tm switches an analytics-only deployment into the full مسابقه Manager,
         // which is how a shared instance is maintained. NEWTON_TM_PASSWORD gates it:
         //   unset  -> no gate, bare ?tm works (unchanged behaviour)
         //   set    -> ?tm=<password> required; anything else falls through
-        // A wrong or missing password lands on the ordinary Analytics page rather than
+        // A wrong or missing password lands on the ordinary آمار و گزارش‌ها page rather than
         // an error, so the gate never advertises that there is something behind it.
         $tmSecret = getenv('NEWTON_TM_PASSWORD');
         $tmGranted = isset($_GET['tm']) &&
             (!$tmSecret || hash_equals((string)$tmSecret, (string)$_GET['tm']));
         $appMode = $tmGranted ? 'full' : (getenv('NEWTON_MODE') ?: 'full');
-        $readonlyAnalytics = getenv('NEWTON_READONLY_ANALYTICS') === 'true' ? 'true' : 'false';
+        $readonlyآمار و گزارش‌ها = getenv('NEWTON_READONLY_ANALYTICS') === 'true' ? 'true' : 'false';
         echo "\n        window.NEWTON_CONFIG = {\n";
         echo "            demoMode: $demoMode,\n";
         echo "            appMode: '$appMode',\n";
-        echo "            readonlyAnalytics: $readonlyAnalytics,\n";
+        echo "            readonlyآمار و گزارش‌ها: $readonlyآمار و گزارش‌ها,\n";
         echo "            githubUrl: '$githubUrl'\n";
         echo "        };\n    ";
     }
@@ -58,7 +58,7 @@
                 }, 500);
             }
 
-            // Analytics-only mode — navigate to Analytics on load
+            // آمار و گزارش‌ها-only mode — navigate to آمار و گزارش‌ها on load
             if (window.NEWTON_APP_MODE === 'analytics') {
                 setTimeout(() => {
                     if (typeof showPage === 'function') showPage('history');
@@ -93,27 +93,27 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     نیوتن دارت — مدیریت مسابقات
                 </h1>
                 <div class="header-right">
-                    <div id="headerTournamentStatus" class="header-tournament-status header-tournament-wide">
+                    <div id="headerمسابقهStatus" class="header-tournament-status header-tournament-wide">
                         <strong>None</strong>
                         <span class="tournament-date"></span>
                     </div>
                     <div id="headerClock" class="header-clock"></div>
                 </div>
             </div>
-            <div id="headerTournamentStatusNarrow" class="header-tournament-status header-tournament-narrow">
+            <div id="headerمسابقهStatusNarrow" class="header-tournament-status header-tournament-narrow">
                 <span class="status-prefix">مسابقه فعال: </span><strong>None</strong>
             </div>
             <div class="nav">
                 <button class="nav-btn active" data-page="setup">تنظیمات مسابقات</button>
                 <button class="nav-btn" data-page="registration">ثبت‌نام بازیکنان</button>
                 <button class="nav-btn" data-page="tournament">جدول مسابقات</button>
-                <button class="nav-btn" data-page="history">Analytics</button>
+                <button class="nav-btn" data-page="history">آمار و گزارش‌ها</button>
                 <button class="nav-btn" data-page="config">تنظیمات کلی</button>
                 <a class="nav-btn" href="chalker/index.html" target="_blank">چالکر</a>
             </div>
         </div>
 
-        <!-- Setup Page (css/setup-page.css): the current tournament, a new one, the saved tournaments and match history -->
+        <!-- تنظیمات مسابقات Page (css/setup-page.css): the current tournament, a new one, the saved tournaments and match history -->
         <div id="setup" class="page active setup-page">
             <div class="st-wrap">
                 <div class="st-title">
@@ -122,19 +122,19 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </div>
 
                 <div class="st-top">
-                    <!-- Filled by renderSetupCurrent() -->
-                    <section class="st-panel" id="setupCurrent" aria-label="مسابقه جاری"></section>
+                    <!-- Filled by renderتنظیمات مسابقاتجاری() -->
+                    <section class="st-panel" id="setupجاری" aria-label="مسابقه جاری"></section>
 
                     <section class="st-panel st-create" aria-labelledby="setupNewTitle">
                         <div><p class="st-eyebrow">مسابقه جدید</p><h3 id="setupNewTitle">شروع مسابقه جدید</h3></div>
                         <div class="st-create-row">
-                            <div class="st-field"><label for="tournamentنام مسابقه">نام مسابقه</label><input type="text" class="st-text" id="tournamentName" placeholder="مثلاً جام پنجشنبه شماره ۴۲"></div>
-                            <div class="st-field"><label for="tournamentتاریخ مسابقه">تاریخ مسابقه</label><input type="date" class="st-text st-mono" id="tournamentDate"></div>
+                            <div class="st-field"><label for="tournamentName">نام مسابقه</label><input type="text" class="st-text" id="tournamentName" placeholder="مثلاً جام پنجشنبه شماره ۴۲"></div>
+                            <div class="st-field"><label for="tournamentDate">تاریخ مسابقه</label><input type="date" class="st-text st-mono" id="tournamentDate"></div>
                         </div>
-                        <div><button type="button" class="st-btn st-primary" onclick="createTournament()">ایجاد مسابقه</button></div>
+                        <div><button type="button" class="st-btn st-primary" onclick="createمسابقه()">ایجاد مسابقه</button></div>
                         <div class="st-or">فایل مسابقه دارید؟ <button type="button" class="st-link" onclick="document.getElementById('importFile').click()">درون‌ریزی مسابقه</button></div>
                         <div id="importStatus" class="st-import-status" style="display: none;"></div>
-                        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importTournament(event)">
+                        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importمسابقه(event)">
                         <input type="file" id="uploadFileInput" accept=".json" style="display: none;" onchange="handleUploadFileSelected(event)">
                     </section>
                 </div>
@@ -149,7 +149,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                             <button type="button" id="storage-indicator-link" class="st-storage" onclick="showStorageModal()" title="فضای ذخیره‌سازی این دستگاه"><span id="storageIndicatorText">فضای ذخیره‌سازی --</span><span class="st-meter"><span id="storageIndicatorBar"></span></span></button>
                         </div>
-                        <div class="st-scroll" id="recentTournaments"></div>
+                        <div class="st-scroll" id="recentمسابقهs"></div>
                     </section>
 
                     <section class="st-panel" aria-labelledby="matchHistoryHeading">
@@ -163,7 +163,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             </div>
         </div>
 
-        <!-- Registration Page (css/registration-page.css): next step, players, payment, saved players, جدول رده‌بندی -->
+        <!-- ثبت‌نام بازیکنان Page (css/registration-page.css): next step, players, payment, saved players, جدول رده‌بندی -->
         <div id="registration" class="page registration-page">
             <div class="rg-wrap">
                 <div class="st-title">
@@ -171,7 +171,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <button type="button" class="st-btn help-info-icon" data-page="registration">راهنما</button>
                 </div>
 
-                <!-- Counts are kept by updatePlayerCount(); the rest by renderRegistrationNext() -->
+                <!-- Counts are kept by updateبازیکنCount(); the rest by renderثبت‌نام بازیکنانNext() -->
                 <section class="rg-next" aria-label="مرحله بعد">
                     <dl class="rg-counts">
                         <div><dt>بازیکنان</dt><dd id="playerCount">0</dd></div>
@@ -183,11 +183,11 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </section>
 
                 <div class="rg-cols" id="registrationCols">
-                    <section class="st-panel" aria-labelledby="registrationPlayersTitle">
-                        <div class="st-panel-head"><h3 id="registrationPlayersTitle">بازیکنان<small id="registrationPlayersHint">برای تغییر وضعیت پرداخت، روی بازیکن بزنید</small></h3></div>
-                        <div class="rg-add" id="playerAddRow">
+                    <section class="st-panel" aria-labelledby="registrationبازیکنsTitle">
+                        <div class="st-panel-head"><h3 id="registrationبازیکنsTitle">بازیکنان<small id="registrationبازیکنsHint">برای تغییر وضعیت پرداخت، روی بازیکن بزنید</small></h3></div>
+                        <div class="rg-add" id="playerافزودنRow">
                             <input type="text" class="st-text" id="playerName" placeholder="نام بازیکن، سپس Enter" autocomplete="off">
-                            <button type="button" class="st-btn st-primary" onclick="addPlayer()">افزودن بازیکن</button>
+                            <button type="button" class="st-btn st-primary" onclick="addبازیکن()">افزودن بازیکن</button>
                         </div>
                         <div id="playersContainer" class="rg-plist"></div>
                         <div class="rg-pfoot" id="lateRegBtnContainer"></div>
@@ -196,13 +196,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <!-- Before the draw: payment and saved players -->
                     <div class="rg-side" id="playerListSection">
                         <section class="st-panel rg-pay" id="paymentPanel">
-                            <img src="images/payment.png" alt="Payment QR code" onerror="document.getElementById('paymentPanel').hidden = true">
-                            <div><b>Pay here</b><span>Scan to pay the entry fee.</span></div>
+                            <img src="images/payment.png" alt="Payment کد QR" onerror="document.getElementById('paymentPanel').hidden = true">
+                            <div><b>پرداخت در اینجا</b><span>برای پرداخت هزینه ورودی اسکن کنید.</span></div>
                         </section>
-                        <section class="st-panel" aria-labelledby="savedPlayersTitle">
+                        <section class="st-panel" aria-labelledby="savedبازیکنsTitle">
                             <div class="st-panel-head">
-                                <h3 id="savedPlayersTitle">بازیکنان ذخیره‌شده<small id="playerListCount"></small></h3>
-                                <button type="button" class="st-link" onclick="importPlayerListFromFile()" title="درون‌ریزی بازیکنان ذخیره‌شده from a tournament export file">درون‌ریزی بازیکنان ذخیره‌شده</button>
+                                <h3 id="savedبازیکنsTitle">بازیکنان ذخیره‌شده<small id="playerListCount"></small></h3>
+                                <button type="button" class="st-link" onclick="importبازیکنListFromFile()" title="درون‌ریزی بازیکنان ذخیره‌شده from a tournament export file">درون‌ریزی بازیکنان ذخیره‌شده</button>
                             </div>
                             <div id="playerListContainer" class="rg-chips"></div>
                         </section>
@@ -235,43 +235,43 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                                 <tbody id="resultsTableBody">
                                 </tbody>
                             </table>
-                            <div id="resultsEmptyMessage" class="st-empty st-small" style="display: none;"><span>No paid players yet.</span></div>
+                            <div id="resultsEmptyMessage" class="st-empty st-small" style="display: none;"><span>هنوز بازیکن پرداخت‌شده‌ای وجود ندارد.</span></div>
                         </div>
                     </section>
                 </div>
             </div>
         </div>
 
-        <!-- Tournament Page -->
+        <!-- مسابقه Page -->
         <div id="tournament" class="page">
             <div class="bracket-container">
                 <header class="bv-header">
                     <div class="bv-head-left">
                         <div class="bv-title-block">
-                            <div class="bv-title" id="bvTitle">No tournament</div>
+                            <div class="bv-title" id="bvTitle">هیچ مسابقه‌ای وجود ندارد</div>
                             <div class="bv-subtitle" id="bvSubtitle"></div>
                         </div>
                         <nav class="bv-nav">
-                            <button type="button" class="bv-btn bv-nav-btn analytics-back-btn" onclick="exitAnalyticsBracketPreview();" title="بازگشت به تحلیل">⬅ تحلیل</button>
+                            <button type="button" class="bv-btn bv-nav-btn analytics-back-btn" onclick="exitآمار و گزارش‌هاجدول مسابقاتPreview();" title="بازگشت به تحلیل">⬅ تحلیل</button>
                             <span class="bv-links">
-                                <button type="button" class="bv-link bv-nav-btn" onclick="showPage('setup')" title="Return to Setup page">Setup</button>
-                                <button type="button" class="bv-link bv-nav-btn" onclick="showPage('registration')" title="Exit Tournament to edit statistics and see current results">Registration</button>
-                                <button type="button" class="bv-link bv-nav-btn" onclick="showPage('config')" title="Open Config page">Config</button>
-                                <button type="button" class="bv-link bv-nav-btn" onclick="showPage('history')" title="Open Analytics page">Analytics</button>
-                                <button type="button" class="bv-link bv-nav-btn" id="bvConsole" onclick="openAnalyticsModal()" title="Open the Developer Console" hidden>Console</button>
+                                <button type="button" class="bv-link bv-nav-btn" onclick="showPage('setup')" title="بازگشت به تنظیمات مسابقات">تنظیمات مسابقات</button>
+                                <button type="button" class="bv-link bv-nav-btn" onclick="showPage('registration')" title="Exit مسابقه to edit statistics and see current results">ثبت‌نام بازیکنان</button>
+                                <button type="button" class="bv-link bv-nav-btn" onclick="showPage('config')" title="Open تنظیمات کلی page">تنظیمات کلی</button>
+                                <button type="button" class="bv-link bv-nav-btn" onclick="showPage('history')" title="Open آمار و گزارش‌ها page">آمار و گزارش‌ها</button>
+                                <button type="button" class="bv-link bv-nav-btn" id="bvConsole" onclick="openآمار و گزارش‌هاModal()" title="باز کردن کنسول توسعه‌دهنده" hidden>Console</button>
                             </span>
                         </nav>
                     </div>
                     <div class="bv-head-center">
                         <button type="button" class="bv-btn bv-btn-primary bv-nav-btn" onclick="showMatchCommandCenter()" title="نمایش مسابقات زنده و پیش‌رو">کنترل مسابقات<span class="bv-badge" id="bvResultsWaiting" hidden></span></button>
-                        <button type="button" class="bv-btn bv-nav-btn" onclick="showStatisticsModal()" title="View tournament statistics and rankings">جدول رده‌بندی</button>
+                        <button type="button" class="bv-btn bv-nav-btn" onclick="showStatisticsModal()" title="مشاهده آمار و رتبه‌بندی مسابقات">جدول رده‌بندی</button>
                     </div>
                     <div class="bv-head-right">
                         <div class="bv-tools">
-                            <div class="bv-seg" id="bvFinals" hidden>
+                            <div class="bv-seg" id="bvفینالs" hidden>
                                 <span class="bv-seglabel">فینال‌ها</span>
-                                <button type="button" data-finals="right" aria-pressed="true" onclick="BracketView.setFinals('right')">راست</button>
-                                <button type="button" data-finals="middle" aria-pressed="false" onclick="BracketView.setFinals('middle')">وسط</button>
+                                <button type="button" data-finals="right" aria-pressed="true" onclick="جدول مسابقاتView.setفینالs('right')">راست</button>
+                                <button type="button" data-finals="middle" aria-pressed="false" onclick="جدول مسابقاتView.setفینالs('middle')">وسط</button>
                             </div>
                             <button type="button" class="bv-btn" onclick="resetZoom()" title="نمایش کامل جدول">نمایش کامل</button>
                             <div class="bv-seg bv-zoom">
@@ -280,7 +280,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                                 <button type="button" onclick="zoomIn()" title="بزرگ‌نمایی" aria-label="بزرگ‌نمایی">+</button>
                             </div>
                         </div>
-                        <time class="bv-clock" id="bvClock" aria-label="Current time">--:--</time>
+                        <time class="bv-clock" id="bvClock" aria-label="زمان فعلی">--:--</time>
                     </div>
                     <div class="bv-header-row bv-status-row">
                         <div class="bv-status" id="bvStatus"></div>
@@ -298,7 +298,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="bracket-viewport" id="bracketViewport">
                     <div class="bracket-canvas" id="bracketCanvas">
                         <div id="bracketMatches">
-                            <!-- Bracket matches will be rendered here -->
+                            <!-- جدول مسابقات matches will be rendered here -->
                         </div>
 
                         <div id="bracketLines">
@@ -309,39 +309,39 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             </div>
         </div>
 
-        <!-- Configuration Page -->
+        <!-- تنظیمات کلیuration Page -->
         <div id="config" class="page config-page">
             <div class="cfg-wrap">
                 <div class="cfg-title">
                     <div>
                         <h2>تنظیمات کلی</h2>
-                        <p>Settings for this computer. They apply to every tournament.</p>
+                        <p>تنظیمات این دستگاه؛ این تنظیمات برای همه مسابقات اعمال می‌شوند.</p>
                     </div>
                     <button type="button" class="cfg-btn help-info-icon" data-page="config">راهنما</button>
                 </div>
 
-                <nav class="cfg-toc" aria-label="Settings sections">
-                    <button type="button" data-target="cfg-club">Club<span class="cfg-dot"></span></button>
+                <nav class="cfg-toc" aria-label="بخش‌های تنظیمات">
+                    <button type="button" data-target="cfg-club">باشگاه<span class="cfg-dot"></span></button>
                     <button type="button" data-target="cfg-tournaments">مسابقات<span class="cfg-dot"></span></button>
-                    <button type="button" data-target="cfg-matchday">Match day<span class="cfg-dot"></span></button>
-                    <button type="button" data-target="cfg-bracket">Bracket<span class="cfg-dot"></span></button>
+                    <button type="button" data-target="cfg-matchday">روز مسابقه<span class="cfg-dot"></span></button>
+                    <button type="button" data-target="cfg-bracket">جدول مسابقات<span class="cfg-dot"></span></button>
                     <button type="button" data-target="cfg-chalker">چالکر<span class="cfg-dot"></span></button>
                     <button type="button" data-target="cfg-server">Server &amp; backup<span class="cfg-dot"></span></button>
-                    <button type="button" data-target="cfg-developer">Developer<span class="cfg-dot"></span></button>
+                    <button type="button" data-target="cfg-developer">توسعه‌دهنده<span class="cfg-dot"></span></button>
                 </nav>
 
                 <div class="cfg-main">
                 <!-- CLUB -->
                 <section class="cfg-section" id="cfg-club">
-                    <div class="cfg-sec-head"><h3>Club</h3></div>
-                    <div class="cfg-panel" id="configClub">
+                    <div class="cfg-sec-head"><h3>باشگاه</h3></div>
+                    <div class="cfg-panel" id="configباشگاه">
                         <div class="cfg-row">
-                            <div><label class="cfg-label" for="applicationTitle">Club name</label><div class="cfg-desc">Shown in the page title and at the top of the bracket.</div></div>
-                            <div class="cfg-ctl"><input class="cfg-text" type="text" id="applicationTitle" value="NewTon DC" placeholder="Your club name"></div>
+                            <div><label class="cfg-label" for="applicationTitle">باشگاه name</label><div class="cfg-desc">در عنوان صفحه و بالای جدول نمایش داده می‌شود.</div></div>
+                            <div class="cfg-ctl"><input class="cfg-text" type="text" id="applicationTitle" value="New۱۰۰+ DC" placeholder="نام باشگاه شما"></div>
                         </div>
                         <div class="cfg-row">
                             <div><div class="cfg-label">Logo</div><div class="cfg-desc">Put a square image named <code>logo.png</code>, <code>logo.jpg</code>, <code>logo.jpeg</code> or <code>logo.svg</code> in the <code>images</code> folder. The browser tab icon uses <code>logo.jpg</code>.</div></div>
-                            <div class="cfg-ctl"><img class="cfg-logo" id="cfgLogoPreview" alt="Current logo" hidden></div>
+                            <div class="cfg-ctl"><img class="cfg-logo" id="cfgLogoPreview" alt="لوگوی فعلی" hidden></div>
                         </div>
                     </div>
                 </section>
@@ -350,50 +350,50 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <section class="cfg-section" id="cfg-tournaments">
                     <div class="cfg-sec-head"><h3>مسابقات</h3></div>
                     <div class="cfg-panel">
-                        <div class="cfg-panel-title">Formats to offer</div>
-                        <p class="cfg-panel-note">Which formats appear when starting a tournament. Hide the ones your club never plays. Existing tournaments are unaffected.</p>
+                        <div class="cfg-panel-title">فرمت‌های قابل ارائه</div>
+                        <p class="cfg-panel-note">فرمت‌هایی که هنگام شروع مسابقه نمایش داده می‌شوند. فرمت‌های مورد استفاده باشگاه را نگه دارید؛ مسابقات موجود تغییری نمی‌کنند.</p>
                         <div class="cfg-choices" id="formatVisibilityOptions"></div>
                     </div>
                     <div class="cfg-panel">
-                        <div class="cfg-panel-title">Match length <button type="button" class="cfg-link" data-reset="legs">Reset to defaults</button></div>
+                        <div class="cfg-panel-title">طول مسابقه <button type="button" class="cfg-link" data-reset="legs">بازنشانی به پیش‌فرض</button></div>
                         <div class="cfg-cols">
                             <div>
-                                <h4>Double elimination</h4>
-                                <div class="cfg-line"><span>Regular rounds</span><span class="cfg-step" data-target="regularRoundsLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="regularRoundsLegs"></div>
-                                <div class="cfg-line"><span>Frontside semifinal</span><span class="cfg-step" data-target="frontsideSemifinalLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="frontsideSemifinalLegs"></div>
-                                <div class="cfg-line"><span>Backside semifinal</span><span class="cfg-step" data-target="backsideSemifinalLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="backsideSemifinalLegs"></div>
-                                <div class="cfg-line"><span>Backside final</span><span class="cfg-step" data-target="backsideFinalLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="backsideFinalLegs"></div>
-                                <div class="cfg-line"><span>Grand final</span><span class="cfg-step" data-target="grandFinalLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="grandFinalLegs"></div>
+                                <h4>حذفی دوگانه</h4>
+                                <div class="cfg-line"><span>دورهای معمول</span><span class="cfg-step" data-target="regularRoundsLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="regularRoundsLegs"></div>
+                                <div class="cfg-line"><span>نیمه‌نهایی جدول برنده‌ها</span><span class="cfg-step" data-target="frontsideنیمه‌نهاییLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="frontsideنیمه‌نهاییLegs"></div>
+                                <div class="cfg-line"><span>نیمه‌نهایی جدول بازنده‌ها</span><span class="cfg-step" data-target="backsideنیمه‌نهاییLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="backsideنیمه‌نهاییLegs"></div>
+                                <div class="cfg-line"><span>فینال جدول بازنده‌ها</span><span class="cfg-step" data-target="backsideفینالLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="backsideفینالLegs"></div>
+                                <div class="cfg-line"><span>فینال بزرگ</span><span class="cfg-step" data-target="grandفینالLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="grandفینالLegs"></div>
                             </div>
                             <div>
-                                <h4>Single elimination</h4>
-                                <div class="cfg-line"><span>Regular rounds</span><span class="cfg-step" data-target="seRegularRoundsLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seRegularRoundsLegs"></div>
-                                <div class="cfg-line"><span>Quarterfinal</span><span class="cfg-step" data-target="seQuarterfinalLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seQuarterfinalLegs"></div>
-                                <div class="cfg-line"><span>Semifinal</span><span class="cfg-step" data-target="seSemifinalLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seSemifinalLegs"></div>
-                                <div class="cfg-line"><span>Bronze final</span><span class="cfg-step" data-target="seBronzeLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seBronzeLegs"></div>
-                                <div class="cfg-line"><span>Final</span><span class="cfg-step" data-target="seFinalLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seFinalLegs"></div>
+                                <h4>حذفی تک‌مرحله‌ای</h4>
+                                <div class="cfg-line"><span>دورهای معمول</span><span class="cfg-step" data-target="seRegularRoundsLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seRegularRoundsLegs"></div>
+                                <div class="cfg-line"><span>یک‌چهارم نهایی</span><span class="cfg-step" data-target="seیک‌چهارم نهاییLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seیک‌چهارم نهاییLegs"></div>
+                                <div class="cfg-line"><span>نیمه‌نهایی</span><span class="cfg-step" data-target="seنیمه‌نهاییLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seنیمه‌نهاییLegs"></div>
+                                <div class="cfg-line"><span>فینال رده‌بندی</span><span class="cfg-step" data-target="seBronzeLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seBronzeLegs"></div>
+                                <div class="cfg-line"><span>فینال</span><span class="cfg-step" data-target="seفینالLegs" data-min="1" data-max="21" data-step="2" data-format="bo"><button type="button" aria-label="Shorter">−</button><output></output><button type="button" aria-label="Longer">+</button></span><input type="hidden" id="seفینالLegs"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="cfg-panel" id="configPoints">
-                        <div class="cfg-panel-title">Points <button type="button" class="cfg-link" data-reset="points">Reset to defaults</button></div>
+                    <div class="cfg-panel" id="configامتیاز">
+                        <div class="cfg-panel-title">امتیاز <button type="button" class="cfg-link" data-reset="points">بازنشانی به پیش‌فرض</button></div>
                         <div class="cfg-cols">
                             <div>
-                                <h4>Placing</h4>
-                                <div class="cfg-line"><span>Taking part</span><input class="cfg-num" type="number" min="0" id="participationPoints" aria-label="Taking part points"></div>
-                                <div class="cfg-line"><span class="cfg-rank">1st</span><input class="cfg-num" type="number" min="0" id="firstPlacePoints" aria-label="1st points"></div>
-                                <div class="cfg-line"><span class="cfg-rank">2nd</span><input class="cfg-num" type="number" min="0" id="secondPlacePoints" aria-label="2nd points"></div>
-                                <div class="cfg-line"><span class="cfg-rank">3rd</span><input class="cfg-num" type="number" min="0" id="thirdPlacePoints" aria-label="3rd points"></div>
-                                <div class="cfg-line"><span class="cfg-rank">4th</span><input class="cfg-num" type="number" min="0" id="fourthPlacePoints" aria-label="4th points"></div>
-                                <div class="cfg-line"><span class="cfg-rank">5th–6th</span><input class="cfg-num" type="number" min="0" id="fifthSixthPlacePoints" aria-label="5th–6th points"></div>
-                                <div class="cfg-line"><span class="cfg-rank">7th–8th</span><input class="cfg-num" type="number" min="0" id="seventhEighthPlacePoints" aria-label="7th–8th points"></div>
+                                <h4>رتبه‌بندی</h4>
+                                <div class="cfg-line"><span>شرکت در مسابقه</span><input class="cfg-num" type="number" min="0" id="participationامتیاز" aria-label="شرکت در مسابقه points"></div>
+                                <div class="cfg-line"><span class="cfg-rank">اول</span><input class="cfg-num" type="number" min="0" id="firstPlaceامتیاز" aria-label="اول points"></div>
+                                <div class="cfg-line"><span class="cfg-rank">دوم</span><input class="cfg-num" type="number" min="0" id="secondPlaceامتیاز" aria-label="دوم points"></div>
+                                <div class="cfg-line"><span class="cfg-rank">سوم</span><input class="cfg-num" type="number" min="0" id="thirdPlaceامتیاز" aria-label="سوم points"></div>
+                                <div class="cfg-line"><span class="cfg-rank">چهارم</span><input class="cfg-num" type="number" min="0" id="fourthPlaceامتیاز" aria-label="چهارم points"></div>
+                                <div class="cfg-line"><span class="cfg-rank">پنجم تا ششم</span><input class="cfg-num" type="number" min="0" id="fifthSixthPlaceامتیاز" aria-label="پنجم تا ششم points"></div>
+                                <div class="cfg-line"><span class="cfg-rank">هفتم تا هشتم</span><input class="cfg-num" type="number" min="0" id="seventhEighthPlaceامتیاز" aria-label="هفتم تا هشتم points"></div>
                             </div>
                             <div>
-                                <h4>Achievements, each</h4>
-                                <div class="cfg-line"><span>180</span><input class="cfg-num" type="number" min="0" id="oneEightyPoints" aria-label="180 points"></div>
-                                <div class="cfg-line"><span>High out <small>101+</small></span><input class="cfg-num" type="number" min="0" id="highOutPoints" aria-label="High out 101+ points"></div>
-                                <div class="cfg-line"><span>Short leg</span><input class="cfg-num" type="number" min="0" id="shortLegPoints" aria-label="Short leg points"></div>
-                                <div class="cfg-line"><span>Ton <small>100+</small></span><input class="cfg-num" type="number" min="0" id="tonPoints" aria-label="Ton 100+ points"></div>
+                                <h4>دستاوردها، هر مورد</h4>
+                                <div class="cfg-line"><span>180</span><input class="cfg-num" type="number" min="0" id="oneEightyامتیاز" aria-label="180 points"></div>
+                                <div class="cfg-line"><span>خروج بالا <small>101+</small></span><input class="cfg-num" type="number" min="0" id="highOutامتیاز" aria-label="خروج بالا 101+ points"></div>
+                                <div class="cfg-line"><span>لگ کوتاه</span><input class="cfg-num" type="number" min="0" id="shortLegامتیاز" aria-label="لگ کوتاه points"></div>
+                                <div class="cfg-line"><span>۱۰۰+ <small>100+</small></span><input class="cfg-num" type="number" min="0" id="tonامتیاز" aria-label="۱۰۰+ 100+ points"></div>
                             </div>
                         </div>
                     </div>
@@ -401,30 +401,30 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
 
                 <!-- MATCH DAY -->
                 <section class="cfg-section" id="cfg-matchday">
-                    <div class="cfg-sec-head"><h3>Match day</h3></div>
+                    <div class="cfg-sec-head"><h3>روز مسابقه</h3></div>
                     <div class="cfg-panel">
                         <div class="cfg-row">
-                            <div><div class="cfg-label">Lanes</div><div class="cfg-desc">How many dartboards you have.</div></div>
-                            <div class="cfg-ctl"><span class="cfg-step" data-target="maxLanes" data-min="1" data-max="20" data-step="1"><button type="button" aria-label="Fewer lanes">−</button><output></output><button type="button" aria-label="More lanes">+</button></span><input type="hidden" id="maxLanes"></div>
+                            <div><div class="cfg-label">لاین‌ها</div><div class="cfg-desc">تعداد تخته‌های دارت شما.</div></div>
+                            <div class="cfg-ctl"><span class="cfg-step" data-target="maxلاین‌ها" data-min="1" data-max="20" data-step="1"><button type="button" aria-label="Fewer lanes">−</button><output></output><button type="button" aria-label="More lanes">+</button></span><input type="hidden" id="maxلاین‌ها"></div>
                         </div>
                         <div class="cfg-row stack">
-                            <div><div class="cfg-label">Lanes not in use</div><div class="cfg-desc">Click a lane to leave it out of lane assignment, for example a broken board.</div></div>
-                            <div class="cfg-ctl"><div class="cfg-lanes" id="cfgLaneChips"></div><input type="hidden" id="excludedLanes"><button type="button" class="cfg-btn" style="margin-left:auto" onclick="showLaneUsage()">Show current lane usage</button></div>
+                            <div><div class="cfg-label">لاین‌ها not in use</div><div class="cfg-desc">برای خارج کردن یک لاین از تخصیص، مثلاً به‌دلیل خرابی تخته، روی آن کلیک کنید.</div></div>
+                            <div class="cfg-ctl"><div class="cfg-lanes" id="cfgLaneChips"></div><input type="hidden" id="excludedلاین‌ها"><button type="button" class="cfg-btn" style="margin-left:auto" onclick="showLaneUsage()">نمایش استفاده فعلی از لاین‌ها</button></div>
                         </div>
                         <div class="cfg-row">
-                        <div><label class="cfg-label" for="confirmWinnerSelection">Confirm the winner</label><div class="cfg-desc">Ask for the score and statistics when a winner is chosen. When off, matches complete at once with nothing entered.</div></div>
+                        <div><label class="cfg-label" for="confirmWinnerSelection">تأیید برنده</label><div class="cfg-desc">هنگام انتخاب برنده، نتیجه و آمار را درخواست می‌کند. در حالت خاموش، مسابقه بدون ورود اطلاعات فوراً پایان می‌یابد.</div></div>
                         <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="confirmWinnerSelection" checked><span></span></span></div>
                     </div>
                         <div class="cfg-row">
-                        <div><label class="cfg-label" for="autoOpenMatchControls">Open Match Controls with the bracket</label><div class="cfg-desc">Show Match Controls straight away when you open the bracket.</div></div>
+                        <div><label class="cfg-label" for="autoOpenMatchControls">باز کردن کنترل مسابقات همراه جدول</label><div class="cfg-desc">با باز کردن جدول، کنترل مسابقات را فوراً نمایش بده.</div></div>
                         <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="autoOpenMatchControls" checked><span></span></span></div>
                     </div>
                         <div class="cfg-row">
-                        <div><label class="cfg-label" for="defaultپرداخت‌شده">New players are paid</label><div class="cfg-desc">بازیکنان added to a tournament start as paid. To remove a player, set them to unpaid first.</div></div>
+                        <div><label class="cfg-label" for="defaultپرداخت‌شده">بازیکنان جدید پرداخت‌شده هستند</label><div class="cfg-desc">بازیکنان added to a tournament start as paid. To remove a player, set them to unpaid first.</div></div>
                         <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="defaultPaid"><span></span></span></div>
                     </div>
                         <div class="cfg-row">
-                            <div><div class="cfg-label">Referee suggestions</div><div class="cfg-desc">How many players to suggest in each group (winners, losers, assignments).</div></div>
+                            <div><div class="cfg-label">پیشنهادهای داوری</div><div class="cfg-desc">تعداد بازیکنان پیشنهادی در هر گروه (برندگان، بازندگان و تخصیص‌ها).</div></div>
                             <div class="cfg-ctl"><span class="cfg-step" data-target="refereeSuggestionsLimit" data-min="5" data-max="20" data-step="1"><button type="button" aria-label="Fewer">−</button><output></output><button type="button" aria-label="More">+</button></span><input type="hidden" id="refereeSuggestionsLimit"></div>
                         </div>
                     </div>
@@ -432,15 +432,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
 
                 <!-- BRACKET -->
                 <section class="cfg-section" id="cfg-bracket">
-                    <div class="cfg-sec-head"><h3>Bracket</h3></div>
+                    <div class="cfg-sec-head"><h3>جدول مسابقات</h3></div>
                     <div class="cfg-panel">
                         <div class="cfg-row">
-                            <div><div class="cfg-label">Finals position</div><div class="cfg-desc">Double elimination. The same setting as the Finals toggle in the bracket header.</div></div>
-                            <div class="cfg-ctl cfg-pics" data-target="bracketFinals">
+                            <div><div class="cfg-label">فینالs position</div><div class="cfg-desc">حذفی دوگانه. The same setting as the فینالs toggle in the bracket header.</div></div>
+                            <div class="cfg-ctl cfg-pics" data-target="bracketفینالs">
                                 <button type="button" class="cfg-pic" data-value="right"><svg width="96" height="44" viewBox="0 0 96 44" aria-hidden="true"><rect x="2" y="4" width="34" height="36" rx="3" fill="#ecebe8"/><g fill="#6b7280"><rect x="6" y="8" width="10" height="5" rx="1"/><rect x="6" y="31" width="10" height="5" rx="1"/><rect x="22" y="19" width="10" height="5" rx="1"/><rect x="40" y="8" width="10" height="5" rx="1"/><rect x="40" y="31" width="10" height="5" rx="1"/><rect x="56" y="19" width="10" height="5" rx="1"/></g><g fill="#1f2937"><rect x="76" y="14" width="14" height="6" rx="1"/><rect x="76" y="25" width="14" height="6" rx="1"/></g></svg>Right</button>
                                 <button type="button" class="cfg-pic" data-value="middle"><svg width="96" height="44" viewBox="0 0 96 44" aria-hidden="true"><rect x="60" y="4" width="34" height="36" rx="3" fill="#ecebe8"/><g fill="#6b7280"><rect x="4" y="8" width="10" height="5" rx="1"/><rect x="4" y="31" width="10" height="5" rx="1"/><rect x="20" y="19" width="10" height="5" rx="1"/><rect x="80" y="8" width="10" height="5" rx="1"/><rect x="80" y="31" width="10" height="5" rx="1"/><rect x="64" y="19" width="10" height="5" rx="1"/></g><g fill="#1f2937"><rect x="38" y="14" width="14" height="6" rx="1"/><rect x="38" y="25" width="14" height="6" rx="1"/></g></svg>Middle</button>
                             </div>
-                            <input type="hidden" id="bracketFinals">
+                            <input type="hidden" id="bracketفینالs">
                         </div>
                     </div>
                 </section>
@@ -450,55 +450,55 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <div class="cfg-sec-head"><div><h3>چالکر</h3><p>Sent to the چالکر when a match starts.</p></div></div>
                     <div class="cfg-panel">
                         <div class="cfg-row">
-                            <div><div class="cfg-label">Game</div><div class="cfg-desc">Starting score for every leg.</div></div>
+                            <div><div class="cfg-label">بازی</div><div class="cfg-desc">امتیاز شروع هر لگ.</div></div>
                             <div class="cfg-ctl">
-                                <div class="cfg-seg" id="cfgX01Seg"><button type="button" data-value="301">301</button><button type="button" data-value="501">501</button><button type="button" data-value="701">701</button><button type="button" data-value="other">Other</button></div>
+                                <div class="cfg-seg" id="cfgX01Seg"><button type="button" data-value="301">301</button><button type="button" data-value="501">501</button><button type="button" data-value="701">701</button><button type="button" data-value="other">سایر</button></div>
                                 <select id="chalkerX01Format" hidden><option value="301">301</option><option value="501" selected>501</option><option value="701">701</option></select>
                                 <input type="checkbox" id="chalkerX01CustomToggle" hidden>
                                 <input class="cfg-text mono" type="number" id="chalkerX01Custom" min="2" max="1001" placeholder="2–1001" style="display: none; width: 110px;" aria-label="Starting score">
-                                <p class="cfg-warn" id="chalkerX01Warning" style="display: none;">Unusual scores may make larger QR codes that are harder to scan.</p>
+                                <p class="cfg-warn" id="chalkerX01Warning" style="display: none;">Unusual scores may make larger کد QRs that are harder to scan.</p>
                             </div>
                         </div>
                         <div class="cfg-row">
-                            <div><label class="cfg-label" for="chalkerMaxRounds">Most rounds per leg</label><div class="cfg-desc">A leg ends after this many rounds of three darts.</div></div>
-                            <div class="cfg-ctl"><select class="cfg-text" id="chalkerMaxRounds"><option value="7">7 rounds · 21 darts</option><option value="8">8 rounds · 24 darts</option><option value="9">9 rounds · 27 darts</option><option value="10">10 rounds · 30 darts</option><option value="11">11 rounds · 33 darts</option><option value="12">12 rounds · 36 darts</option><option value="13">13 rounds · 39 darts</option><option value="14">14 rounds · 42 darts</option><option value="15">15 rounds · 45 darts</option><option value="16">16 rounds · 48 darts</option><option value="17">17 rounds · 51 darts</option><option value="18">18 rounds · 54 darts</option><option value="19">19 rounds · 57 darts</option><option value="20">20 rounds · 60 darts</option><option value="100">No limit</option></select></div>
+                            <div><label class="cfg-label" for="chalkerMaxRounds">حداکثر دور در هر لگ</label><div class="cfg-desc">لگ پس از این تعداد دور سه‌دارت پایان می‌یابد.</div></div>
+                            <div class="cfg-ctl"><select class="cfg-text" id="chalkerMaxRounds"><option value="7">7 rounds · 21 darts</option><option value="8">8 rounds · 24 darts</option><option value="9">9 rounds · 27 darts</option><option value="10">10 rounds · 30 darts</option><option value="11">11 rounds · 33 darts</option><option value="12">12 rounds · 36 darts</option><option value="13">13 rounds · 39 darts</option><option value="14">14 rounds · 42 darts</option><option value="15">15 rounds · 45 darts</option><option value="16">16 rounds · 48 darts</option><option value="17">17 rounds · 51 darts</option><option value="18">18 rounds · 54 darts</option><option value="19">19 rounds · 57 darts</option><option value="20">20 rounds · 60 darts</option><option value="100">بدون محدودیت</option></select></div>
                         </div>
                         <div class="cfg-row">
-                            <div><div class="cfg-label">Short leg</div><div class="cfg-desc">A leg won in this many darts or fewer counts as a short leg.</div></div>
+                            <div><div class="cfg-label">لگ کوتاه</div><div class="cfg-desc">برد لگ با این تعداد دارت یا کمتر، لگ کوتاه محسوب می‌شود.</div></div>
                             <div class="cfg-ctl"><span class="cfg-step" data-target="chalkerShortLegThreshold" data-min="3" data-max="60" data-step="1" data-format="darts"><button type="button" aria-label="Fewer darts">−</button><output></output><button type="button" aria-label="More darts">+</button></span><input type="hidden" id="chalkerShortLegThreshold"></div>
                         </div>
                         <div class="cfg-row">
-                            <div><div class="cfg-label">Handover</div><div class="cfg-desc" id="cfgHandoverDesc"></div></div>
-                            <div class="cfg-ctl"><div class="cfg-seg" data-target="chalkerHandover"><button type="button" data-value="qr">QR code</button><button type="button" data-value="network">Network</button><button type="button" data-value="none">None</button></div><input type="hidden" id="chalkerHandover"></div>
+                            <div><div class="cfg-label">تحویل</div><div class="cfg-desc" id="cfgتحویلDesc"></div></div>
+                            <div class="cfg-ctl"><div class="cfg-seg" data-target="chalkerتحویل"><button type="button" data-value="qr">کد QR</button><button type="button" data-value="network">شبکه</button><button type="button" data-value="none">None</button></div><input type="hidden" id="chalkerتحویل"></div>
                         </div>
                     </div>
                 </section>
 
                 <!-- SERVER -->
                 <section class="cfg-section" id="cfg-server">
-                    <div class="cfg-sec-head"><div><h3>Server &amp; backup</h3><p>Only when the Tournament Manager runs from the Docker image.</p></div><a class="cfg-link" href="docker-quickstart.html" target="_blank" rel="noopener">Docker guide</a></div>
+                    <div class="cfg-sec-head"><div><h3>Server &amp; backup</h3><p>Only when the مسابقه Manager runs from the Docker image.</p></div><a class="cfg-link" href="docker-quickstart.html" target="_blank" rel="noopener">Docker guide</a></div>
                     <div class="cfg-panel">
                         <div class="cfg-row">
-                            <div><label class="cfg-label" for="serverIdDisplay">Server ID</label><div class="cfg-desc">Identifies this Tournament Manager in QR codes. Set automatically.</div></div>
+                            <div><label class="cfg-label" for="serverIdDisplay">شناسه سرور</label><div class="cfg-desc">Identifies this مسابقه Manager in کد QRs. Set automatically.</div></div>
                             <div class="cfg-ctl"><input class="cfg-text mono" type="text" id="serverIdDisplay" readonly style="width: 180px;"></div>
                         </div>
                         <div class="cfg-row">
-                        <div><label class="cfg-label" for="autoUploadTournament">Back up finished tournaments</label><div class="cfg-desc">Save each tournament to the server when it finishes, so any computer connected to the server can open it. <a class="cfg-link" href="automatic-backup.html" target="_blank" rel="noopener">How backup works</a></div></div>
-                        <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="autoUploadTournament"><span></span></span></div>
+                        <div><label class="cfg-label" for="autoUploadمسابقه">پشتیبان‌گیری از مسابقات تمام‌شده</label><div class="cfg-desc">Save each tournament to the server when it finishes, so any computer connected to the server can open it. <a class="cfg-link" href="automatic-backup.html" target="_blank" rel="noopener">نحوه کار پشتیبان‌گیری</a></div></div>
+                        <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="autoUploadمسابقه"><span></span></span></div>
                     </div>
                         <div class="cfg-row">
-                        <div><label class="cfg-label" for="allowSharedTournamentDelete">Allow deleting tournaments</label><div class="cfg-desc">Shows delete buttons for shared tournaments and in the Analytics register.</div></div>
-                        <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="allowSharedTournamentDelete"><span></span></span></div>
+                        <div><label class="cfg-label" for="allowSharedمسابقهDelete">اجازه حذف مسابقات</label><div class="cfg-desc">Shows delete buttons for shared tournaments and in the آمار و گزارش‌ها register.</div></div>
+                        <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="allowSharedمسابقهDelete"><span></span></span></div>
                     </div>
                     </div>
                     <div class="cfg-panel">
-                        <div class="cfg-panel-title">Remote backup <span style="font-weight:500;color:var(--nt-muted);font-size:13px">optional</span></div>
+                        <div class="cfg-panel-title">پشتیبان‌گیری راه دور <span style="font-weight:500;color:var(--nt-muted);font-size:13px">اختیاری</span></div>
                         <div class="cfg-row">
-                            <div><label class="cfg-label" for="remoteServerUrl">Server address</label><div class="cfg-desc">Also upload tournaments to this server.</div></div>
+                            <div><label class="cfg-label" for="remoteServerUrl">آدرس سرور</label><div class="cfg-desc">Also upload tournaments to this server.</div></div>
                             <div class="cfg-ctl"><input class="cfg-text mono" type="text" id="remoteServerUrl" placeholder="https://newton.example.com"></div>
                         </div>
                         <div class="cfg-row">
-                            <div><div class="cfg-label">Username and password</div></div>
+                            <div><div class="cfg-label">نام کاربری و رمز عبور</div></div>
                             <div class="cfg-ctl"><input class="cfg-text" type="text" id="remoteServerUsername" placeholder="Username" style="width: 136px;" aria-label="Username"><input class="cfg-text" type="password" id="remoteServerPassword" placeholder="Password" style="width: 136px;" aria-label="Password"></div>
                         </div>
                     </div>
@@ -506,10 +506,10 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
 
                 <!-- DEVELOPER -->
                 <section class="cfg-section" id="cfg-developer">
-                    <div class="cfg-sec-head"><h3>Developer</h3></div>
+                    <div class="cfg-sec-head"><h3>توسعه‌دهنده</h3></div>
                     <div class="cfg-panel">
                         <div class="cfg-row">
-                        <div><label class="cfg-label" for="developerMode">Developer Console</label><div class="cfg-desc">Diagnostics and developer tools. Adds a Console link to the bracket header.</div></div>
+                        <div><label class="cfg-label" for="developerMode">توسعه‌دهنده Console</label><div class="cfg-desc">ابزارهای تشخیص و توسعه‌دهنده؛ پیوند کنسول را به سربرگ جدول اضافه می‌کند.</div></div>
                         <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="developerMode"><span></span></span></div>
                     </div>
                     </div>
@@ -519,46 +519,46 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
 
             <div class="cfg-savebar" id="cfgSaveBar" role="region" aria-label="Unsaved changes">
                 <span id="cfgBarText"><span class="cfg-count" id="cfgCount">1</span> <span id="cfgCountText">unsaved change</span></span>
-                <button type="button" class="cfg-btn ghost" id="cfgDiscard">Discard</button>
-                <button type="button" class="cfg-btn save" id="cfgSave">Save changes</button>
+                <button type="button" class="cfg-btn ghost" id="cfgدور انداختن">دور انداختن</button>
+                <button type="button" class="cfg-btn save" id="cfgSave">ذخیره تغییرات</button>
             </div>
             <div class="cfg-toast" id="cfgToast" role="status">Settings saved</div>
             <div class="cfg-dialog-back" id="cfgLeave" hidden>
                 <div class="cfg-dialog" role="dialog" aria-modal="true" aria-labelledby="cfgLeaveTitle">
-                    <h3 id="cfgLeaveTitle">Save your changes?</h3>
+                    <h3 id="cfgLeaveTitle">تغییرات ذخیره شود؟</h3>
                     <p>You have <b id="cfgLeaveCount">1 unsaved change</b> on تنظیمات کلی. Save before you continue?</p>
                     <div class="cfg-acts">
-                        <button type="button" class="cfg-btn" id="cfgLeaveStay">Stay</button>
-                        <button type="button" class="cfg-btn" id="cfgLeaveDiscard">Discard and continue</button>
-                        <button type="button" class="cfg-btn primary" id="cfgLeaveSave">Save and continue</button>
+                        <button type="button" class="cfg-btn" id="cfgLeaveماندن">ماندن</button>
+                        <button type="button" class="cfg-btn" id="cfgLeaveدور انداختن">دور انداختن and continue</button>
+                        <button type="button" class="cfg-btn primary" id="cfgLeaveSave">ذخیره و ادامه</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Analytics (css/analytics-page.css): the views, the point mode and the lens on one strip, then the active view -->
+        <!-- آمار و گزارش‌ها (css/analytics-page.css): the views, the point mode and the lens on one strip, then the active view -->
         <div id="history" class="page">
             <div class="an-wrap">
                 <div class="st-title">
-                    <div><h2>Analytics</h2><p>Your tournament history. Nothing here changes the results.</p></div>
+                    <div><h2>آمار و گزارش‌ها</h2><p>Your tournament history. Nothing here changes the results.</p></div>
                     <div class="an-title-tools">
                         <!-- Maintenance tools. Hidden in analytics-only mode (see .mode-analytics in
                              css/styles.css) because that deployment is shared with club members, and
                              importing a register overwrites match history. Reachable with ?tm. -->
                         <span class="an-maint analytics-maintenance-tool">
-                            <span class="an-lbl">Register file</span>
+                            <span class="an-lbl">فایل ثبت</span>
                             <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportDB()">Export</button>
                             <button type="button" class="st-btn st-sm" onclick="document.getElementById('historyImportFile').click()">Import</button>
                             <button type="button" class="st-btn st-sm" onclick="document.getElementById('tournamentImportFile').click()">درون‌ریزی مسابقه</button>
                         </span>
                         <input type="file" id="historyImportFile" accept=".json" style="display:none;" onchange="NewtonHistory.importDB(event)">
-                        <input type="file" id="tournamentImportFile" accept=".json" style="display:none;" onchange="NewtonHistory.importTournament(event)">
+                        <input type="file" id="tournamentImportFile" accept=".json" style="display:none;" onchange="NewtonHistory.importمسابقه(event)">
                         <button type="button" class="st-btn help-info-icon" data-page="history">راهنما</button>
                     </div>
                 </div>
 
                 <!-- What you look at (view, points) and which tournaments it counts (the lens) -->
-                <section class="an-strip" id="analyticsStrip" aria-label="Analytics controls">
+                <section class="an-strip" id="analyticsStrip" aria-label="آمار و گزارش‌ها controls">
                     <div class="an-strip-row">
                         <div class="an-views">
                             <div class="st-seg" role="group" aria-label="View">
@@ -566,12 +566,12 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                         </div>
                         <div class="an-points">
-                            <span class="an-lbl">Points</span>
+                            <span class="an-lbl">امتیاز</span>
                             <div class="st-seg" role="group" aria-label="Point values">
-                                <button type="button" class="analytics-point-btn" data-point-mode="original" aria-pressed="true" title="The point values each tournament was played with">Original</button><button type="button" class="analytics-point-btn" data-point-mode="current" aria-pressed="false" title="Today's point values from تنظیمات کلی">Current</button>
+                                <button type="button" class="analytics-point-btn" data-point-mode="original" aria-pressed="true" title="The point values each tournament was played with">اصلی</button><button type="button" class="analytics-point-btn" data-point-mode="current" aria-pressed="false" title="Today's point values from تنظیمات کلی">جاری</button>
                             </div>
-                            <button type="button" class="an-chk" data-layer="ranking" aria-pressed="true" title="Placement points" onclick="NewtonHistory.toggleLayer('ranking', this)">Ranking</button>
-                            <button type="button" class="an-chk" data-layer="attendance" aria-pressed="true" title="Participation points" onclick="NewtonHistory.toggleLayer('attendance', this)">Attendance</button>
+                            <button type="button" class="an-chk" data-layer="ranking" aria-pressed="true" title="Placement points" onclick="NewtonHistory.toggleLayer('ranking', this)">رتبه‌بندی</button>
+                            <button type="button" class="an-chk" data-layer="attendance" aria-pressed="true" title="Participation points" onclick="NewtonHistory.toggleLayer('attendance', this)">حضور</button>
                         </div>
                     </div>
                     <div class="an-strip-row">
@@ -579,15 +579,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div id="analyticsScopeIndicator" class="an-scope"></div>
                         <div class="an-lens">
                             <span class="an-lbl">Lens</span>
-                            <input type="search" id="analyticsTextFilter" class="an-text an-name" placeholder="Tournament name" aria-label="Tournament name" oninput="NewtonHistory.onTextFilter(this.value)">
+                            <input type="search" id="analyticsTextFilter" class="an-text an-name" placeholder="مسابقه name" aria-label="مسابقه name" oninput="NewtonHistory.onTextFilter(this.value)">
                             <span class="an-dates">
                                 <input type="date" id="analyticsDateFrom" class="an-text" aria-label="From" onchange="NewtonHistory.onتاریخ مسابقهFilter()">
                                 <span class="an-lbl">to</span>
                                 <input type="date" id="analyticsDateTo" class="an-text" aria-label="To" onchange="NewtonHistory.onتاریخ مسابقهFilter()">
                             </span>
-                            <button type="button" class="st-btn st-sm" id="lensCurrentHalf" onclick="NewtonHistory.setHalfYear(0)"></button>
+                            <button type="button" class="st-btn st-sm" id="lensجاریHalf" onclick="NewtonHistory.setHalfYear(0)"></button>
                             <button type="button" class="st-btn st-sm" id="lensPreviousHalf" onclick="NewtonHistory.setHalfYear(-1)"></button>
-                            <button type="button" class="st-link" id="analyticsResetBtn" onclick="NewtonHistory.resetFilters()">Show all</button>
+                            <button type="button" class="st-link" id="analyticsResetBtn" onclick="NewtonHistory.resetFilters()">نمایش همه</button>
                         </div>
                     </div>
                 </section>
@@ -601,7 +601,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div class="st-panel-head">
                             <h3>جدول رده‌بندی <small id="leaderboardMeta"></small></h3>
                             <div class="an-tools">
-                                <span class="an-legend"><i></i>Top 16</span>
+                                <span class="an-legend"><i></i>۱۶ نفر برتر</span>
                                 <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportجدول رده‌بندیCSV()">خروجی CSV</button>
                                 <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportجدول رده‌بندیJSON()">خروجی JSON</button>
                             </div>
@@ -612,7 +612,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </div>
 
                 <!-- بازیکنان: the list, and a profile or comparison of the ticked players -->
-                <div id="analyticsViewPlayers" class="analytics-view">
+                <div id="analyticsViewبازیکنs" class="analytics-view">
                     <div class="an-players">
                         <section class="st-panel">
                             <div class="st-panel-head"><h3>بازیکنان <small id="playersMeta"></small></h3></div>
@@ -620,7 +620,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <div class="an-foot">Tick one player for a profile, several to compare.</div>
                         </section>
                         <section class="st-panel" id="playersProfilePanel">
-                            <div class="an-empty"><b>No player selected</b>Tick a name to see their profile, or several to compare them.</div>
+                            <div class="an-empty"><b>هیچ بازیکنی انتخاب نشده است</b>Tick a name to see their profile, or several to compare them.</div>
                         </section>
                     </div>
                 </div>
@@ -630,13 +630,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <!-- Tabs and the path back: filled by _updateBreadcrumb() -->
                     <div class="an-reg-nav" id="registerBreadcrumb"></div>
 
-                    <!-- Tournament list -->
-                    <section class="st-panel" id="historyTournamentList">
+                    <!-- مسابقه list -->
+                    <section class="st-panel" id="historyمسابقهList">
                         <div class="st-panel-head">
-                            <h3>مسابقات <small id="historyTournamentMeta"></small></h3>
+                            <h3>مسابقات <small id="historyمسابقهMeta"></small></h3>
                             <span class="an-note">Ticked tournaments are what every view counts.</span>
                         </div>
-                        <div id="historyTournamentTableContainer"></div>
+                        <div id="historyمسابقهTableContainer"></div>
                     </section>
 
                     <!-- All matches (flat list across the lens) -->
@@ -667,15 +667,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <div id="uploadToServerModal" class="modal">
             <div class="dlg">
                 <div class="dlg__main">
-                    <h2 class="dlg__title">Backup to server</h2>
+                    <h2 class="dlg__title">پشتیبان‌گیری روی سرور</h2>
                     <div class="upload-source-options">
                         <label class="upload-source-option">
                             <input type="radio" name="uploadSource" value="active" checked>
-                            <span>Active tournament</span>
+                            <span>مسابقه فعال</span>
                         </label>
                         <label class="upload-source-option">
                             <input type="radio" name="uploadSource" value="file">
-                            <span>From file</span>
+                            <span>از فایل</span>
                         </label>
                     </div>
                     <div id="uploadDestinationInfo" class="upload-destination"></div>
@@ -687,53 +687,53 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             </div>
         </div>
 
-        <!-- History: Delete Tournament Confirmation Modal -->
-        <div id="historyDeleteTournamentModal" class="modal">
+        <!-- History: حذف مسابقه Confirmation Modal -->
+        <div id="historyDeleteمسابقهModal" class="modal">
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="historyDeleteTournamentDisplayName">-</div>
+                        <div class="dlg__sidebar-value" id="historyDeleteمسابقهDisplayName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="historyDeleteTournamentDate">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
-                        <div class="dlg__sidebar-value">Completed</div>
+                        <div class="dlg__sidebar-value" id="historyDeleteمسابقهDate">-</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
+                        <div class="dlg__sidebar-value">پایان‌یافته</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill dlg__pill--danger">عملیات مخرب</span>
-                        <h2 class="dlg__title">Delete tournament</h2>
-                        <p class="dlg__desc">All match records for this tournament will be permanently removed from Analytics. This cannot be undone.</p>
+                        <h2 class="dlg__title">حذف مسابقه</h2>
+                        <p class="dlg__desc">All match records for this tournament will be permanently removed from آمار و گزارش‌ها. This cannot be undone.</p>
                         <div>
-                            <label class="dlg__label" for="historyDeleteTournamentInput">Type the tournament name to confirm</label>
-                            <input type="text" id="historyDeleteTournamentInput" class="dlg__input" autocomplete="off" oninput="NewtonHistory.onDeleteInputChange()">
+                            <label class="dlg__label" for="historyDeleteمسابقهInput">Type the tournament name to confirm</label>
+                            <input type="text" id="historyDeleteمسابقهInput" class="dlg__input" autocomplete="off" oninput="NewtonHistory.onDeleteInputChange()">
                         </div>
                     </div>
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()">Cancel</button>
-                    <button class="btn btn-danger" id="historyDeleteTournamentBtn" disabled onclick="NewtonHistory.confirmDeleteTournament()">Delete Tournament</button>
+                    <button class="btn btn-danger" id="historyDeleteمسابقهBtn" disabled onclick="NewtonHistory.confirmDeleteمسابقه()">حذف مسابقه</button>
                 </div>
             </div>
         </div>
 
-        <!-- Analytics: Achievement Corrections Modal (Docker only, full mode / ?tm) -->
+        <!-- آمار و گزارش‌ها: Achievement Corrections Modal (Docker only, full mode / ?tm) -->
         <div id="correctionsModal" class="modal">
             <div class="dlg dlg--split dlg--wide">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Tournament</div>
-                        <div class="dlg__sidebar-value" id="correctionsTournamentName">-</div>
+                        <div class="dlg__sidebar-label">مسابقه</div>
+                        <div class="dlg__sidebar-value" id="correctionsمسابقهName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="correctionsTournamentDate">-</div>
-                        <div class="dlg__sidebar-label">As recorded</div>
+                        <div class="dlg__sidebar-value" id="correctionsمسابقهDate">-</div>
+                        <div class="dlg__sidebar-label">طبق ثبت اصلی</div>
                         <div class="dlg__sidebar-value" id="correctionsRecorded" style="white-space:pre-line;">-</div>
                     </aside>
                     <div class="dlg__main">
-                        <h2 class="dlg__title">Correct achievements</h2>
-                        <p class="dlg__desc">Corrections are saved on the server and apply to Analytics on every device. The recorded tournament is not changed.</p>
+                        <h2 class="dlg__title">اصلاح دستاوردها</h2>
+                        <p class="dlg__desc">Corrections are saved on the server and apply to آمار و گزارش‌ها on every device. The recorded tournament is not changed.</p>
                         <div>
-                            <label class="dlg__label" for="correctionsPlayer">Player</label>
-                            <select id="correctionsPlayer" class="dlg__input" onchange="NewtonHistory.selectCorrectionPlayer(this.value)"></select>
+                            <label class="dlg__label" for="correctionsبازیکن">بازیکن</label>
+                            <select id="correctionsبازیکن" class="dlg__input" onchange="NewtonHistory.selectCorrectionبازیکن(this.value)"></select>
                         </div>
 
                         <div class="stats-counter-row">
@@ -746,10 +746,10 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                                 </div>
                             </div>
                             <div class="stat-counter">
-                                <div class="stat-counter__label">Tons</div>
+                                <div class="stat-counter__label">۱۰۰+s</div>
                                 <div class="stat-counter__controls">
                                     <button type="button" class="stat-counter__btn stat-counter__btn--minus" onclick="NewtonHistory.adjustCorrection('tons', -1)">−</button>
-                                    <span class="stat-counter__value" id="corrTons">0</span>
+                                    <span class="stat-counter__value" id="corr۱۰۰+s">0</span>
                                     <button type="button" class="stat-counter__btn stat-counter__btn--plus" onclick="NewtonHistory.adjustCorrection('tons', 1)">+</button>
                                 </div>
                             </div>
@@ -767,7 +767,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <label class="dlg__label" for="corrShortLegInput">Short Legs (max 21 darts)</label>
                             <div class="stat-list-editor__input-row">
                                 <input type="number" id="corrShortLegInput" class="dlg__input" min="9" max="21" placeholder="Enter dart count">
-                                <button type="button" class="btn" onclick="NewtonHistory.addCorrectionValue('shortLegs')">Add</button>
+                                <button type="button" class="btn" onclick="NewtonHistory.addCorrectionValue('shortLegs')">افزودن</button>
                             </div>
                             <div id="corrShortLegsList" class="stat-list-editor__items"></div>
                         </div>
@@ -776,7 +776,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <label class="dlg__label" for="corrHighOutInput">High Out Score (101+)</label>
                             <div class="stat-list-editor__input-row">
                                 <input type="number" id="corrHighOutInput" class="dlg__input" min="101" max="170" placeholder="Enter high out score">
-                                <button type="button" class="btn" onclick="NewtonHistory.addCorrectionValue('highOuts')">Add</button>
+                                <button type="button" class="btn" onclick="NewtonHistory.addCorrectionValue('highOuts')">افزودن</button>
                             </div>
                             <div id="corrHighOutsList" class="stat-list-editor__items"></div>
                         </div>
@@ -784,8 +784,8 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()">Cancel</button>
-                    <button class="btn" onclick="NewtonHistory.resetCorrectionPlayer()">Reset Player</button>
-                    <button class="btn btn-success" onclick="NewtonHistory.saveCorrections()">Save Corrections</button>
+                    <button class="btn" onclick="NewtonHistory.resetCorrectionبازیکن()">Reset بازیکن</button>
+                    <button class="btn btn-success" onclick="NewtonHistory.saveCorrections()">ذخیره اصلاحات</button>
                 </div>
             </div>
         </div>
@@ -794,9 +794,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <div id="statsModal" class="modal">
             <div class="dlg">
                 <div class="dlg__main">
-                    <h2 class="dlg__title" id="statsPlayerName">Edit player statistics</h2>
+                    <h2 class="dlg__title" id="statsبازیکنName">ویرایش آمار بازیکن</h2>
 
-                    <!-- Counter row: 180s / Tons / Lollipops -->
+                    <!-- Counter row: 180s / ۱۰۰+s / Lollipops -->
                     <div class="stats-counter-row">
                         <div class="stat-counter">
                             <div class="stat-counter__label">180s</div>
@@ -807,11 +807,11 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                         </div>
                         <div class="stat-counter">
-                            <div class="stat-counter__label">Tons</div>
+                            <div class="stat-counter__label">۱۰۰+s</div>
                             <div class="stat-counter__controls">
-                                <button type="button" class="stat-counter__btn stat-counter__btn--minus" onclick="decrementTons()">−</button>
-                                <span class="stat-counter__value" id="currentTonsCount">0</span>
-                                <button type="button" class="stat-counter__btn stat-counter__btn--plus" onclick="incrementTons()">+</button>
+                                <button type="button" class="stat-counter__btn stat-counter__btn--minus" onclick="decrement۱۰۰+s()">−</button>
+                                <span class="stat-counter__value" id="current۱۰۰+sCount">0</span>
+                                <button type="button" class="stat-counter__btn stat-counter__btn--plus" onclick="increment۱۰۰+s()">+</button>
                             </div>
                         </div>
                         <div class="stat-counter">
@@ -829,7 +829,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <label class="dlg__label" for="statsShortLegDarts">Short Legs (max 21 darts)</label>
                         <div class="stat-list-editor__input-row">
                             <input type="number" id="statsShortLegDarts" class="dlg__input" min="9" max="21" placeholder="Enter dart count">
-                            <button type="button" class="btn" onclick="addShortLeg()">Add</button>
+                            <button type="button" class="btn" onclick="addShortLeg()">افزودن</button>
                         </div>
                         <div id="shortLegsList" class="stat-list-editor__items"></div>
                     </div>
@@ -839,25 +839,25 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <label class="dlg__label" for="statsHighOut">High Out Score (101+)</label>
                         <div class="stat-list-editor__input-row">
                             <input type="number" id="statsHighOut" class="dlg__input" min="101" max="170" placeholder="Enter high out score">
-                            <button type="button" class="btn" onclick="addHighOut()">Add</button>
+                            <button type="button" class="btn" onclick="addHighOut()">افزودن</button>
                         </div>
                         <div id="highOutsList" class="stat-list-editor__items"></div>
                     </div>
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="closeStatsModal()">Cancel</button>
-                    <button class="btn btn-success" onclick="saveStats()">Save Statistics</button>
+                    <button class="btn btn-success" onclick="saveStats()">ذخیره آمار</button>
                 </div>
             </div>
         </div>
 
-        <!-- Developer Analytics Modal -->
+        <!-- توسعه‌دهنده آمار و گزارش‌ها Modal -->
         <div id="analyticsModal" class="modal">
             <div class="modal-content analytics-modal-content"
                 style="width: 85%; height: 90%; max-width: 85%; display: flex; flex-direction: column;">
 
                 <!-- Title bar -->
-                <h3>Developer Console</h3>
+                <h3>توسعه‌دهنده Console</h3>
 
                 <!-- Split view container -->
                 <div class="analytics-split-view" style="display: flex; flex: 1; overflow: hidden; margin-top: 20px;">
@@ -890,9 +890,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                                 <span id="stat-matches" style="font-size: 13px; color: #666;">Loading...</span>
                             </a>
 
-                            <a href="#" onclick="showPlayerDetails(); return false;"
+                            <a href="#" onclick="showبازیکنDetails(); return false;"
                                 style="text-decoration: none; color: #065f46; display: block; margin-bottom: 12px;">
-                                <strong>Player Count</strong><br>
+                                <strong>بازیکن Count</strong><br>
                                 <span id="stat-players" style="font-size: 13px; color: #666;">Loading...</span>
                             </a>
 
@@ -923,13 +923,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                                 style="text-decoration: none; color: #065f46; display: block; margin-bottom: 8px; font-size: 14px;">Manage
                                 Transaction Log</a>
 
-                            <a href="#" onclick="commandReRenderBracket(); return false;"
+                            <a href="#" onclick="commandReRenderجدول مسابقات(); return false;"
                                 style="text-decoration: none; color: #065f46; display: block; margin-bottom: 8px; font-size: 14px;">Re-render
-                                Bracket</a>
+                                جدول مسابقات</a>
 
-                            <a href="#" onclick="commandRecalculateRankings(); return false;"
+                            <a href="#" onclick="commandRecalculateرتبه‌بندیs(); return false;"
                                 style="text-decoration: none; color: #065f46; display: block; margin-bottom: 8px; font-size: 14px;">Recalculate
-                                Rankings</a>
+                                رتبه‌بندیs</a>
 
                             <a href="#" onclick="commandRefreshDropdowns(); return false;"
                                 style="text-decoration: none; color: #065f46; display: block; margin-bottom: 8px; font-size: 14px;">Refresh
@@ -951,13 +951,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                                 style="text-decoration: none; color: #065f46; display: block; margin-bottom: 8px; font-size: 14px;">QR
                                 Payload Inspector</a>
 
-                            <a href="#" onclick="commandLateRegistration(); return false;"
+                            <a href="#" onclick="commandLateثبت‌نام بازیکنان(); return false;"
                                 style="text-decoration: none; color: #b45309; display: block; margin-bottom: 8px; font-size: 14px;">Late
-                                Registration</a>
+                                ثبت‌نام بازیکنان</a>
 
-                            <a href="#" onclick="commandResetAllConfig(); return false;"
+                            <a href="#" onclick="commandResetAllتنظیمات کلی(); return false;"
                                 style="text-decoration: none; color: #dc2626; display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600;">Reset
-                                All Config</a>
+                                All تنظیمات کلی</a>
                         </div>
 
                         <!-- Timestamp -->
@@ -973,7 +973,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <!-- Main content area (flexible - expands when console collapsed) -->
                         <div id="analyticsContentArea" style="flex: 1; overflow-y: auto; padding: 24px; border-bottom: 1px solid #ddd; min-height: 0;">
                             <h4>Loading...</h4>
-                            <p>Initializing Developer Console...</p>
+                            <p>Initializing توسعه‌دهنده Console...</p>
                         </div>
 
                         <!-- Console output footer (collapsible) -->
@@ -998,7 +998,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
 
                 <!-- Close button -->
                 <div class="text-center mt-20" style="flex-shrink: 0; margin-top: 20px;">
-                    <button class="btn" onclick="closeAnalyticsModal()">بستن</button>
+                    <button class="btn" onclick="closeآمار و گزارش‌هاModal()">بستن</button>
                 </div>
 
             </div>
@@ -1009,7 +1009,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="modal-content" style="max-width: 480px; text-align: center;">
                 <h3>Scan QR Code</h3>
                 <video id="qrResultScanVideo" style="width: 100%; border-radius: 6px; background: #000; margin: 12px 0;" autoplay playsinline muted></video>
-                <p style="color: #6b7280; font-size: 14px; margin-bottom: 8px;">Point the camera at the QR code on the چالکر.</p>
+                <p style="color: #6b7280; font-size: 14px; margin-bottom: 8px;">Point the camera at the کد QR on the چالکر.</p>
                 <p id="qrResultScanError" style="color: #dc2626; display: none; margin-bottom: 8px;"></p>
                 <button class="btn" onclick="stopResultQRScanner(); popDialog();">Cancel</button>
             </div>
@@ -1052,11 +1052,11 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <script src="js/newton-history.js"></script>
         <script src="js/qr-bridge.js"></script>
     <!-- Optional network client. Separately licensed (see licensed/LICENSE.md) and may be
-         absent; the Tournament Manager works fully without it. -->
+         absent; the مسابقه Manager works fully without it. -->
     <script src="licensed/js/network-tm.js?v=1"></script>
 
         <footer>
-            <span id="footerContent"></span></br> Created by Håvard Skrödahl, NewTon DC Malmö
+            <span id="footerContent"></span></br> Created by Håvard Skrödahl, New۱۰۰+ DC Malmö
         </footer>
 
         <!-- Updated Winner Confirmation Modal with validation -->
@@ -1066,8 +1066,8 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">Match</div>
                         <div class="dlg__sidebar-value" id="winnerSidebarMatch">-</div>
-                        <div class="dlg__sidebar-label">Bracket</div>
-                        <div class="dlg__sidebar-value" id="winnerSidebarBracket">-</div>
+                        <div class="dlg__sidebar-label">جدول مسابقات</div>
+                        <div class="dlg__sidebar-value" id="winnerSidebarجدول مسابقات">-</div>
                         <div class="dlg__sidebar-label">Edit Statistics</div>
                         <div class="dlg__sidebar-value winner-stats-stack">
                             <button type="button" class="btn" id="winnerStatsLink">-</button>
@@ -1084,7 +1084,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div id="legScoresSection"
                             style="margin: 20px 0; padding: 15px; background: #f8f9fa; border: 1px solid #e5e7eb;">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                <span style="font-weight: 600; color: #111827;">Final Score (optional):</span>
+                                <span style="font-weight: 600; color: #111827;">فینال Score (اختیاری):</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div style="display: flex; align-items: center;">
@@ -1137,7 +1137,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                         </div>
 
-                        <!-- Back Bracket Matches Section (hidden - no longer used) -->
+                        <!-- Back جدول مسابقات Matches Section (hidden - no longer used) -->
                         <div id="backMatchesSection" class="cc-match-section" style="display: none;">
                             <h4 class="cc-section-header">⚫ Backside - Ready to Start</h4>
                             <div id="backMatchesContainer" class="cc-matches-container">
@@ -1145,58 +1145,58 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                         </div>
 
-                        <!-- Setup state message -->
+                        <!-- تنظیمات مسابقات state message -->
                         <div id="setupMessage" class="cc-setup-message" style="display: none;">
-                            <p>🔧 Tournament in setup mode</p>
+                            <p>🔧 مسابقه in setup mode</p>
                             <p style="font-size: 14px; color: #666; margin-top: 8px;">افزودن بازیکنs and configure the
                                 tournament to generate matches.</p>
                         </div>
 
-                        <!-- Tournament Configuration Display -->
-                        <div id="tournamentConfigDisplay" class="cc-setup-message" style="display: none;">
-                            <p>Tournament Configuration (Change in تنظیمات کلی Page)</p>
+                        <!-- مسابقه تنظیمات کلیuration Display -->
+                        <div id="tournamentتنظیمات کلیDisplay" class="cc-setup-message" style="display: none;">
+                            <p>مسابقه تنظیمات کلیuration (Change in تنظیمات کلی Page)</p>
                             <div class="config-display-grid" style="margin-top: 15px;">
                                 <!-- Column 1: Point Values -->
                                 <div>
                                     <p style="font-weight: 600; margin-bottom: 8px;">Point Values</p>
                                     <div style="font-size: 14px; color: #666;"><b>Participation:</b> <span id="cfg-participation">5</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>1st</b> <span id="cfg-first">15</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>2nd:</b> <span id="cfg-second">13</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>3rd:</b> <span id="cfg-third">10</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>4th:</b> <span id="cfg-fourth">9</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>اول</b> <span id="cfg-first">15</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>دوم:</b> <span id="cfg-second">13</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>سوم:</b> <span id="cfg-third">10</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>چهارم:</b> <span id="cfg-fourth">9</span></div>
                                     <div style="font-size: 14px; color: #666;"><b>5th-6th:</b> <span id="cfg-fifth">8</span></div>
                                     <div style="font-size: 14px; color: #666;"><b>7th-8th:</b> <span id="cfg-seventh">7</span></div>
                                 </div>
 
-                                <!-- Column 2: Achievement Points (no header) -->
+                                <!-- Column 2: Achievement امتیاز (no header) -->
                                 <div>
                                     <p style="font-weight: 600; margin-bottom: 8px;">&nbsp;</p>
                                     <div style="font-size: 14px; color: #666;"><b>High Out:</b> <span id="cfg-highout">1</span></div>
                                     <div style="font-size: 14px; color: #666;"><b>Short Leg:</b> <span id="cfg-shortleg">1</span></div>
                                     <div style="font-size: 14px; color: #666;"><b>180:</b> <span id="cfg-180">1</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>Ton:</b> <span id="cfg-ton">0</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>۱۰۰+:</b> <span id="cfg-ton">0</span></div>
                                 </div>
 
-                                <!-- Column 3: Match Configuration -->
+                                <!-- Column 3: Match تنظیمات کلیuration -->
                                 <div>
-                                    <p style="font-weight: 600; margin-bottom: 8px;">Match Configuration</p>
+                                    <p style="font-weight: 600; margin-bottom: 8px;">Match تنظیمات کلیuration</p>
                                     <p style="font-size: 12px; color: #888; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.05em;">Single Elimination</p>
                                     <div style="font-size: 14px; color: #666;"><b>Regular Rounds:</b> <span id="cfg-se-regular">Best of 3</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>Quarterfinal:</b> <span id="cfg-se-qf">Best of 3</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>Semifinal:</b> <span id="cfg-se-semi">Best of 3</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>یک‌چهارم نهایی:</b> <span id="cfg-se-qf">Best of 3</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>نیمه‌نهایی:</b> <span id="cfg-se-semi">Best of 3</span></div>
                                     <div style="font-size: 14px; color: #666;"><b>Bronze Match:</b> <span id="cfg-se-bronze">Best of 5</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>Final:</b> <span id="cfg-se-final">Best of 5</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>فینال:</b> <span id="cfg-se-final">Best of 5</span></div>
                                     <p style="font-size: 12px; color: #888; margin: 8px 0 4px 0; text-transform: uppercase; letter-spacing: 0.05em;">Double Elimination</p>
                                     <div style="font-size: 14px; color: #666;"><b>Regular Rounds:</b> <span id="cfg-regular">Best of 3</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>Frontside Semifinal:</b> <span id="cfg-fs-semi">Best of 5</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>Backside Semifinal:</b> <span id="cfg-bs-semi">Best of 3</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>Backside Final:</b> <span id="cfg-bs-final">Best of 5</span></div>
-                                    <div style="font-size: 14px; color: #666;"><b>Grand Final:</b> <span id="cfg-grand">Best of 5</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>Frontside نیمه‌نهایی:</b> <span id="cfg-fs-semi">Best of 5</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>Backside نیمه‌نهایی:</b> <span id="cfg-bs-semi">Best of 3</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>Backside فینال:</b> <span id="cfg-bs-final">Best of 5</span></div>
+                                    <div style="font-size: 14px; color: #666;"><b>Grand فینال:</b> <span id="cfg-grand">Best of 5</span></div>
                                 </div>
 
-                                <!-- Column 4: Lanes -->
+                                <!-- Column 4: لاین‌ها -->
                                 <div>
-                                    <p style="font-weight: 600; margin-bottom: 8px;">Lanes</p>
+                                    <p style="font-weight: 600; margin-bottom: 8px;">لاین‌ها</p>
                                     <div style="font-size: 14px; color: #666;"><b>Available:</b> <span id="cfg-lanes-avail">1-4</span></div>
                                     <div style="font-size: 14px; color: #666;"><b>Excluded:</b> <span id="cfg-lanes-excl">None</span></div>
                                 </div>
@@ -1208,7 +1208,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <p>No matches currently active or ready to start.</p>
                         </div>
 
-                        <!-- Tournament Completion Celebration -->
+                        <!-- مسابقه Completion Celebration -->
                         <div id="tournamentCelebration" class="tournament-celebration" style="display: none;">
                             <svg class="celebration-garlands" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true">
                                 <g fill="none" stroke-linecap="round" opacity="0.65">
@@ -1258,7 +1258,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
 
                             <div class="celebration-analytics">
-                                <button class="btn" onclick="popDialog(); if (tournament && tournament.id) openAnalyticsForTournament(tournament.id)">تحلیل مسابقات</button>
+                                <button class="btn" onclick="popDialog(); if (tournament && tournament.id) openآمار و گزارش‌هاForمسابقه(tournament.id)">تحلیل مسابقات</button>
                             </div>
                         </div>
                     </div>
@@ -1285,9 +1285,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                                     <!-- Recent referee assignments will be populated here -->
                                 </div>
                             </div>
-                            <div id="refereeSetupMessage" class="referee-setup-message" style="display: none;">
-                                <p>🔧 Tournament in setup mode</p>
-                                <p style="font-size: 14px; color: #666; margin-top: 8px;">Referee suggestions will
+                            <div id="refereeتنظیمات مسابقاتMessage" class="referee-setup-message" style="display: none;">
+                                <p>🔧 مسابقه in setup mode</p>
+                                <p style="font-size: 14px; color: #666; margin-top: 8px;">پیشنهادهای داوری will
                                     appear when the tournament starts.</p>
                             </div>
                             <div id="noRefereeSuggestionsMessage" class="referee-empty-message" style="display: none;">
@@ -1354,10 +1354,10 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">Match</div>
                         <div class="dlg__sidebar-value" id="undoSidebarMatch">-</div>
-                        <div class="dlg__sidebar-label">Bracket</div>
-                        <div class="dlg__sidebar-value" id="undoSidebarBracket">-</div>
+                        <div class="dlg__sidebar-label">جدول مسابقات</div>
+                        <div class="dlg__sidebar-value" id="undoSidebarجدول مسابقات">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="undoSidebarPlayers">-</div>
+                        <div class="dlg__sidebar-value" id="undoSidebarبازیکنs">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill">عملیات مخرب</span>
@@ -1375,7 +1375,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             </div>
         </div>
 
-        <!-- Bracket Generation Confirmation Modal -->
+        <!-- جدول مسابقات Generation Confirmation Modal -->
         <div id="bracketConfirmModal" class="modal">
             <div class="dlg dlg--split dlg--wide">
                 <div class="dlg__grid">
@@ -1387,42 +1387,42 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div class="dlg__sidebar-label">اندازه جدول</div>
                         <div class="dlg__sidebar-value" id="bracketConfirmSize">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="bracketConfirmPlayerCount">-</div>
+                        <div class="dlg__sidebar-value" id="bracketConfirmبازیکنCount">-</div>
                         <div class="dlg__sidebar-label" id="bracketConfirmByesLabel">Byes</div>
                         <div class="dlg__sidebar-value" id="bracketConfirmByes">-</div>
                     </aside>
                     <div class="dlg__main">
-                        <h2 class="dlg__title" id="bracketConfirmTitle">Generate Bracket</h2>
+                        <h2 class="dlg__title" id="bracketConfirmTitle">Generate جدول مسابقات</h2>
                         <p class="dlg__desc">These players will be placed into the bracket. Make sure all players are registered before proceeding.</p>
-                        <div id="bracketConfirmPlayers" class="bracket-confirm-players"></div>
+                        <div id="bracketConfirmبازیکنs" class="bracket-confirm-players"></div>
                     </div>
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()" autofocus>Cancel</button>
-                    <button class="btn btn-success" onclick="confirmBracketGeneration()">Generate</button>
+                    <button class="btn btn-success" onclick="confirmجدول مسابقاتGeneration()">Generate</button>
                 </div>
             </div>
         </div>
 
-        <!-- Tournament In Progress Warning Modal -->
+        <!-- مسابقه In Progress Warning Modal -->
         <div id="tournamentProgressModal" class="modal">
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="progressTournamentName">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
-                        <div class="dlg__sidebar-value" id="progressTournamentStatus">-</div>
+                        <div class="dlg__sidebar-value" id="progressمسابقهName">-</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
+                        <div class="dlg__sidebar-value" id="progressمسابقهStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="progressMatchProgress">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="progressPlayerCount">-</div>
+                        <div class="dlg__sidebar-value" id="progressبازیکنCount">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill">Warning</span>
-                        <h2 class="dlg__title">Tournament already in progress</h2>
-                        <p class="dlg__desc">To start fresh or change the bracket, reset the tournament from the <strong>Setup</strong> page. بازیکنان are kept; only matches and bracket are cleared.</p>
-                        <p class="dlg__desc">If a player arrived late, use the <strong>Player arrived late?</strong> button at the bottom of the Tournament بازیکنان list instead.</p>
+                        <h2 class="dlg__title">مسابقه already in progress</h2>
+                        <p class="dlg__desc">To start fresh or change the bracket, reset the tournament from the <strong>تنظیمات مسابقات</strong> page. بازیکنان are kept; only matches and bracket are cleared.</p>
+                        <p class="dlg__desc">If a player arrived late, use the <strong>بازیکن arrived late?</strong> button at the bottom of the مسابقه بازیکنان list instead.</p>
                     </div>
                 </div>
                 <div class="dlg__foot">
@@ -1431,19 +1431,19 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             </div>
         </div>
 
-        <!-- Reset Tournament Confirmation Modal -->
-        <div id="resetTournamentModal" class="modal">
+        <!-- Reset مسابقه Confirmation Modal -->
+        <div id="resetمسابقهModal" class="modal">
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="resetTournamentName">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
-                        <div class="dlg__sidebar-value" id="resetTournamentStatus">-</div>
+                        <div class="dlg__sidebar-value" id="resetمسابقهName">-</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
+                        <div class="dlg__sidebar-value" id="resetمسابقهStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="resetMatchProgress">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="resetPlayerCount">-</div>
+                        <div class="dlg__sidebar-value" id="resetبازیکنCount">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill">عملیات مخرب</span>
@@ -1457,66 +1457,66 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()">Cancel</button>
-                    <button class="btn btn-warning" id="confirmResetBtn" onclick="confirmReset()" disabled>Reset Tournament</button>
+                    <button class="btn btn-warning" id="confirmResetBtn" onclick="confirmReset()" disabled>Reset مسابقه</button>
                 </div>
             </div>
         </div>
 
-        <!-- Delete Tournament Confirmation Modal -->
-        <div id="deleteTournamentModal" class="modal">
+        <!-- حذف مسابقه Confirmation Modal -->
+        <div id="deleteمسابقهModal" class="modal">
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentName">-</div>
+                        <div class="dlg__sidebar-value" id="deleteمسابقهName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentDate">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentStatus">-</div>
+                        <div class="dlg__sidebar-value" id="deleteمسابقهDate">-</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
+                        <div class="dlg__sidebar-value" id="deleteمسابقهStatus">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentPlayers">-</div>
+                        <div class="dlg__sidebar-value" id="deleteمسابقهبازیکنs">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill dlg__pill--danger">عملیات مخرب</span>
-                        <h2 class="dlg__title">Delete tournament</h2>
+                        <h2 class="dlg__title">حذف مسابقه</h2>
                         <p class="dlg__desc">The tournament file will be completely removed from your device. All tournament data, player statistics, match results, history, and configuration go with it.</p>
-                        <p class="dlg__desc">The tournament's record in Analytics is not affected and remains available for review.</p>
+                        <p class="dlg__desc">The tournament's record in آمار و گزارش‌ها is not affected and remains available for review.</p>
                     </div>
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()">Cancel</button>
-                    <button class="btn btn-danger" id="confirmDeleteBtn" onclick="confirmDeleteTournament()">Delete Tournament</button>
+                    <button class="btn btn-danger" id="confirmDeleteBtn" onclick="confirmDeleteمسابقه()">حذف مسابقه</button>
                 </div>
             </div>
         </div>
 
-        <!-- Import Tournament Overwrite Modal -->
+        <!-- Import مسابقه Overwrite Modal -->
         <div id="importOverwriteModal" class="modal">
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="importTournamentName">-</div>
+                        <div class="dlg__sidebar-value" id="importمسابقهName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="importTournamentDate">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
-                        <div class="dlg__sidebar-value" id="importTournamentStatus">-</div>
+                        <div class="dlg__sidebar-value" id="importمسابقهDate">-</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
+                        <div class="dlg__sidebar-value" id="importمسابقهStatus">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill">عملیات مخرب</span>
-                        <h2 class="dlg__title">Tournament already exists</h2>
+                        <h2 class="dlg__title">مسابقه already exists</h2>
                         <p class="dlg__desc">Importing this file will replace the matching tournament on your device. All existing match results, player statistics, and tournament data will be lost.</p>
                         <p class="dlg__desc">Alternative: cancel and rename the imported tournament file to keep both.</p>
                     </div>
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()">Cancel Import</button>
-                    <button class="btn btn-warning" id="confirmOverwriteBtn" onclick="confirmOverwriteTournament()">Overwrite Existing</button>
+                    <button class="btn btn-warning" id="confirmOverwriteBtn" onclick="confirmOverwriteمسابقه()">Overwrite Existing</button>
                 </div>
             </div>
         </div>
 
-        <!-- Import Tournament Confirmation Modal -->
+        <!-- Import مسابقه Confirmation Modal -->
         <div id="importConfirmModal" class="modal">
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
@@ -1525,12 +1525,12 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div class="dlg__sidebar-value" id="importConfirmName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
                         <div class="dlg__sidebar-value" id="importConfirmDate">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
                         <div class="dlg__sidebar-value" id="importConfirmStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="importConfirmMatches">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="importConfirmPlayers">-</div>
+                        <div class="dlg__sidebar-value" id="importConfirmبازیکنs">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill" id="importOldFormatPill" style="display: none;">Old format</span>
@@ -1541,40 +1541,40 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()">Cancel</button>
-                    <button class="btn btn-primary" id="confirmImportBtn" onclick="confirmImport()">Import Tournament</button>
+                    <button class="btn btn-primary" id="confirmImportBtn" onclick="confirmImport()">Import مسابقه</button>
                 </div>
             </div>
         </div>
 
-        <!-- Load Tournament Confirmation Modal -->
-        <div id="loadTournamentModal" class="modal">
+        <!-- Load مسابقه Confirmation Modal -->
+        <div id="loadمسابقهModal" class="modal">
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="loadTournamentName">-</div>
+                        <div class="dlg__sidebar-value" id="loadمسابقهName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="loadTournamentDate">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
-                        <div class="dlg__sidebar-value" id="loadTournamentStatus">-</div>
+                        <div class="dlg__sidebar-value" id="loadمسابقهDate">-</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
+                        <div class="dlg__sidebar-value" id="loadمسابقهStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="loadMatchProgress">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="loadPlayerCount">-</div>
+                        <div class="dlg__sidebar-value" id="loadبازیکنCount">-</div>
                     </aside>
                     <div class="dlg__main">
                         <h2 class="dlg__title">Load tournament</h2>
-                        <p class="dlg__desc" id="loadTournamentDesc">-</p>
+                        <p class="dlg__desc" id="loadمسابقهDesc">-</p>
                     </div>
                 </div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()">Cancel</button>
-                    <button class="btn btn-primary" id="confirmLoadBtn" onclick="confirmLoadTournament()">Load Tournament</button>
+                    <button class="btn btn-primary" id="confirmLoadBtn" onclick="confirmLoadمسابقه()">Load مسابقه</button>
                 </div>
             </div>
         </div>
 
-        <!-- Analytics Import Confirmation Modal -->
+        <!-- آمار و گزارش‌ها Import Confirmation Modal -->
         <div id="analyticsImportModal" class="modal">
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
@@ -1583,17 +1583,17 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div class="dlg__sidebar-value" id="analyticsImportName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
                         <div class="dlg__sidebar-value" id="analyticsImportDate">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
                         <div class="dlg__sidebar-value" id="analyticsImportStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="analyticsImportProgress">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="analyticsImportPlayers">-</div>
+                        <div class="dlg__sidebar-value" id="analyticsImportبازیکنs">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill" id="analyticsImportMissingSettingsPill" style="display: none;">Missing settings</span>
-                        <h2 class="dlg__title">Import to Analytics</h2>
-                        <p class="dlg__desc" id="analyticsImportDesc">This adds the tournament to the Analytics register. No existing data is modified.</p>
+                        <h2 class="dlg__title">Import to آمار و گزارش‌ها</h2>
+                        <p class="dlg__desc" id="analyticsImportDesc">This adds the tournament to the آمار و گزارش‌ها register. No existing data is modified.</p>
                         <p class="dlg__desc" id="analyticsImportWarning" style="display: none;">This export does not include point values or match length settings — current تنظیمات کلی will be used instead.</p>
                     </div>
                 </div>
@@ -1610,15 +1610,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="exportTournamentName">-</div>
+                        <div class="dlg__sidebar-value" id="exportمسابقهName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="exportTournamentDate">-</div>
-                        <div class="dlg__sidebar-label">Tournament Status</div>
-                        <div class="dlg__sidebar-value" id="exportTournamentStatus">-</div>
+                        <div class="dlg__sidebar-value" id="exportمسابقهDate">-</div>
+                        <div class="dlg__sidebar-label">وضعیت مسابقه</div>
+                        <div class="dlg__sidebar-value" id="exportمسابقهStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="exportMatchProgress">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="exportPlayerCount">-</div>
+                        <div class="dlg__sidebar-value" id="exportبازیکنCount">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill" id="exportIncompletePill" style="display: none;">Incomplete</span>
@@ -1634,10 +1634,10 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             </div>
         </div>
 
-        <!-- Match Detail Modal (from Setup → Match History) -->
+        <!-- Match Detail Modal (from تنظیمات مسابقات → Match History) -->
         <div id="matchDetailModal" class="modal">
             <div class="dlg dlg--match">
-                <!-- Filled by NewtonHistory.openMatchModal() (the same match detail as in Analytics) -->
+                <!-- Filled by NewtonHistory.openMatchModal() (the same match detail as in آمار و گزارش‌ها) -->
                 <div class="dlg__main" id="matchDetailModalBody"></div>
                 <div class="dlg__foot">
                     <button class="btn" onclick="popDialog()">بستن</button>
@@ -1658,17 +1658,17 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             </div>
         </div>
 
-        <!-- Late Registration Info Modal -->
+        <!-- Late ثبت‌نام بازیکنان Info Modal -->
         <div id="lateRegInfoModal" class="modal">
             <div class="dlg">
                 <div class="dlg__main">
                     <h2 class="dlg__title">Registering a late arrival</h2>
-                    <p class="dlg__desc" id="lateRegInfoFirstPara">To register a late arrival, enable the <strong>Developer Console</strong> in <strong>تنظیمات کلی</strong>, then open it from the <strong>Console</strong> link in the جدول مسابقات header.</p>
+                    <p class="dlg__desc" id="lateRegInfoFirstPara">To register a late arrival, enable the <strong>توسعه‌دهنده Console</strong> in <strong>تنظیمات کلی</strong>, then open it from the <strong>Console</strong> link in the جدول مسابقات header.</p>
                     <div class="dlg__note">
-                        <p class="dlg__desc">In the <strong>Developer Console</strong>, use the command <strong>Late Registration</strong> to add players.</p>
+                        <p class="dlg__desc">In the <strong>توسعه‌دهنده Console</strong>, use the command <strong>Late ثبت‌نام بازیکنان</strong> to add players.</p>
                         <p class="dlg__desc">The new player will be placed randomly in an available walkover spot in Frontside Round 1 and participate as a fully registered, paid player from that point forward.</p>
                     </div>
-                    <p class="dlg__desc" style="font-style: italic;">The Developer Console is for changes made after a tournament has started &mdash; outside the normal workflow.</p>
+                    <p class="dlg__desc" style="font-style: italic;">The توسعه‌دهنده Console is for changes made after a tournament has started &mdash; outside the normal workflow.</p>
                 </div>
                 <div class="dlg__foot">
                     <button class="btn btn-primary" onclick="popDialog()">Got it</button>
