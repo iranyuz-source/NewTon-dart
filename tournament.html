@@ -52,8 +52,8 @@
             // Load help system after other initialization (not in analytics mode)
             if (window.NEWTON_APP_MODE !== 'analytics') {
                 setTimeout(() => {
-                    if (typeof initializeHelpSystem === 'function') {
-                        initializeHelpSystem();
+                    if (typeof initializeراهنماSystem === 'function') {
+                        initializeراهنماSystem();
                     }
                 }, 500);
             }
@@ -90,7 +90,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <div id="clubLogo" class="logo-placeholder">
                         CLUB<br>LOGO
                     </div>
-                    NewTon DC - Tournament Manager
+                    نیوتن دارت — مدیریت مسابقات
                 </h1>
                 <div class="header-right">
                     <div id="headerTournamentStatus" class="header-tournament-status header-tournament-wide">
@@ -101,15 +101,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </div>
             </div>
             <div id="headerTournamentStatusNarrow" class="header-tournament-status header-tournament-narrow">
-                <span class="status-prefix">Active Tournament: </span><strong>None</strong>
+                <span class="status-prefix">مسابقه فعال: </span><strong>None</strong>
             </div>
             <div class="nav">
-                <button class="nav-btn active" data-page="setup">Tournament Setup</button>
-                <button class="nav-btn" data-page="registration">Player Registration</button>
-                <button class="nav-btn" data-page="tournament">Tournament Bracket</button>
+                <button class="nav-btn active" data-page="setup">تنظیمات مسابقات</button>
+                <button class="nav-btn" data-page="registration">ثبت‌نام بازیکنان</button>
+                <button class="nav-btn" data-page="tournament">جدول مسابقات</button>
                 <button class="nav-btn" data-page="history">Analytics</button>
-                <button class="nav-btn" data-page="config">Global Settings</button>
-                <a class="nav-btn" href="chalker/index.html" target="_blank">Chalker</a>
+                <button class="nav-btn" data-page="config">تنظیمات کلی</button>
+                <a class="nav-btn" href="chalker/index.html" target="_blank">چالکر</a>
             </div>
         </div>
 
@@ -117,22 +117,22 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <div id="setup" class="page active setup-page">
             <div class="st-wrap">
                 <div class="st-title">
-                    <div><h2>Tournament Setup</h2><p>Start a tournament, or pick one up where you left off.</p></div>
-                    <button type="button" class="st-btn help-info-icon" data-page="setup">Help</button>
+                    <div><h2>تنظیمات مسابقات</h2><p>مسابقه را شروع کنید یا یکی از مسابقات قبلی را ادامه دهید.</p></div>
+                    <button type="button" class="st-btn help-info-icon" data-page="setup">راهنما</button>
                 </div>
 
                 <div class="st-top">
                     <!-- Filled by renderSetupCurrent() -->
-                    <section class="st-panel" id="setupCurrent" aria-label="Current tournament"></section>
+                    <section class="st-panel" id="setupCurrent" aria-label="مسابقه جاری"></section>
 
                     <section class="st-panel st-create" aria-labelledby="setupNewTitle">
-                        <div><p class="st-eyebrow">New tournament</p><h3 id="setupNewTitle">Start a new tournament</h3></div>
+                        <div><p class="st-eyebrow">مسابقه جدید</p><h3 id="setupNewTitle">شروع مسابقه جدید</h3></div>
                         <div class="st-create-row">
-                            <div class="st-field"><label for="tournamentName">Name</label><input type="text" class="st-text" id="tournamentName" placeholder="e.g. Thursday Cup #42"></div>
-                            <div class="st-field"><label for="tournamentDate">Date</label><input type="date" class="st-text st-mono" id="tournamentDate"></div>
+                            <div class="st-field"><label for="tournamentنام مسابقه">نام مسابقه</label><input type="text" class="st-text" id="tournamentنام مسابقه" placeholder="مثلاً جام پنجشنبه شماره ۴۲"></div>
+                            <div class="st-field"><label for="tournamentتاریخ مسابقه">تاریخ مسابقه</label><input type="date" class="st-text st-mono" id="tournamentتاریخ مسابقه"></div>
                         </div>
-                        <div><button type="button" class="st-btn st-primary" onclick="createTournament()">Create tournament</button></div>
-                        <div class="st-or">Have a tournament file? <button type="button" class="st-link" onclick="document.getElementById('importFile').click()">Import tournament</button></div>
+                        <div><button type="button" class="st-btn st-primary" onclick="createTournament()">ایجاد مسابقه</button></div>
+                        <div class="st-or">فایل مسابقه دارید؟ <button type="button" class="st-link" onclick="document.getElementById('importFile').click()">درون‌ریزی مسابقه</button></div>
                         <div id="importStatus" class="st-import-status" style="display: none;"></div>
                         <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importTournament(event)">
                         <input type="file" id="uploadFileInput" accept=".json" style="display: none;" onchange="handleUploadFileSelected(event)">
@@ -143,18 +143,18 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <section class="st-panel" aria-labelledby="setupListTitle">
                         <div class="st-panel-head">
                             <div class="st-head-l">
-                                <h3 id="setupListTitle">Tournaments</h3>
-                                <!-- This computer | Server tabs, filled by loadRecentTournaments() when a server answers -->
+                                <h3 id="setupListTitle">مسابقات</h3>
+                                <!-- This computer | Server tabs, filled by loadRecentمسابقات() when a server answers -->
                                 <div class="st-seg" id="setupListSource" hidden></div>
                             </div>
-                            <button type="button" id="storage-indicator-link" class="st-storage" onclick="showStorageModal()" title="Storage used on this computer"><span id="storageIndicatorText">Storage --</span><span class="st-meter"><span id="storageIndicatorBar"></span></span></button>
+                            <button type="button" id="storage-indicator-link" class="st-storage" onclick="showStorageModal()" title="فضای ذخیره‌سازی این دستگاه"><span id="storageIndicatorText">فضای ذخیره‌سازی --</span><span class="st-meter"><span id="storageIndicatorBar"></span></span></button>
                         </div>
-                        <div class="st-scroll" id="recentTournaments"></div>
+                        <div class="st-scroll" id="recentمسابقات"></div>
                     </section>
 
                     <section class="st-panel" aria-labelledby="matchHistoryHeading">
                         <div class="st-panel-head">
-                            <h3 id="matchHistoryHeading">Match history</h3>
+                            <h3 id="matchHistoryHeading">تاریخچه مسابقات</h3>
                             <span class="st-eyebrow" id="matchHistoryCount"></span>
                         </div>
                         <div class="st-hlist" id="matchResults"></div>
@@ -163,31 +163,31 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             </div>
         </div>
 
-        <!-- Registration Page (css/registration-page.css): next step, players, payment, saved players, Leaderboard -->
+        <!-- Registration Page (css/registration-page.css): next step, players, payment, saved players, جدول رده‌بندی -->
         <div id="registration" class="page registration-page">
             <div class="rg-wrap">
                 <div class="st-title">
-                    <div><h2>Player Registration</h2><p id="registrationSubtitle">Add the players, and mark who has paid.</p></div>
-                    <button type="button" class="st-btn help-info-icon" data-page="registration">Help</button>
+                    <div><h2>ثبت‌نام بازیکنان</h2><p id="registrationSubtitle">بازیکنان را اضافه کنید و وضعیت پرداخت آن‌ها را مشخص کنید.</p></div>
+                    <button type="button" class="st-btn help-info-icon" data-page="registration">راهنما</button>
                 </div>
 
                 <!-- Counts are kept by updatePlayerCount(); the rest by renderRegistrationNext() -->
                 <section class="rg-next" aria-label="Next step">
                     <dl class="rg-counts">
-                        <div><dt>Players</dt><dd id="playerCount">0</dd></div>
-                        <div><dt>Paid</dt><dd id="paidCount">0</dd></div>
-                        <div><dt>Unpaid</dt><dd id="unpaidCount">0</dd></div>
+                        <div><dt>بازیکنان</dt><dd id="playerCount">0</dd></div>
+                        <div><dt>پرداخت‌شده</dt><dd id="paidCount">0</dd></div>
+                        <div><dt>پرداخت‌نشده</dt><dd id="unpaidCount">0</dd></div>
                     </dl>
                     <div class="st-next-what"><p class="st-eyebrow">Next step</p><b id="registrationNextTitle"></b><span class="st-hint" id="registrationNextHint"></span></div>
-                    <button type="button" class="st-btn st-primary rg-next-btn" id="registrationNextBtn" onclick="showPage('tournament')">Open bracket →</button>
+                    <button type="button" class="st-btn st-primary rg-next-btn" id="registrationNextBtn" onclick="showPage('tournament')">باز کردن جدول ←</button>
                 </section>
 
                 <div class="rg-cols" id="registrationCols">
-                    <section class="st-panel" aria-labelledby="registrationPlayersTitle">
-                        <div class="st-panel-head"><h3 id="registrationPlayersTitle">Players<small id="registrationPlayersHint">click a player to toggle paid</small></h3></div>
+                    <section class="st-panel" aria-labelledby="registrationبازیکنانTitle">
+                        <div class="st-panel-head"><h3 id="registrationبازیکنانTitle">بازیکنان<small id="registrationبازیکنانHint">برای تغییر وضعیت پرداخت، روی بازیکن بزنید</small></h3></div>
                         <div class="rg-add" id="playerAddRow">
-                            <input type="text" class="st-text" id="playerName" placeholder="Player name, then Enter" autocomplete="off">
-                            <button type="button" class="st-btn st-primary" onclick="addPlayer()">Add player</button>
+                            <input type="text" class="st-text" id="playerنام مسابقه" placeholder="نام بازیکن، سپس Enter" autocomplete="off">
+                            <button type="button" class="st-btn st-primary" onclick="addPlayer()">افزودن بازیکن</button>
                         </div>
                         <div id="playersContainer" class="rg-plist"></div>
                         <div class="rg-pfoot" id="lateRegBtnContainer"></div>
@@ -199,19 +199,19 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <img src="images/payment.png" alt="Payment QR code" onerror="document.getElementById('paymentPanel').hidden = true">
                             <div><b>Pay here</b><span>Scan to pay the entry fee.</span></div>
                         </section>
-                        <section class="st-panel" aria-labelledby="savedPlayersTitle">
+                        <section class="st-panel" aria-labelledby="savedبازیکنانTitle">
                             <div class="st-panel-head">
-                                <h3 id="savedPlayersTitle">Saved players<small id="playerListCount"></small></h3>
+                                <h3 id="savedبازیکنانTitle">بازیکنان ذخیره‌شده<small id="playerListCount"></small></h3>
                                 <button type="button" class="st-link" onclick="importPlayerListFromFile()" title="Import saved players from a tournament export file">Import saved players</button>
                             </div>
                             <div id="playerListContainer" class="rg-chips"></div>
                         </section>
                     </div>
 
-                    <!-- After the draw: the Leaderboard -->
+                    <!-- After the draw: the جدول رده‌بندی -->
                     <section class="st-panel" id="tournamentResultsSection" style="display: none;" aria-labelledby="leaderboardTitle">
                         <div class="st-panel-head">
-                            <h3 id="leaderboardTitle">Leaderboard<small>click a player to edit statistics</small></h3>
+                            <h3 id="leaderboardTitle">جدول رده‌بندی<small>click a player to edit statistics</small></h3>
                             <div class="rg-tools">
                                 <button type="button" class="st-link" onclick="exportResultsCSV()">Export CSV</button>
                                 <button type="button" class="st-link" onclick="exportResultsJSON()">Export JSON</button>
@@ -264,7 +264,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     </div>
                     <div class="bv-head-center">
                         <button type="button" class="bv-btn bv-btn-primary bv-nav-btn" onclick="showMatchCommandCenter()" title="Show LIVE and UPCOMING matches">Match Controls<span class="bv-badge" id="bvResultsWaiting" hidden></span></button>
-                        <button type="button" class="bv-btn bv-nav-btn" onclick="showStatisticsModal()" title="View tournament statistics and rankings">Leaderboard</button>
+                        <button type="button" class="bv-btn bv-nav-btn" onclick="showStatisticsModal()" title="View tournament statistics and rankings">جدول رده‌بندی</button>
                     </div>
                     <div class="bv-head-right">
                         <div class="bv-tools">
@@ -314,18 +314,18 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="cfg-wrap">
                 <div class="cfg-title">
                     <div>
-                        <h2>Global Settings</h2>
+                        <h2>تنظیمات کلی</h2>
                         <p>Settings for this computer. They apply to every tournament.</p>
                     </div>
-                    <button type="button" class="cfg-btn help-info-icon" data-page="config">Help</button>
+                    <button type="button" class="cfg-btn help-info-icon" data-page="config">راهنما</button>
                 </div>
 
                 <nav class="cfg-toc" aria-label="Settings sections">
                     <button type="button" data-target="cfg-club">Club<span class="cfg-dot"></span></button>
-                    <button type="button" data-target="cfg-tournaments">Tournaments<span class="cfg-dot"></span></button>
+                    <button type="button" data-target="cfg-tournaments">مسابقات<span class="cfg-dot"></span></button>
                     <button type="button" data-target="cfg-matchday">Match day<span class="cfg-dot"></span></button>
                     <button type="button" data-target="cfg-bracket">Bracket<span class="cfg-dot"></span></button>
-                    <button type="button" data-target="cfg-chalker">Chalker<span class="cfg-dot"></span></button>
+                    <button type="button" data-target="cfg-chalker">چالکر<span class="cfg-dot"></span></button>
                     <button type="button" data-target="cfg-server">Server &amp; backup<span class="cfg-dot"></span></button>
                     <button type="button" data-target="cfg-developer">Developer<span class="cfg-dot"></span></button>
                 </nav>
@@ -348,7 +348,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
 
                 <!-- TOURNAMENTS -->
                 <section class="cfg-section" id="cfg-tournaments">
-                    <div class="cfg-sec-head"><h3>Tournaments</h3></div>
+                    <div class="cfg-sec-head"><h3>مسابقات</h3></div>
                     <div class="cfg-panel">
                         <div class="cfg-panel-title">Formats to offer</div>
                         <p class="cfg-panel-note">Which formats appear when starting a tournament. Hide the ones your club never plays. Existing tournaments are unaffected.</p>
@@ -420,8 +420,8 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="autoOpenMatchControls" checked><span></span></span></div>
                     </div>
                         <div class="cfg-row">
-                        <div><label class="cfg-label" for="defaultPaid">New players are paid</label><div class="cfg-desc">Players added to a tournament start as paid. To remove a player, set them to unpaid first.</div></div>
-                        <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="defaultPaid"><span></span></span></div>
+                        <div><label class="cfg-label" for="defaultپرداخت‌شده">New players are paid</label><div class="cfg-desc">بازیکنان added to a tournament start as paid. To remove a player, set them to unpaid first.</div></div>
+                        <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="defaultپرداخت‌شده"><span></span></span></div>
                     </div>
                         <div class="cfg-row">
                             <div><div class="cfg-label">Referee suggestions</div><div class="cfg-desc">How many players to suggest in each group (winners, losers, assignments).</div></div>
@@ -447,7 +447,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
 
                 <!-- CHALKER -->
                 <section class="cfg-section" id="cfg-chalker">
-                    <div class="cfg-sec-head"><div><h3>Chalker</h3><p>Sent to the Chalker when a match starts.</p></div></div>
+                    <div class="cfg-sec-head"><div><h3>چالکر</h3><p>Sent to the چالکر when a match starts.</p></div></div>
                     <div class="cfg-panel">
                         <div class="cfg-row">
                             <div><div class="cfg-label">Game</div><div class="cfg-desc">Starting score for every leg.</div></div>
@@ -526,7 +526,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="cfg-dialog-back" id="cfgLeave" hidden>
                 <div class="cfg-dialog" role="dialog" aria-modal="true" aria-labelledby="cfgLeaveTitle">
                     <h3 id="cfgLeaveTitle">Save your changes?</h3>
-                    <p>You have <b id="cfgLeaveCount">1 unsaved change</b> on Global Settings. Save before you continue?</p>
+                    <p>You have <b id="cfgLeaveCount">1 unsaved change</b> on تنظیمات کلی. Save before you continue?</p>
                     <div class="cfg-acts">
                         <button type="button" class="cfg-btn" id="cfgLeaveStay">Stay</button>
                         <button type="button" class="cfg-btn" id="cfgLeaveDiscard">Discard and continue</button>
@@ -549,11 +549,11 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <span class="an-lbl">Register file</span>
                             <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportDB()">Export</button>
                             <button type="button" class="st-btn st-sm" onclick="document.getElementById('historyImportFile').click()">Import</button>
-                            <button type="button" class="st-btn st-sm" onclick="document.getElementById('tournamentImportFile').click()">Import tournament</button>
+                            <button type="button" class="st-btn st-sm" onclick="document.getElementById('tournamentImportFile').click()">درون‌ریزی مسابقه</button>
                         </span>
                         <input type="file" id="historyImportFile" accept=".json" style="display:none;" onchange="NewtonHistory.importDB(event)">
                         <input type="file" id="tournamentImportFile" accept=".json" style="display:none;" onchange="NewtonHistory.importTournament(event)">
-                        <button type="button" class="st-btn help-info-icon" data-page="history">Help</button>
+                        <button type="button" class="st-btn help-info-icon" data-page="history">راهنما</button>
                     </div>
                 </div>
 
@@ -562,13 +562,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <div class="an-strip-row">
                         <div class="an-views">
                             <div class="st-seg" role="group" aria-label="View">
-                                <button type="button" class="analytics-view-btn" data-view="dashboard" aria-pressed="true">Dashboard</button><button type="button" class="analytics-view-btn" data-view="leaderboard" aria-pressed="false">Leaderboard</button><button type="button" class="analytics-view-btn" data-view="players" aria-pressed="false">Players</button><button type="button" class="analytics-view-btn" data-view="register" aria-pressed="false">Register</button>
+                                <button type="button" class="analytics-view-btn" data-view="dashboard" aria-pressed="true">Dashboard</button><button type="button" class="analytics-view-btn" data-view="leaderboard" aria-pressed="false">جدول رده‌بندی</button><button type="button" class="analytics-view-btn" data-view="players" aria-pressed="false">بازیکنان</button><button type="button" class="analytics-view-btn" data-view="register" aria-pressed="false">Register</button>
                             </div>
                         </div>
                         <div class="an-points">
                             <span class="an-lbl">Points</span>
                             <div class="st-seg" role="group" aria-label="Point values">
-                                <button type="button" class="analytics-point-btn" data-point-mode="original" aria-pressed="true" title="The point values each tournament was played with">Original</button><button type="button" class="analytics-point-btn" data-point-mode="current" aria-pressed="false" title="Today's point values from Global Settings">Current</button>
+                                <button type="button" class="analytics-point-btn" data-point-mode="original" aria-pressed="true" title="The point values each tournament was played with">Original</button><button type="button" class="analytics-point-btn" data-point-mode="current" aria-pressed="false" title="Today's point values from تنظیمات کلی">Current</button>
                             </div>
                             <button type="button" class="an-chk" data-layer="ranking" aria-pressed="true" title="Placement points" onclick="NewtonHistory.toggleLayer('ranking', this)">Ranking</button>
                             <button type="button" class="an-chk" data-layer="attendance" aria-pressed="true" title="Participation points" onclick="NewtonHistory.toggleLayer('attendance', this)">Attendance</button>
@@ -581,9 +581,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <span class="an-lbl">Lens</span>
                             <input type="search" id="analyticsTextFilter" class="an-text an-name" placeholder="Tournament name" aria-label="Tournament name" oninput="NewtonHistory.onTextFilter(this.value)">
                             <span class="an-dates">
-                                <input type="date" id="analyticsDateFrom" class="an-text" aria-label="From" onchange="NewtonHistory.onDateFilter()">
+                                <input type="date" id="analyticsتاریخ مسابقهFrom" class="an-text" aria-label="From" onchange="NewtonHistory.onتاریخ مسابقهFilter()">
                                 <span class="an-lbl">to</span>
-                                <input type="date" id="analyticsDateTo" class="an-text" aria-label="To" onchange="NewtonHistory.onDateFilter()">
+                                <input type="date" id="analyticsتاریخ مسابقهTo" class="an-text" aria-label="To" onchange="NewtonHistory.onتاریخ مسابقهFilter()">
                             </span>
                             <button type="button" class="st-btn st-sm" id="lensCurrentHalf" onclick="NewtonHistory.setHalfYear(0)"></button>
                             <button type="button" class="st-btn st-sm" id="lensPreviousHalf" onclick="NewtonHistory.setHalfYear(-1)"></button>
@@ -595,27 +595,27 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <!-- Dashboard: filled by renderDashboard() -->
                 <div id="analyticsViewDashboard" class="analytics-view active"></div>
 
-                <!-- Leaderboard -->
-                <div id="analyticsViewLeaderboard" class="analytics-view">
+                <!-- جدول رده‌بندی -->
+                <div id="analyticsViewجدول رده‌بندی" class="analytics-view">
                     <section class="st-panel">
                         <div class="st-panel-head">
-                            <h3>Leaderboard <small id="leaderboardMeta"></small></h3>
+                            <h3>جدول رده‌بندی <small id="leaderboardMeta"></small></h3>
                             <div class="an-tools">
                                 <span class="an-legend"><i></i>Top 16</span>
-                                <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportLeaderboardCSV()">Export CSV</button>
-                                <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportLeaderboardJSON()">Export JSON</button>
+                                <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportجدول رده‌بندیCSV()">Export CSV</button>
+                                <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportجدول رده‌بندیJSON()">Export JSON</button>
                             </div>
                         </div>
                         <div id="leaderboardTableContainer"></div>
-                        <div class="an-foot">Avg is from Chalker matches only. Click a column to sort, a player to open their profile.</div>
+                        <div class="an-foot">Avg is from چالکر matches only. Click a column to sort, a player to open their profile.</div>
                     </section>
                 </div>
 
-                <!-- Players: the list, and a profile or comparison of the ticked players -->
-                <div id="analyticsViewPlayers" class="analytics-view">
+                <!-- بازیکنان: the list, and a profile or comparison of the ticked players -->
+                <div id="analyticsViewبازیکنان" class="analytics-view">
                     <div class="an-players">
                         <section class="st-panel">
-                            <div class="st-panel-head"><h3>Players <small id="playersMeta"></small></h3></div>
+                            <div class="st-panel-head"><h3>بازیکنان <small id="playersMeta"></small></h3></div>
                             <div id="playersTableContainer"></div>
                             <div class="an-foot">Tick one player for a profile, several to compare.</div>
                         </section>
@@ -633,7 +633,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <!-- Tournament list -->
                     <section class="st-panel" id="historyTournamentList">
                         <div class="st-panel-head">
-                            <h3>Tournaments <small id="historyTournamentMeta"></small></h3>
+                            <h3>مسابقات <small id="historyTournamentMeta"></small></h3>
                             <span class="an-note">Ticked tournaments are what every view counts.</span>
                         </div>
                         <div id="historyTournamentTableContainer"></div>
@@ -692,10 +692,10 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="historyDeleteTournamentDisplayName">-</div>
-                        <div class="dlg__sidebar-label">Date</div>
-                        <div class="dlg__sidebar-value" id="historyDeleteTournamentDate">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="historyDeleteTournamentDisplayنام مسابقه">-</div>
+                        <div class="dlg__sidebar-label">تاریخ مسابقه</div>
+                        <div class="dlg__sidebar-value" id="historyDeleteTournamentتاریخ مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value">Completed</div>
                     </aside>
@@ -722,9 +722,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">Tournament</div>
-                        <div class="dlg__sidebar-value" id="correctionsTournamentName">-</div>
-                        <div class="dlg__sidebar-label">Date</div>
-                        <div class="dlg__sidebar-value" id="correctionsTournamentDate">-</div>
+                        <div class="dlg__sidebar-value" id="correctionsTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-label">تاریخ مسابقه</div>
+                        <div class="dlg__sidebar-value" id="correctionsTournamentتاریخ مسابقه">-</div>
                         <div class="dlg__sidebar-label">As recorded</div>
                         <div class="dlg__sidebar-value" id="correctionsRecorded" style="white-space:pre-line;">-</div>
                     </aside>
@@ -794,7 +794,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <div id="statsModal" class="modal">
             <div class="dlg">
                 <div class="dlg__main">
-                    <h2 class="dlg__title" id="statsPlayerName">Edit player statistics</h2>
+                    <h2 class="dlg__title" id="statsPlayerنام مسابقه">Edit player statistics</h2>
 
                     <!-- Counter row: 180s / Tons / Lollipops -->
                     <div class="stats-counter-row">
@@ -1009,7 +1009,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="modal-content" style="max-width: 480px; text-align: center;">
                 <h3>Scan QR Code</h3>
                 <video id="qrResultScanVideo" style="width: 100%; border-radius: 6px; background: #000; margin: 12px 0;" autoplay playsinline muted></video>
-                <p style="color: #6b7280; font-size: 14px; margin-bottom: 8px;">Point the camera at the QR code on the Chalker.</p>
+                <p style="color: #6b7280; font-size: 14px; margin-bottom: 8px;">Point the camera at the QR code on the چالکر.</p>
                 <p id="qrResultScanError" style="color: #dc2626; display: none; margin-bottom: 8px;"></p>
                 <button class="btn" onclick="stopResultQRScanner(); popDialog();">Cancel</button>
             </div>
@@ -1088,12 +1088,12 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div style="display: flex; align-items: center;">
-                                    <span id="winnerNameForLegs" style="font-weight: 600; color: #065f46; margin-right: 10px; min-width: 80px;">Winner</span>
+                                    <span id="winnerنام مسابقهForLegs" style="font-weight: 600; color: #065f46; margin-right: 10px; min-width: 80px;">Winner</span>
                                     <input type="number" id="winnerLegs" min="0" max="7" style="width: 60px; padding: 6px 8px; border: 1px solid #d1d5db; text-align: center;">
                                     <span style="margin: 0 8px; color: #6b7280;">legs</span>
                                 </div>
                                 <div style="display: flex; align-items: center;">
-                                    <span id="loserNameForLegs" style="font-weight: 600; color: #6b7280; margin-right: 10px; min-width: 80px;">Loser</span>
+                                    <span id="loserنام مسابقهForLegs" style="font-weight: 600; color: #6b7280; margin-right: 10px; min-width: 80px;">Loser</span>
                                     <input type="number" id="loserLegs" min="0" max="7" value="0" style="width: 60px; padding: 6px 8px; border: 1px solid #d1d5db; text-align: center;">
                                     <span style="margin: 0 8px; color: #6b7280;">legs</span>
                                 </div>
@@ -1148,13 +1148,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <!-- Setup state message -->
                         <div id="setupMessage" class="cc-setup-message" style="display: none;">
                             <p>🔧 Tournament in setup mode</p>
-                            <p style="font-size: 14px; color: #666; margin-top: 8px;">Add players and configure the
+                            <p style="font-size: 14px; color: #666; margin-top: 8px;">افزودن بازیکنs and configure the
                                 tournament to generate matches.</p>
                         </div>
 
                         <!-- Tournament Configuration Display -->
                         <div id="tournamentConfigDisplay" class="cc-setup-message" style="display: none;">
-                            <p>Tournament Configuration (Change in Global Settings Page)</p>
+                            <p>Tournament Configuration (Change in تنظیمات کلی Page)</p>
                             <div class="config-display-grid" style="margin-top: 15px;">
                                 <!-- Column 1: Point Values -->
                                 <div>
@@ -1300,7 +1300,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="text-center mt-20" style="position: relative;">
                     <div style="display: flex; justify-content: center; align-items: center; position: relative;">
                         <div>
-                            <button class="btn" id="showStatisticsBtn" style="margin-right: 10px;">Leaderboard</button>
+                            <button class="btn" id="showStatisticsBtn" style="margin-right: 10px;">جدول رده‌بندی</button>
                             <button class="btn btn-success" id="qrResultsBtn" onclick="openResultQRScanner(null)" style="display:none; margin-right: 10px; box-shadow: 0 0 12px rgba(249, 115, 22, 0.4), 0 0 20px rgba(249, 115, 22, 0.1); border-color: #fb923c;">Scan QR Results</button>
                             <button class="btn" id="commandCenterOK">Close</button>
                         </div>
@@ -1316,11 +1316,11 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         </div>
 
         <!-- Statistics Modal -->
-        <!-- Leaderboard dialog, opened from the bracket header and Match Controls (no exports here) -->
+        <!-- جدول رده‌بندی dialog, opened from the bracket header and Match Controls (no exports here) -->
         <div id="statisticsModal" class="modal">
             <div class="dlg dlg--leaderboard">
                 <div class="dlg__main">
-                    <h2 class="dlg__title">Leaderboard<small>click a player to edit statistics</small></h2>
+                    <h2 class="dlg__title">جدول رده‌بندی<small>click a player to edit statistics</small></h2>
                     <div class="nt-leaderboard-scroll">
                         <table class="nt-leaderboard" id="statisticsTable">
                             <thead>
@@ -1356,8 +1356,8 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div class="dlg__sidebar-value" id="undoSidebarMatch">-</div>
                         <div class="dlg__sidebar-label">Bracket</div>
                         <div class="dlg__sidebar-value" id="undoSidebarBracket">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
-                        <div class="dlg__sidebar-value" id="undoSidebarPlayers">-</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
+                        <div class="dlg__sidebar-value" id="undoSidebarبازیکنان">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill">Destructive</span>
@@ -1380,13 +1380,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split dlg--wide">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="bracketConfirmName">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="bracketConfirmنام مسابقه">-</div>
                         <div class="dlg__sidebar-label">Format</div>
                         <div class="dlg__sidebar-value" id="bracketConfirmFormat">-</div>
                         <div class="dlg__sidebar-label">Bracket Size</div>
                         <div class="dlg__sidebar-value" id="bracketConfirmSize">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
                         <div class="dlg__sidebar-value" id="bracketConfirmPlayerCount">-</div>
                         <div class="dlg__sidebar-label" id="bracketConfirmByesLabel">Byes</div>
                         <div class="dlg__sidebar-value" id="bracketConfirmByes">-</div>
@@ -1394,7 +1394,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <div class="dlg__main">
                         <h2 class="dlg__title" id="bracketConfirmTitle">Generate Bracket</h2>
                         <p class="dlg__desc">These players will be placed into the bracket. Make sure all players are registered before proceeding.</p>
-                        <div id="bracketConfirmPlayers" class="bracket-confirm-players"></div>
+                        <div id="bracketConfirmبازیکنان" class="bracket-confirm-players"></div>
                     </div>
                 </div>
                 <div class="dlg__foot">
@@ -1409,20 +1409,20 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="progressTournamentName">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="progressTournamentنام مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="progressTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="progressMatchProgress">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
                         <div class="dlg__sidebar-value" id="progressPlayerCount">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill">Warning</span>
                         <h2 class="dlg__title">Tournament already in progress</h2>
-                        <p class="dlg__desc">To start fresh or change the bracket, reset the tournament from the <strong>Setup</strong> page. Players are kept; only matches and bracket are cleared.</p>
-                        <p class="dlg__desc">If a player arrived late, use the <strong>Player arrived late?</strong> button at the bottom of the Tournament Players list instead.</p>
+                        <p class="dlg__desc">To start fresh or change the bracket, reset the tournament from the <strong>Setup</strong> page. بازیکنان are kept; only matches and bracket are cleared.</p>
+                        <p class="dlg__desc">If a player arrived late, use the <strong>Player arrived late?</strong> button at the bottom of the Tournament بازیکنان list instead.</p>
                     </div>
                 </div>
                 <div class="dlg__foot">
@@ -1436,19 +1436,19 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="resetTournamentName">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="resetTournamentنام مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="resetTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="resetMatchProgress">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
                         <div class="dlg__sidebar-value" id="resetPlayerCount">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill">Destructive</span>
                         <h2 class="dlg__title">Reset tournament</h2>
-                        <p class="dlg__desc">All matches, brackets and standings will be permanently deleted. Players are kept, but their elimination status is reset.</p>
+                        <p class="dlg__desc">All matches, brackets and standings will be permanently deleted. بازیکنان are kept, but their elimination status is reset.</p>
                         <div>
                             <label class="dlg__label" for="resetConfirmationInput">Type the tournament name to confirm</label>
                             <input type="text" id="resetConfirmationInput" class="dlg__input" autocomplete="off">
@@ -1467,14 +1467,14 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentName">-</div>
-                        <div class="dlg__sidebar-label">Date</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentDate">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="deleteTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-label">تاریخ مسابقه</div>
+                        <div class="dlg__sidebar-value" id="deleteTournamentتاریخ مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="deleteTournamentStatus">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentPlayers">-</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
+                        <div class="dlg__sidebar-value" id="deleteTournamentبازیکنان">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill dlg__pill--danger">Destructive</span>
@@ -1495,10 +1495,10 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="importTournamentName">-</div>
-                        <div class="dlg__sidebar-label">Date</div>
-                        <div class="dlg__sidebar-value" id="importTournamentDate">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="importTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-label">تاریخ مسابقه</div>
+                        <div class="dlg__sidebar-value" id="importTournamentتاریخ مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="importTournamentStatus">-</div>
                     </aside>
@@ -1521,20 +1521,20 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="importConfirmName">-</div>
-                        <div class="dlg__sidebar-label">Date</div>
-                        <div class="dlg__sidebar-value" id="importConfirmDate">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="importConfirmنام مسابقه">-</div>
+                        <div class="dlg__sidebar-label">تاریخ مسابقه</div>
+                        <div class="dlg__sidebar-value" id="importConfirmتاریخ مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="importConfirmStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="importConfirmMatches">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
-                        <div class="dlg__sidebar-value" id="importConfirmPlayers">-</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
+                        <div class="dlg__sidebar-value" id="importConfirmبازیکنان">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill" id="importOldFormatPill" style="display: none;">Old format</span>
-                        <h2 class="dlg__title">Import tournament</h2>
+                        <h2 class="dlg__title">درون‌ریزی مسابقه</h2>
                         <p class="dlg__desc">Your current tournament data is automatically saved and can be reloaded at any time — importing will not cause any data loss.</p>
                         <p class="dlg__desc" id="importOldFormatWarning" style="display: none;">This tournament is from an older version. It will import successfully, but undo history will not be available. All other features work normally.</p>
                     </div>
@@ -1551,15 +1551,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="loadTournamentName">-</div>
-                        <div class="dlg__sidebar-label">Date</div>
-                        <div class="dlg__sidebar-value" id="loadTournamentDate">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="loadTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-label">تاریخ مسابقه</div>
+                        <div class="dlg__sidebar-value" id="loadTournamentتاریخ مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="loadTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="loadMatchProgress">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
                         <div class="dlg__sidebar-value" id="loadPlayerCount">-</div>
                     </aside>
                     <div class="dlg__main">
@@ -1579,22 +1579,22 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="analyticsImportName">-</div>
-                        <div class="dlg__sidebar-label">Date</div>
-                        <div class="dlg__sidebar-value" id="analyticsImportDate">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="analyticsImportنام مسابقه">-</div>
+                        <div class="dlg__sidebar-label">تاریخ مسابقه</div>
+                        <div class="dlg__sidebar-value" id="analyticsImportتاریخ مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="analyticsImportStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="analyticsImportProgress">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
-                        <div class="dlg__sidebar-value" id="analyticsImportPlayers">-</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
+                        <div class="dlg__sidebar-value" id="analyticsImportبازیکنان">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill" id="analyticsImportMissingSettingsPill" style="display: none;">Missing settings</span>
                         <h2 class="dlg__title">Import to Analytics</h2>
                         <p class="dlg__desc" id="analyticsImportDesc">This adds the tournament to the Analytics register. No existing data is modified.</p>
-                        <p class="dlg__desc" id="analyticsImportWarning" style="display: none;">This export does not include point values or match length settings — current Global Settings will be used instead.</p>
+                        <p class="dlg__desc" id="analyticsImportWarning" style="display: none;">This export does not include point values or match length settings — current تنظیمات کلی will be used instead.</p>
                     </div>
                 </div>
                 <div class="dlg__foot">
@@ -1609,15 +1609,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg dlg--split">
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
-                        <div class="dlg__sidebar-label">Name</div>
-                        <div class="dlg__sidebar-value" id="exportTournamentName">-</div>
-                        <div class="dlg__sidebar-label">Date</div>
-                        <div class="dlg__sidebar-value" id="exportTournamentDate">-</div>
+                        <div class="dlg__sidebar-label">نام مسابقه</div>
+                        <div class="dlg__sidebar-value" id="exportTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-label">تاریخ مسابقه</div>
+                        <div class="dlg__sidebar-value" id="exportTournamentتاریخ مسابقه">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="exportTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="exportMatchProgress">-</div>
-                        <div class="dlg__sidebar-label">Players</div>
+                        <div class="dlg__sidebar-label">بازیکنان</div>
                         <div class="dlg__sidebar-value" id="exportPlayerCount">-</div>
                     </aside>
                     <div class="dlg__main">
@@ -1648,7 +1648,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <!-- Match QR Modal -->
         <div id="matchQRModal" class="modal">
             <div class="modal-content" style="max-width: 580px; text-align: center;">
-                <h3 id="matchQRTitle">Chalker QR Code</h3>
+                <h3 id="matchQRTitle">چالکر QR Code</h3>
                 <p id="matchQRSubtitle" style="color: #6b7280; margin: 0 0 12px 0; font-size: 17px;"></p>
                 <div id="matchQRCode" style="display: flex; justify-content: center; margin: 8px 0;"></div>
                 <p id="matchQRWarning" style="color: #d97706; margin: 12px 0 0 0; display: none;"></p>
@@ -1663,7 +1663,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
             <div class="dlg">
                 <div class="dlg__main">
                     <h2 class="dlg__title">Registering a late arrival</h2>
-                    <p class="dlg__desc" id="lateRegInfoFirstPara">To register a late arrival, enable the <strong>Developer Console</strong> in <strong>Global Settings</strong>, then open it from the <strong>Console</strong> link in the Tournament Bracket header.</p>
+                    <p class="dlg__desc" id="lateRegInfoFirstPara">To register a late arrival, enable the <strong>Developer Console</strong> in <strong>تنظیمات کلی</strong>, then open it from the <strong>Console</strong> link in the جدول مسابقات header.</p>
                     <div class="dlg__note">
                         <p class="dlg__desc">In the <strong>Developer Console</strong>, use the command <strong>Late Registration</strong> to add players.</p>
                         <p class="dlg__desc">The new player will be placed randomly in an available walkover spot in Frontside Round 1 and participate as a fully registered, paid player from that point forward.</p>
