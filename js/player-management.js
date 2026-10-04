@@ -142,11 +142,11 @@ function renderPlayerList() {
     if (countSpan) countSpan.textContent = availablePlayers.length ? `${availablePlayers.length} not in this tournament` : '';
 
     if (playerList.length === 0) {
-        container.innerHTML = '<div class="st-empty"><span>No saved players yet. Everyone you add is saved here for next time.</span></div>';
+        container.innerHTML = '<div class="st-empty"><span>هنوز بازیکن ذخیره‌شده‌ای وجود ندارد. هر بازیکنی که اضافه کنید برای دفعات بعد اینجا ذخیره می‌شود.</span></div>';
         return;
     }
     if (availablePlayers.length === 0) {
-        container.innerHTML = '<div class="st-empty"><span>Everyone on the list is in the tournament.</span></div>';
+        container.innerHTML = '<div class="st-empty"><span>همه بازیکنان این فهرست در مسابقه حضور دارند.</span></div>';
         return;
     }
 
@@ -249,7 +249,7 @@ function importPlayerListFromFile() {
 
             // Check if file contains playerList
             if (!data.playerList || !Array.isArray(data.playerList) || data.playerList.length === 0) {
-                alert('This file doesn\'t contain a Player List.');
+                alert('این فایل شامل فهرست بازیکنان نیست.');
                 return;
             }
 
@@ -258,7 +258,7 @@ function importPlayerListFromFile() {
             const importedList = data.playerList.filter(n => typeof n === 'string' && n.trim());
 
             if (importedList.length === 0) {
-                alert('This file doesn\'t contain any valid player names.');
+                alert('این فایل هیچ نام بازیکن معتبری ندارد.');
                 return;
             }
 
@@ -269,7 +269,7 @@ function importPlayerListFromFile() {
 
         } catch (error) {
             console.error('Error importing Player List:', error);
-            alert('Error reading file. Please check the file format.');
+            alert('خطا در خواندن فایل. لطفاً قالب فایل را بررسی کنید.');
         }
     };
 
@@ -287,22 +287,22 @@ function showImportPlayerListDialog(importedList, currentList) {
     modal.style.display = 'block';
     modal.innerHTML = `
         <div class="modal-content">
-            <h3>Import Player List</h3>
-            <p>Found <strong>${importedList.length}</strong> players in this file.</p>
-            <p>Your current Player List has <strong>${currentList.length}</strong> players.</p>
+            <h3>درون‌ریزی فهرست بازیکنان</h3>
+            <p>در این فایل <strong>${importedList.length}</strong> بازیکن پیدا شد.</p>
+            <p>فهرست فعلی شما <strong>${currentList.length}</strong> بازیکن دارد.</p>
             <div style="margin: 20px 0;">
                 <label style="display: block; margin-bottom: 10px;">
                     <input type="radio" name="importMode" value="merge" checked>
-                    Add new players only (merge - adds ${newPlayers.length} new players)
+                    فقط بازیکنان جدید اضافه شوند (ادغام — ${newPlayers.length} بازیکن جدید)
                 </label>
                 <label style="display: block;">
                     <input type="radio" name="importMode" value="replace">
-                    Replace entire Player List
+                    جایگزینی کامل فهرست بازیکنان
                 </label>
             </div>
             <div style="text-align: right; margin-top: 20px;">
-                <button class="btn" onclick="closeImportDialog()">Cancel</button>
-                <button class="btn btn-success" onclick="confirmImportPlayerList()">Import</button>
+                <button class="btn" onclick="closeImportDialog()">لغو</button>
+                <button class="btn btn-success" onclick="confirmImportPlayerList()">درون‌ریزی</button>
             </div>
         </div>
     `;
@@ -583,12 +583,12 @@ function updatePlayersDisplay() {
     const lateRegBtn = document.getElementById('lateRegBtnContainer');
     if (lateRegBtn) {
         lateRegBtn.innerHTML = tournamentStarted
-            ? '<span>Someone arrived after the draw?</span><button type="button" class="st-link" onclick="showLateRegInfoModal()">Player arrived late?</button>'
+            ? '<span>بازیکنی بعد از قرعه‌کشی رسیده است؟</span><button type="button" class="st-link" onclick="showLateRegInfoModal()">ثبت بازیکن دیررس؟</button>'
             : '';
     }
 
     if (players.length === 0) {
-        container.innerHTML = `<div class="st-empty st-small"><span>${tournament ? 'هنوز بازیکنی ثبت نشده است. از بالا یا از بخش بازیکنان ذخیره‌شده اضافه کنید.' : 'No tournament loaded.'}</span></div>`;
+        container.innerHTML = `<div class="st-empty st-small"><span>${tournament ? 'هنوز بازیکنی ثبت نشده است. از بالا یا از بخش بازیکنان ذخیره‌شده اضافه کنید.' : 'هیچ مسابقه‌ای بارگذاری نشده است.'}</span></div>`;
         return;
     }
 
@@ -641,7 +641,7 @@ function updatePlayerCount() {
 }
 
 function clearAllPlayers() {
-    if (confirm('Are you sure you want to remove all players? This cannot be undone.')) {
+    if (confirm('آیا مطمئن هستید می‌خواهید همه بازیکنان را حذف کنید؟ این کار قابل بازگشت نیست.')) {
         players = [];
         updatePlayersDisplay();
         updatePlayerCount();
