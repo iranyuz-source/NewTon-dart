@@ -69,7 +69,7 @@ function updateRegistrationPageLayout() {
     if (hint) hint.textContent = !tournament ? '' : tournamentStarted ? 'payments locked' : 'click a player to toggle paid';
     const subtitle = document.getElementById('registrationSubtitle');
     if (subtitle) {
-        subtitle.textContent = !tournamentStarted ? 'Add the players, and mark who has paid.'
+        subtitle.textContent = !tournamentStarted ? 'بازیکنان را اضافه کنید و وضعیت پرداخت آن‌ها را مشخص کنید.'
             : tournament.status === 'completed' ? 'The tournament is over. Click a player in the Leaderboard to correct statistics.'
             : 'The bracket is drawn: payments are locked, and the Leaderboard is live.';
     }
@@ -588,7 +588,7 @@ function updatePlayersDisplay() {
     }
 
     if (players.length === 0) {
-        container.innerHTML = `<div class="st-empty st-small"><span>${tournament ? 'No players yet. Add them above, or from Saved players.' : 'No tournament loaded.'}</span></div>`;
+        container.innerHTML = `<div class="st-empty st-small"><span>${tournament ? 'هنوز بازیکنی ثبت نشده است. از بالا یا از بخش بازیکنان ذخیره‌شده اضافه کنید.' : 'No tournament loaded.'}</span></div>`;
         return;
     }
 
