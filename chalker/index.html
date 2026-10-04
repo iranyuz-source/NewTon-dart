@@ -44,10 +44,10 @@
                     <thead>
                         <tr>
                             <th>ثبت‌شده</th>
-                            <th>To Go</th>
+                            <th>باقی‌مانده</th>
                             <th>➹</th>
                             <th>ثبت‌شده</th>
-                            <th>To Go</th>
+                            <th>باقی‌مانده</th>
                         </tr>
                     </thead>
                     <tbody id="chalk-tbody">
@@ -63,9 +63,9 @@
         <!-- Input section -->
         <div class="input-section">
             <div class="keypad-actions">
-                <button class="key key-action" id="key-new">NEW</button>
-                <button class="key key-action" id="key-history">HISTORY</button>
-                <button class="key key-action" id="key-stats">STATS</button>
+                <button class="key key-action" id="key-new">جدید</button>
+                <button class="key key-action" id="key-history">تاریخچه</button>
+                <button class="key key-action" id="key-stats">آمار</button>
             </div>
             <div class="keypad">
                 <button class="key" data-value="1">1</button>
@@ -77,9 +77,9 @@
                 <button class="key" data-value="7">7</button>
                 <button class="key" data-value="8">8</button>
                 <button class="key" data-value="9">9</button>
-                <button class="key key-delete" data-action="delete">DEL</button>
+                <button class="key key-delete" data-action="delete">حذف</button>
                 <button class="key" data-value="0">0</button>
-                <button class="key key-enter" data-action="enter">OK</button>
+                <button class="key key-enter" data-action="enter">تأیید</button>
             </div>
         </div>
     </div>
@@ -94,11 +94,11 @@
                 <button class="btn btn-dart" data-darts="2">2</button>
                 <button class="btn btn-dart" data-darts="3">3</button>
             </div>
-            <button id="checkout-cancel-btn" class="btn btn-cancel">Cancel</button>
+            <button id="checkout-cancel-btn" class="btn btn-cancel">لغو</button>
         </div>
     </div>
 
-    <!-- Selection Modal (Starting Player / Tie-Break) -->
+    <!-- Selection Modal (شروعing Player / Tie-Break) -->
     <div id="tiebreak-modal" class="modal">
         <div class="modal-content">
             <h2 id="tiebreak-title"></h2>
@@ -106,9 +106,9 @@
             <div class="tiebreak-buttons">
                 <button class="btn btn-primary btn-tiebreak" id="tiebreak-p1"></button>
                 <button class="btn btn-primary btn-tiebreak" id="tiebreak-p2"></button>
-                <button class="btn btn-secondary btn-tiebreak" id="tiebreak-random" style="display: none;">Random</button>
+                <button class="btn btn-secondary btn-tiebreak" id="tiebreak-random" style="display: none;">تصادفی</button>
             </div>
-            <button id="tiebreak-cancel-btn" class="btn btn-cancel" style="display: none;">Cancel</button>
+            <button id="tiebreak-cancel-btn" class="btn btn-cancel" style="display: none;">لغو</button>
         </div>
     </div>
 
@@ -144,7 +144,7 @@
                     <input type="number" id="starting-score-custom" min="2" max="1001" placeholder="2–1001" style="display: none;">
                     <label style="margin-top: 6px; font-size: 12px; color: #888; font-weight: normal; cursor: pointer;">
                         <input type="checkbox" id="starting-score-custom-toggle" style="margin-right: 4px;">
-                        Custom score
+                        امتیاز دلخواه
                     </label>
                 </div>
 
@@ -168,40 +168,40 @@
                 <div class="form-group">
                     <label for="max-rounds">حداکثر دورها</label>
                     <select id="max-rounds">
-                        <option value="7">7 (21 darts)</option>
-                        <option value="8">8 (24 darts)</option>
-                        <option value="9">9 (27 darts)</option>
-                        <option value="10">10 (30 darts)</option>
-                        <option value="11">11 (33 darts)</option>
-                        <option value="12">12 (36 darts)</option>
-                        <option value="13" selected>13 (39 darts)</option>
-                        <option value="14">14 (42 darts)</option>
-                        <option value="15">15 (45 darts)</option>
-                        <option value="16">16 (48 darts)</option>
-                        <option value="17">17 (51 darts)</option>
-                        <option value="18">18 (54 darts)</option>
-                        <option value="19">19 (57 darts)</option>
-                        <option value="20">20 (60 darts)</option>
+                        <option value="7">7 (۲۱ دارت)</option>
+                        <option value="8">8 (۲۴ دارت)</option>
+                        <option value="9">9 (۲۷ دارت)</option>
+                        <option value="10">10 (۳۰ دارت)</option>
+                        <option value="11">11 (۳۳ دارت)</option>
+                        <option value="12">12 (۳۶ دارت)</option>
+                        <option value="13" selected>13 (۳۹ دارت)</option>
+                        <option value="14">14 (۴۲ دارت)</option>
+                        <option value="15">15 (۴۵ دارت)</option>
+                        <option value="16">16 (۴۸ دارت)</option>
+                        <option value="17">17 (۵۱ دارت)</option>
+                        <option value="18">18 (۵۴ دارت)</option>
+                        <option value="19">19 (۵۷ دارت)</option>
+                        <option value="20">20 (۶۰ دارت)</option>
                         <option value="100">نامحدود</option>
                     </select>
                 </div>
 
             </div>
-            <button id="start-match-btn" class="btn btn-primary btn-large">Start Match</button>
-            <button id="config-cancel-btn" class="btn btn-cancel">Cancel</button>
+            <button id="start-match-btn" class="btn btn-primary btn-large">شروع مسابقه</button>
+            <button id="config-cancel-btn" class="btn btn-cancel">لغو</button>
         </div>
     </div>
 
-    <!-- New Match Modal (shown via NEW button) -->
+    <!-- New Match Modal (shown via جدید button) -->
     <div id="settings-modal" class="modal">
         <div class="modal-content">
             <h2>مسابقه جدید؟</h2>
             <p id="settings-modal-message">مسابقه فعلی از دست خواهد رفت.</p>
-            <button id="rematch-btn" class="btn btn-primary">Rematch</button>
+            <button id="rematch-btn" class="btn btn-primary">مسابقه مجدد</button>
             <button id="new-match-btn" class="btn btn-secondary">مسابقه جدید</button>
             <button id="qr-mode-btn" class="btn btn-secondary">QR</button>
-            <button id="network-mode-btn" class="btn btn-secondary">Network</button>
-            <button id="settings-cancel-btn" class="btn btn-cancel">Cancel</button>
+            <button id="network-mode-btn" class="btn btn-secondary">شبکه</button>
+            <button id="settings-cancel-btn" class="btn btn-cancel">لغو</button>
             <p id="chalker-version" style="margin: 12px 0 0; font-size: 11px; color: #999; text-align: center;"></p>
         </div>
     </div>
@@ -212,11 +212,11 @@
             <h2>اسکن QR تخصیص مسابقه</h2>
             <video id="qr-scan-video" class="qr-video" autoplay playsinline muted></video>
             <input type="file" id="qr-image-input" accept="image/*" capture="environment" style="display: none;">
-            <label id="qr-image-label" for="qr-image-input" class="btn btn-primary btn-large" style="display: none; cursor: pointer; text-align: center;">Take Photo</label>
+            <label id="qr-image-label" for="qr-image-input" class="btn btn-primary btn-large" style="display: none; cursor: pointer; text-align: center;">گرفتن عکس</label>
             <canvas id="qr-image-canvas" style="display: none;"></canvas>
-            <p class="qr-scan-hint" id="qr-scan-hint">Point the camera at the QR code on the Tournament Manager screen.</p>
+            <p class="qr-scan-hint" id="qr-scan-hint">دوربین را روی کد QR صفحه مدیریت مسابقات بگیرید.</p>
             <p id="qr-scan-error" class="qr-scan-error" style="display: none;"></p>
-            <button id="qr-scan-cancel-btn" class="btn btn-cancel">Cancel</button>
+            <button id="qr-scan-cancel-btn" class="btn btn-cancel">لغو</button>
         </div>
     </div>
 
@@ -225,12 +225,12 @@
         <div class="modal-content">
             <h2>تخصیص مسابقه</h2>
             <div id="qr-confirm-details" class="qr-confirm-details"></div>
-            <button id="qr-confirm-start-btn" class="btn btn-primary btn-large">Start Match</button>
-            <button id="qr-confirm-cancel-btn" class="btn btn-cancel">Cancel</button>
+            <button id="qr-confirm-start-btn" class="btn btn-primary btn-large">شروع مسابقه</button>
+            <button id="qr-confirm-cancel-btn" class="btn btn-cancel">لغو</button>
         </div>
     </div>
 
-    <!-- Network Mode Modal -->
+    <!-- شبکه Mode Modal -->
     <div id="network-modal" class="modal">
         <div class="modal-content config-modal-content">
             <h2>حالت شبکه</h2>
@@ -262,8 +262,8 @@
                     </select>
                 </div>
             </div>
-            <button id="network-start-btn" class="btn btn-primary btn-large">Start</button>
-            <button id="network-cancel-btn" class="btn btn-cancel">Cancel</button>
+            <button id="network-start-btn" class="btn btn-primary btn-large">شروع</button>
+            <button id="network-cancel-btn" class="btn btn-cancel">لغو</button>
         </div>
     </div>
 
@@ -273,8 +273,8 @@
             <h2 id="confirm-title">تأیید</h2>
             <p id="confirm-message">آیا مطمئن هستید؟</p>
             <div class="confirm-buttons">
-                <button id="confirm-yes-btn" class="btn btn-danger">Yes, abandon</button>
-                <button id="confirm-no-btn" class="btn btn-cancel">Cancel</button>
+                <button id="confirm-yes-btn" class="btn btn-danger">بله، رها شود</button>
+                <button id="confirm-no-btn" class="btn btn-cancel">لغو</button>
             </div>
         </div>
     </div>
@@ -282,7 +282,7 @@
     <!-- History Screen -->
     <div id="history-screen" class="screen">
         <header class="history-header">
-            <button id="history-back-btn" class="btn-icon" aria-label="Back">←</button>
+            <button id="history-back-btn" class="btn-icon" aria-label="بازگشت">←</button>
             <h1>تاریخچه مسابقات</h1>
         </header>
         <div id="history-list" class="history-list">
@@ -290,28 +290,28 @@
         </div>
     </div>
 
-    <!-- Result QR Modal -->
+    <!-- QR نتیجه Modal -->
     <div id="result-qr-modal" class="modal">
         <div class="modal-content">
             <h2 id="result-qr-title">QR نتیجه مسابقه</h2>
             <p id="result-qr-subtitle" class="qr-scan-hint"></p>
             <div id="result-qr-code" class="result-qr-code"></div>
-            <p class="qr-scan-hint">Point the Tournament Manager camera at this code to record the result.</p>
-            <button id="result-qr-close-btn" class="btn btn-cancel">Close</button>
+            <p class="qr-scan-hint">دوربین مدیر مسابقات را روی این کد بگیرید تا نتیجه ثبت شود.</p>
+            <button id="result-qr-close-btn" class="btn btn-cancel">بستن</button>
         </div>
     </div>
 
     <!-- History Detail Screen -->
     <div id="history-detail-screen" class="screen">
         <header class="history-header">
-            <button id="history-detail-back-btn" class="btn-icon" aria-label="Back">←</button>
+            <button id="history-detail-back-btn" class="btn-icon" aria-label="بازگشت">←</button>
             <h1>جزئیات مسابقه</h1>
         </header>
         <div class="history-detail-content">
             <div class="history-detail-header">
                 <div class="history-detail-players">
                     <span id="detail-player1" class="detail-player"></span>
-                    <span class="detail-vs">vs</span>
+                    <span class="detail-مقابل">مقابل</span>
                     <span id="detail-player2" class="detail-player"></span>
                 </div>
                 <div id="detail-score" class="detail-score"></div>
@@ -323,9 +323,9 @@
                 <table class="stats-table">
                     <thead>
                         <tr>
-                            <th id="detail-stats-p1">P1</th>
-                            <th class="stat-label">Stat</th>
-                            <th id="detail-stats-p2">P2</th>
+                            <th id="detail-stats-p1">بازیکن ۱</th>
+                            <th class="stat-label">آمار</th>
+                            <th id="detail-stats-p2">بازیکن ۲</th>
                         </tr>
                     </thead>
                     <tbody id="detail-stats-body"></tbody>
@@ -336,7 +336,7 @@
                 <!-- Leg tables populated by JavaScript -->
             </div>
             <div class="end-buttons" id="history-detail-actions">
-                <button id="history-detail-qr-btn" class="btn btn-secondary" style="display:none">Result QR</button>
+                <button id="history-detail-qr-btn" class="btn btn-secondary" style="display:none">QR نتیجه</button>
             </div>
         </div>
     </div>
@@ -344,7 +344,7 @@
     <!-- End-of-Match Screen -->
     <div id="end-screen" class="screen">
         <header class="history-header">
-            <button id="end-back-btn" class="btn-icon" aria-label="Back">←</button>
+            <button id="end-back-btn" class="btn-icon" aria-label="بازگشت">←</button>
             <h1>پایان مسابقه</h1>
         </header>
 
@@ -352,7 +352,7 @@
             <div class="history-detail-header">
                 <div class="history-detail-players">
                     <span id="winner-name" class="detail-player"></span>
-                    <span class="detail-vs">vs</span>
+                    <span class="detail-مقابل">مقابل</span>
                     <span id="loser-name" class="detail-player"></span>
                 </div>
                 <div id="final-score" class="detail-score"></div>
@@ -364,9 +364,9 @@
                 <table class="stats-table">
                     <thead>
                         <tr>
-                            <th id="stats-player1">P1</th>
-                            <th class="stat-label">Stat</th>
-                            <th id="stats-player2">P2</th>
+                            <th id="stats-player1">بازیکن ۱</th>
+                            <th class="stat-label">آمار</th>
+                            <th id="stats-player2">بازیکن ۲</th>
                         </tr>
                     </thead>
                     <tbody id="end-stats-body"></tbody>
@@ -379,21 +379,21 @@
         </div>
 
         <div class="end-buttons">
-            <button id="end-result-qr-btn" class="btn btn-primary btn-full" style="display:none">Result QR</button>
+            <button id="end-result-qr-btn" class="btn btn-primary btn-full" style="display:none">QR نتیجه</button>
         </div>
     </div>
 
-    <!-- Live Stats Screen -->
+    <!-- Live آمارs Screen -->
     <div id="stats-screen" class="screen">
         <header class="history-header">
-            <button id="stats-back-btn" class="btn-icon" aria-label="Back">←</button>
+            <button id="stats-back-btn" class="btn-icon" aria-label="بازگشت">←</button>
             <h1>آمار زنده</h1>
         </header>
         <div class="history-detail-content">
             <div class="history-detail-header">
                 <div class="history-detail-players">
                     <span id="stats-player1-name" class="detail-player"></span>
-                    <span class="detail-vs">vs</span>
+                    <span class="detail-مقابل">مقابل</span>
                     <span id="stats-player2-name" class="detail-player"></span>
                 </div>
                 <div id="stats-live-score" class="detail-score"></div>
@@ -405,9 +405,9 @@
                 <table class="stats-table">
                     <thead>
                         <tr>
-                            <th id="stats-header-p1">P1</th>
-                            <th class="stat-label">Stat</th>
-                            <th id="stats-header-p2">P2</th>
+                            <th id="stats-header-p1">بازیکن ۱</th>
+                            <th class="stat-label">آمار</th>
+                            <th id="stats-header-p2">بازیکن ۲</th>
                         </tr>
                     </thead>
                     <tbody id="stats-stats-body"></tbody>
@@ -430,8 +430,8 @@
          may be absent; the Chalker works fully without it. -->
     <script src="../licensed/js/network-chalker.js?v=1"></script>
     <div class="install-banner" id="installBanner">
-        <span class="install-text">Install NewTon Chalker for offline use</span>
-        <button class="install-btn" id="installAppBtn">Install</button>
+        <span class="install-text">نصب چالکر نیوتن برای استفاده آفلاین</span>
+        <button class="install-btn" id="installAppBtn">نصب</button>
         <button class="install-dismiss" id="installDismissBtn">✕</button>
     </div>
 
