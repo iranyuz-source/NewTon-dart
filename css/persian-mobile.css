@@ -1,0 +1,91 @@
+/* Persian mobile/responsive layer for NewTon
+   Loaded last so it can override desktop-first rules without changing application logic. */
+
+html, body { max-width: 100%; overflow-x: hidden; }
+body { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+button, input, select, textarea { max-width: 100%; }
+img, svg, canvas { max-width: 100%; }
+
+@media (max-width: 700px) {
+  .container { width: 100%; padding: 0; }
+  .container > .header { width: 100%; box-sizing: border-box; }
+  .header-top { min-width: 0; }
+  .header h1 { min-width: 0; max-width: 62vw; overflow-wrap: anywhere; }
+  .header h1 .logo-placeholder, .header h1 .club-logo { flex: 0 0 32px; }
+  .header-right { min-width: 0; }
+  .header-tournament-status { max-width: 48vw; overflow: hidden; text-overflow: ellipsis; }
+  .header .nav { width: 100%; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
+  .header .nav::-webkit-scrollbar { display: none; }
+  .header .nav-btn { min-height: 36px; }
+
+  .page:not(#tournament) { width: 100%; padding: 0 12px 20px; }
+  .st-wrap, .rg-wrap, .cfg-wrap, .an-wrap { width: 100%; max-width: 100%; }
+  .st-title { gap: 10px; align-items: flex-start; }
+  .st-title h2 { font-size: 24px; line-height: 1.35; }
+  .st-title p { line-height: 1.7; }
+  .st-top, .st-bottom, .rg-cols, .an-players, .an-dash-cols { grid-template-columns: 1fr !important; }
+  .st-panel { min-width: 0; }
+  .st-create-row { grid-template-columns: 1fr !important; }
+  .st-field, .st-text, .st-btn { min-width: 0; }
+  .st-btn, .btn { min-height: 44px; }
+  .rg-add { grid-template-columns: 1fr !important; }
+  .rg-tools { flex-wrap: wrap; }
+  .rg-scroll, .st-scroll, .newton-table-scroll, .nt-leaderboard-scroll { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .nt-leaderboard { min-width: 760px; }
+
+  /* Analytics controls stack instead of squeezing into one row. */
+  .an-strip-row, .an-reg-nav { flex-direction: column; align-items: stretch; }
+  .an-views, .an-points, .an-lens, .an-dates, .an-text.an-name { width: 100%; }
+  .an-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+  /* Modals/dialogs use the available phone width and remain scrollable. */
+  .modal-content, .dlg { width: calc(100vw - 24px) !important; max-width: none !important; margin: 12px auto !important; max-height: calc(100vh - 24px) !important; }
+  .analytics-modal-content { width: calc(100vw - 16px) !important; max-height: calc(100vh - 16px) !important; margin: 8px auto !important; }
+  .dlg__grid { grid-template-columns: 1fr !important; }
+  .dlg__sidebar { border-right: 0; border-bottom: 1px solid var(--nt-line, #e5e7eb); }
+  .dlg__main { min-width: 0; }
+
+  /* Bracket: preserve its geometry but make it a deliberate horizontal canvas. */
+  #tournament.page { width: 100vw; height: 100dvh; overflow: hidden; }
+  #tournament .bracket-container { width: 100%; height: 100%; overflow: hidden; }
+  #tournament .bv-header { padding: 10px 12px; }
+  #tournament .bv-head-left, #tournament .bv-head-center, #tournament .bv-head-right { min-width: 0; }
+  #tournament .bv-title { font-size: 18px; overflow-wrap: anywhere; }
+  #tournament .bv-subtitle { font-size: 12px; }
+  #tournament .bv-links { display: flex; flex-wrap: wrap; gap: 4px; }
+  #tournament .bv-nav { max-width: 100%; }
+  #tournament .bv-tools { flex-wrap: wrap; justify-content: flex-start; }
+  #tournament .bv-seg { max-width: 100%; }
+  #tournament .bracket-viewport { width: 100%; height: calc(100dvh - 150px); overflow: auto !important; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; }
+  #tournament .bracket-canvas { min-width: 920px; min-height: 620px; }
+  #tournament .bv-header-row { flex-wrap: wrap; gap: 8px; }
+  #tournament .bv-legend { overflow-x: auto; white-space: nowrap; max-width: 100%; padding-bottom: 3px; }
+  #tournament .bv-legend span { display: inline-flex; }
+  #tournament .match-card { max-width: 250px; }
+  #tournament .bv-head-center .bv-btn, #tournament .bv-head-right .bv-btn { min-height: 40px; }
+  #tournament .bv-clock { display: none; }
+
+  /* Tables never break the page width; they scroll inside their own container. */
+  table { max-width: none; }
+  .newton-table-scroll table { min-width: 680px; }
+  .newton-table-pagination { flex-direction: column; align-items: stretch; }
+  .newton-table-page-nav, .newton-table-rpp { justify-content: center; flex-wrap: wrap; }
+
+  /* Chalker mobile */
+  .screen { width: 100%; max-width: 100%; }
+  .screen .content, .screen .history-detail-content { width: 100%; box-sizing: border-box; }
+  .install-banner { left: 8px !important; right: 8px !important; bottom: 8px !important; width: auto !important; }
+  .install-banner .install-text { min-width: 0; }
+}
+
+@media (max-width: 420px) {
+  .header h1 { font-size: 15px; }
+  .header .nav { gap: 14px; }
+  .page:not(#tournament) { padding-inline: 10px; }
+  .st-title h2 { font-size: 21px; }
+  .an-tiles { grid-template-columns: 1fr !important; }
+  .st-panel-head { gap: 8px; }
+  .st-panel-head .st-link { white-space: normal; }
+  .dlg__main, .dlg__sidebar { padding-inline: 14px; }
+  #tournament .bracket-viewport { height: calc(100dvh - 185px); }
+}
