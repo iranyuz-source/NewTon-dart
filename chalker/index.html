@@ -19,9 +19,9 @@
     <!-- Scoring Screen (always shown) -->
     <div id="scoring-screen" class="screen active">
         <header id="scoring-header" class="scoring-header">
-            <span id="player1-header" class="header-player">Player 1</span>
+            <span id="player1-header" class="header-player">بازیکن ۱</span>
             <span id="leg-display" class="leg-score">0 - 0</span>
-            <span id="player2-header" class="header-player">Player 2</span>
+            <span id="player2-header" class="header-player">بازیکن ۲</span>
         </header>
 
         <!-- Score anchors at top -->
@@ -43,10 +43,10 @@
                 <table class="chalk-table">
                     <thead>
                         <tr>
-                            <th>Scored</th>
+                            <th>ثبت‌شده</th>
                             <th>To Go</th>
                             <th>➹</th>
-                            <th>Scored</th>
+                            <th>ثبت‌شده</th>
                             <th>To Go</th>
                         </tr>
                     </thead>
@@ -87,8 +87,8 @@
     <!-- Checkout Modal -->
     <div id="checkout-modal" class="modal">
         <div class="modal-content">
-            <h2>Checkout!</h2>
-            <p>How many darts used?</p>
+            <h2>چک‌اوت!</h2>
+            <p>چند دارت استفاده شد؟</p>
             <div class="dart-buttons">
                 <button class="btn btn-dart" data-darts="1">1</button>
                 <button class="btn btn-dart" data-darts="2">2</button>
@@ -115,20 +115,20 @@
     <!-- Config Modal (New Match) -->
     <div id="config-modal" class="modal">
         <div class="modal-content config-modal-content">
-            <h2>New Match</h2>
+            <h2>مسابقه جدید</h2>
             <div class="config-form-modal">
                 <div class="form-group">
-                    <label for="player1-name">Player 1</label>
-                    <input type="text" id="player1-name" placeholder="Player 1 name">
+                    <label for="player1-name">بازیکن ۱</label>
+                    <input type="text" id="player1-name" placeholder="نام بازیکن ۱">
                 </div>
 
                 <div class="form-group">
-                    <label for="player2-name">Player 2</label>
-                    <input type="text" id="player2-name" placeholder="Player 2 name">
+                    <label for="player2-name">بازیکن ۲</label>
+                    <input type="text" id="player2-name" placeholder="نام بازیکن ۲">
                 </div>
 
                 <div class="form-group">
-                    <label for="starting-score">Starting Score</label>
+                    <label for="starting-score">امتیاز شروع</label>
                     <select id="starting-score">
                         <option value="101">101</option>
                         <option value="201">201</option>
@@ -149,7 +149,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="best-of">Best Of</label>
+                    <label for="best-of">بهترین از</label>
                     <select id="best-of">
                         <option value="1">1</option>
                         <option value="3" selected>3</option>
@@ -166,7 +166,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="max-rounds">Max Rounds</label>
+                    <label for="max-rounds">حداکثر دورها</label>
                     <select id="max-rounds">
                         <option value="7">7 (21 darts)</option>
                         <option value="8">8 (24 darts)</option>
@@ -182,7 +182,7 @@
                         <option value="18">18 (54 darts)</option>
                         <option value="19">19 (57 darts)</option>
                         <option value="20">20 (60 darts)</option>
-                        <option value="100">Unlimited</option>
+                        <option value="100">نامحدود</option>
                     </select>
                 </div>
 
@@ -195,10 +195,10 @@
     <!-- New Match Modal (shown via NEW button) -->
     <div id="settings-modal" class="modal">
         <div class="modal-content">
-            <h2>New Match?</h2>
-            <p id="settings-modal-message">Current match will be lost.</p>
+            <h2>مسابقه جدید؟</h2>
+            <p id="settings-modal-message">مسابقه فعلی از دست خواهد رفت.</p>
             <button id="rematch-btn" class="btn btn-primary">Rematch</button>
-            <button id="new-match-btn" class="btn btn-secondary">New Match</button>
+            <button id="new-match-btn" class="btn btn-secondary">مسابقه جدید</button>
             <button id="qr-mode-btn" class="btn btn-secondary">QR</button>
             <button id="network-mode-btn" class="btn btn-secondary">Network</button>
             <button id="settings-cancel-btn" class="btn btn-cancel">Cancel</button>
@@ -209,7 +209,7 @@
     <!-- QR Scan Modal -->
     <div id="qr-scan-modal" class="modal">
         <div class="modal-content qr-scan-modal-content">
-            <h2>Scan Assignment QR</h2>
+            <h2>اسکن QR تخصیص مسابقه</h2>
             <video id="qr-scan-video" class="qr-video" autoplay playsinline muted></video>
             <input type="file" id="qr-image-input" accept="image/*" capture="environment" style="display: none;">
             <label id="qr-image-label" for="qr-image-input" class="btn btn-primary btn-large" style="display: none; cursor: pointer; text-align: center;">Take Photo</label>
@@ -223,7 +223,7 @@
     <!-- QR Confirm Modal -->
     <div id="qr-confirm-modal" class="modal">
         <div class="modal-content">
-            <h2>Match Assignment</h2>
+            <h2>تخصیص مسابقه</h2>
             <div id="qr-confirm-details" class="qr-confirm-details"></div>
             <button id="qr-confirm-start-btn" class="btn btn-primary btn-large">Start Match</button>
             <button id="qr-confirm-cancel-btn" class="btn btn-cancel">Cancel</button>
@@ -233,32 +233,32 @@
     <!-- Network Mode Modal -->
     <div id="network-modal" class="modal">
         <div class="modal-content config-modal-content">
-            <h2>Network Mode</h2>
+            <h2>حالت شبکه</h2>
             <p class="network-notice">Experimental preview &mdash; not yet functional. No licence required; this will be free to use.</p>
             <div class="config-form-modal">
                 <div class="form-group">
-                    <label for="network-lane">Lane</label>
+                    <label for="network-lane">لاین</label>
                     <select id="network-lane">
-                        <option value="1">Lane 1</option>
-                        <option value="2">Lane 2</option>
-                        <option value="3">Lane 3</option>
-                        <option value="4">Lane 4</option>
-                        <option value="5">Lane 5</option>
-                        <option value="6">Lane 6</option>
-                        <option value="7">Lane 7</option>
-                        <option value="8">Lane 8</option>
-                        <option value="9">Lane 9</option>
-                        <option value="10">Lane 10</option>
-                        <option value="11">Lane 11</option>
-                        <option value="12">Lane 12</option>
-                        <option value="13">Lane 13</option>
-                        <option value="14">Lane 14</option>
-                        <option value="15">Lane 15</option>
-                        <option value="16">Lane 16</option>
-                        <option value="17">Lane 17</option>
-                        <option value="18">Lane 18</option>
-                        <option value="19">Lane 19</option>
-                        <option value="20">Lane 20</option>
+                        <option value="1">لاین 1</option>
+                        <option value="2">لاین 2</option>
+                        <option value="3">لاین 3</option>
+                        <option value="4">لاین 4</option>
+                        <option value="5">لاین 5</option>
+                        <option value="6">لاین 6</option>
+                        <option value="7">لاین 7</option>
+                        <option value="8">لاین 8</option>
+                        <option value="9">لاین 9</option>
+                        <option value="10">لاین 10</option>
+                        <option value="11">لاین 11</option>
+                        <option value="12">لاین 12</option>
+                        <option value="13">لاین 13</option>
+                        <option value="14">لاین 14</option>
+                        <option value="15">لاین 15</option>
+                        <option value="16">لاین 16</option>
+                        <option value="17">لاین 17</option>
+                        <option value="18">لاین 18</option>
+                        <option value="19">لاین 19</option>
+                        <option value="20">لاین 20</option>
                     </select>
                 </div>
             </div>
@@ -270,8 +270,8 @@
     <!-- Confirm Modal -->
     <div id="confirm-modal" class="modal">
         <div class="modal-content">
-            <h2 id="confirm-title">Confirm</h2>
-            <p id="confirm-message">Are you sure?</p>
+            <h2 id="confirm-title">تأیید</h2>
+            <p id="confirm-message">آیا مطمئن هستید؟</p>
             <div class="confirm-buttons">
                 <button id="confirm-yes-btn" class="btn btn-danger">Yes, abandon</button>
                 <button id="confirm-no-btn" class="btn btn-cancel">Cancel</button>
@@ -283,7 +283,7 @@
     <div id="history-screen" class="screen">
         <header class="history-header">
             <button id="history-back-btn" class="btn-icon" aria-label="Back">←</button>
-            <h1>Match History</h1>
+            <h1>تاریخچه مسابقات</h1>
         </header>
         <div id="history-list" class="history-list">
             <!-- Populated by JavaScript -->
@@ -293,7 +293,7 @@
     <!-- Result QR Modal -->
     <div id="result-qr-modal" class="modal">
         <div class="modal-content">
-            <h2 id="result-qr-title">Match Result QR</h2>
+            <h2 id="result-qr-title">QR نتیجه مسابقه</h2>
             <p id="result-qr-subtitle" class="qr-scan-hint"></p>
             <div id="result-qr-code" class="result-qr-code"></div>
             <p class="qr-scan-hint">Point the Tournament Manager camera at this code to record the result.</p>
@@ -305,7 +305,7 @@
     <div id="history-detail-screen" class="screen">
         <header class="history-header">
             <button id="history-detail-back-btn" class="btn-icon" aria-label="Back">←</button>
-            <h1>Match Details</h1>
+            <h1>جزئیات مسابقه</h1>
         </header>
         <div class="history-detail-content">
             <div class="history-detail-header">
@@ -319,7 +319,7 @@
             </div>
 
             <div class="history-detail-stats">
-                <h3>Match Statistics</h3>
+                <h3>آمار مسابقه</h3>
                 <table class="stats-table">
                     <thead>
                         <tr>
@@ -345,7 +345,7 @@
     <div id="end-screen" class="screen">
         <header class="history-header">
             <button id="end-back-btn" class="btn-icon" aria-label="Back">←</button>
-            <h1>Match Complete</h1>
+            <h1>پایان مسابقه</h1>
         </header>
 
         <div class="history-detail-content">
@@ -360,7 +360,7 @@
             </div>
 
             <div class="history-detail-stats">
-                <h3>Match Statistics</h3>
+                <h3>آمار مسابقه</h3>
                 <table class="stats-table">
                     <thead>
                         <tr>
@@ -387,7 +387,7 @@
     <div id="stats-screen" class="screen">
         <header class="history-header">
             <button id="stats-back-btn" class="btn-icon" aria-label="Back">←</button>
-            <h1>Live Stats</h1>
+            <h1>آمار زنده</h1>
         </header>
         <div class="history-detail-content">
             <div class="history-detail-header">
@@ -401,7 +401,7 @@
             </div>
 
             <div class="history-detail-stats">
-                <h3>Match Statistics</h3>
+                <h3>آمار مسابقه</h3>
                 <table class="stats-table">
                     <thead>
                         <tr>
