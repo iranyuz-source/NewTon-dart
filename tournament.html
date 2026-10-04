@@ -172,21 +172,21 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </div>
 
                 <!-- Counts are kept by updatePlayerCount(); the rest by renderRegistrationNext() -->
-                <section class="rg-next" aria-label="Next step">
+                <section class="rg-next" aria-label="مرحله بعد">
                     <dl class="rg-counts">
                         <div><dt>بازیکنان</dt><dd id="playerCount">0</dd></div>
                         <div><dt>پرداخت‌شده</dt><dd id="paidCount">0</dd></div>
                         <div><dt>پرداخت‌نشده</dt><dd id="unpaidCount">0</dd></div>
                     </dl>
-                    <div class="st-next-what"><p class="st-eyebrow">Next step</p><b id="registrationNextTitle"></b><span class="st-hint" id="registrationNextHint"></span></div>
+                    <div class="st-next-what"><p class="st-eyebrow">مرحله بعد</p><b id="registrationNextTitle"></b><span class="st-hint" id="registrationNextHint"></span></div>
                     <button type="button" class="st-btn st-primary rg-next-btn" id="registrationNextBtn" onclick="showPage('tournament')">باز کردن جدول ←</button>
                 </section>
 
                 <div class="rg-cols" id="registrationCols">
-                    <section class="st-panel" aria-labelledby="registrationبازیکنانTitle">
-                        <div class="st-panel-head"><h3 id="registrationبازیکنانTitle">بازیکنان<small id="registrationبازیکنانHint">برای تغییر وضعیت پرداخت، روی بازیکن بزنید</small></h3></div>
+                    <section class="st-panel" aria-labelledby="registrationPlayersTitle">
+                        <div class="st-panel-head"><h3 id="registrationPlayersTitle">بازیکنان<small id="registrationPlayersHint">برای تغییر وضعیت پرداخت، روی بازیکن بزنید</small></h3></div>
                         <div class="rg-add" id="playerAddRow">
-                            <input type="text" class="st-text" id="playerنام مسابقه" placeholder="نام بازیکن، سپس Enter" autocomplete="off">
+                            <input type="text" class="st-text" id="playerName" placeholder="نام بازیکن، سپس Enter" autocomplete="off">
                             <button type="button" class="st-btn st-primary" onclick="addPlayer()">افزودن بازیکن</button>
                         </div>
                         <div id="playersContainer" class="rg-plist"></div>
@@ -199,10 +199,10 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <img src="images/payment.png" alt="Payment QR code" onerror="document.getElementById('paymentPanel').hidden = true">
                             <div><b>Pay here</b><span>Scan to pay the entry fee.</span></div>
                         </section>
-                        <section class="st-panel" aria-labelledby="savedبازیکنانTitle">
+                        <section class="st-panel" aria-labelledby="savedPlayersTitle">
                             <div class="st-panel-head">
-                                <h3 id="savedبازیکنانTitle">بازیکنان ذخیره‌شده<small id="playerListCount"></small></h3>
-                                <button type="button" class="st-link" onclick="importPlayerListFromFile()" title="Import saved players from a tournament export file">Import saved players</button>
+                                <h3 id="savedPlayersTitle">بازیکنان ذخیره‌شده<small id="playerListCount"></small></h3>
+                                <button type="button" class="st-link" onclick="importPlayerListFromFile()" title="درون‌ریزی بازیکنان ذخیره‌شده from a tournament export file">درون‌ریزی بازیکنان ذخیره‌شده</button>
                             </div>
                             <div id="playerListContainer" class="rg-chips"></div>
                         </section>
@@ -211,10 +211,10 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <!-- After the draw: the جدول رده‌بندی -->
                     <section class="st-panel" id="tournamentResultsSection" style="display: none;" aria-labelledby="leaderboardTitle">
                         <div class="st-panel-head">
-                            <h3 id="leaderboardTitle">جدول رده‌بندی<small>click a player to edit statistics</small></h3>
+                            <h3 id="leaderboardTitle">جدول رده‌بندی<small>برای ویرایش آمار روی بازیکن بزنید</small></h3>
                             <div class="rg-tools">
-                                <button type="button" class="st-link" onclick="exportResultsCSV()">Export CSV</button>
-                                <button type="button" class="st-link" onclick="exportResultsJSON()">Export JSON</button>
+                                <button type="button" class="st-link" onclick="exportResultsCSV()">خروجی CSV</button>
+                                <button type="button" class="st-link" onclick="exportResultsJSON()">خروجی JSON</button>
                             </div>
                         </div>
                         <div class="rg-scroll">
@@ -602,8 +602,8 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <h3>جدول رده‌بندی <small id="leaderboardMeta"></small></h3>
                             <div class="an-tools">
                                 <span class="an-legend"><i></i>Top 16</span>
-                                <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportجدول رده‌بندیCSV()">Export CSV</button>
-                                <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportجدول رده‌بندیJSON()">Export JSON</button>
+                                <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportجدول رده‌بندیCSV()">خروجی CSV</button>
+                                <button type="button" class="st-btn st-sm" onclick="NewtonHistory.exportجدول رده‌بندیJSON()">خروجی JSON</button>
                             </div>
                         </div>
                         <div id="leaderboardTableContainer"></div>
@@ -1320,7 +1320,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <div id="statisticsModal" class="modal">
             <div class="dlg dlg--leaderboard">
                 <div class="dlg__main">
-                    <h2 class="dlg__title">جدول رده‌بندی<small>click a player to edit statistics</small></h2>
+                    <h2 class="dlg__title">جدول رده‌بندی<small>برای ویرایش آمار روی بازیکن بزنید</small></h2>
                     <div class="nt-leaderboard-scroll">
                         <table class="nt-leaderboard" id="statisticsTable">
                             <thead>
