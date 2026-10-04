@@ -124,7 +124,7 @@ function renderRegistrationNext() {
 }
 
 /**
- * Fill the Registration page's Saved players: the saved names not in this tournament, as
+ * Fill the Registration page's Saved players: the saved names در این مسابقه ثبت نشده‌اند, as
  * chips. Click a name to add the player; × deletes the name from the saved list.
  * @returns {void}
  */
@@ -364,7 +364,7 @@ function closeImportDialog() {
  * - Reads player name from DOM input element
  * - Validates name is not empty and not duplicate
  * - Creates player object with default stats and unpaid status
- * - Auto-adds to Saved Players list
+ * - Auto-adds to بازیکنان ذخیره‌شده list
  * - Updates UI and saves tournament
  */
 function addPlayer() {
