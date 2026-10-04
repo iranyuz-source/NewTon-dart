@@ -128,8 +128,8 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <section class="st-panel st-create" aria-labelledby="setupNewTitle">
                         <div><p class="st-eyebrow">مسابقه جدید</p><h3 id="setupNewTitle">شروع مسابقه جدید</h3></div>
                         <div class="st-create-row">
-                            <div class="st-field"><label for="tournamentنام مسابقه">نام مسابقه</label><input type="text" class="st-text" id="tournamentنام مسابقه" placeholder="مثلاً جام پنجشنبه شماره ۴۲"></div>
-                            <div class="st-field"><label for="tournamentتاریخ مسابقه">تاریخ مسابقه</label><input type="date" class="st-text st-mono" id="tournamentتاریخ مسابقه"></div>
+                            <div class="st-field"><label for="tournamentنام مسابقه">نام مسابقه</label><input type="text" class="st-text" id="tournamentName" placeholder="مثلاً جام پنجشنبه شماره ۴۲"></div>
+                            <div class="st-field"><label for="tournamentتاریخ مسابقه">تاریخ مسابقه</label><input type="date" class="st-text st-mono" id="tournamentDate"></div>
                         </div>
                         <div><button type="button" class="st-btn st-primary" onclick="createTournament()">ایجاد مسابقه</button></div>
                         <div class="st-or">فایل مسابقه دارید؟ <button type="button" class="st-link" onclick="document.getElementById('importFile').click()">درون‌ریزی مسابقه</button></div>
@@ -149,7 +149,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                             <button type="button" id="storage-indicator-link" class="st-storage" onclick="showStorageModal()" title="فضای ذخیره‌سازی این دستگاه"><span id="storageIndicatorText">فضای ذخیره‌سازی --</span><span class="st-meter"><span id="storageIndicatorBar"></span></span></button>
                         </div>
-                        <div class="st-scroll" id="recentمسابقات"></div>
+                        <div class="st-scroll" id="recentTournaments"></div>
                     </section>
 
                     <section class="st-panel" aria-labelledby="matchHistoryHeading">
@@ -421,7 +421,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     </div>
                         <div class="cfg-row">
                         <div><label class="cfg-label" for="defaultپرداخت‌شده">New players are paid</label><div class="cfg-desc">بازیکنان added to a tournament start as paid. To remove a player, set them to unpaid first.</div></div>
-                        <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="defaultپرداخت‌شده"><span></span></span></div>
+                        <div class="cfg-ctl"><span class="cfg-switch"><input type="checkbox" id="defaultPaid"><span></span></span></div>
                     </div>
                         <div class="cfg-row">
                             <div><div class="cfg-label">Referee suggestions</div><div class="cfg-desc">How many players to suggest in each group (winners, losers, assignments).</div></div>
@@ -581,9 +581,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <span class="an-lbl">Lens</span>
                             <input type="search" id="analyticsTextFilter" class="an-text an-name" placeholder="Tournament name" aria-label="Tournament name" oninput="NewtonHistory.onTextFilter(this.value)">
                             <span class="an-dates">
-                                <input type="date" id="analyticsتاریخ مسابقهFrom" class="an-text" aria-label="From" onchange="NewtonHistory.onتاریخ مسابقهFilter()">
+                                <input type="date" id="analyticsDateFrom" class="an-text" aria-label="From" onchange="NewtonHistory.onتاریخ مسابقهFilter()">
                                 <span class="an-lbl">to</span>
-                                <input type="date" id="analyticsتاریخ مسابقهTo" class="an-text" aria-label="To" onchange="NewtonHistory.onتاریخ مسابقهFilter()">
+                                <input type="date" id="analyticsDateTo" class="an-text" aria-label="To" onchange="NewtonHistory.onتاریخ مسابقهFilter()">
                             </span>
                             <button type="button" class="st-btn st-sm" id="lensCurrentHalf" onclick="NewtonHistory.setHalfYear(0)"></button>
                             <button type="button" class="st-btn st-sm" id="lensPreviousHalf" onclick="NewtonHistory.setHalfYear(-1)"></button>
@@ -596,7 +596,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div id="analyticsViewDashboard" class="analytics-view active"></div>
 
                 <!-- جدول رده‌بندی -->
-                <div id="analyticsViewجدول رده‌بندی" class="analytics-view">
+                <div id="analyticsViewLeaderboard" class="analytics-view">
                     <section class="st-panel">
                         <div class="st-panel-head">
                             <h3>جدول رده‌بندی <small id="leaderboardMeta"></small></h3>
@@ -612,7 +612,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 </div>
 
                 <!-- بازیکنان: the list, and a profile or comparison of the ticked players -->
-                <div id="analyticsViewبازیکنان" class="analytics-view">
+                <div id="analyticsViewPlayers" class="analytics-view">
                     <div class="an-players">
                         <section class="st-panel">
                             <div class="st-panel-head"><h3>بازیکنان <small id="playersMeta"></small></h3></div>
@@ -693,9 +693,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="historyDeleteTournamentDisplayنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="historyDeleteTournamentDisplayName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="historyDeleteTournamentتاریخ مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="historyDeleteTournamentDate">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value">Completed</div>
                     </aside>
@@ -722,9 +722,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">Tournament</div>
-                        <div class="dlg__sidebar-value" id="correctionsTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="correctionsTournamentName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="correctionsTournamentتاریخ مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="correctionsTournamentDate">-</div>
                         <div class="dlg__sidebar-label">As recorded</div>
                         <div class="dlg__sidebar-value" id="correctionsRecorded" style="white-space:pre-line;">-</div>
                     </aside>
@@ -794,7 +794,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
         <div id="statsModal" class="modal">
             <div class="dlg">
                 <div class="dlg__main">
-                    <h2 class="dlg__title" id="statsPlayerنام مسابقه">Edit player statistics</h2>
+                    <h2 class="dlg__title" id="statsPlayerName">Edit player statistics</h2>
 
                     <!-- Counter row: 180s / Tons / Lollipops -->
                     <div class="stats-counter-row">
@@ -1088,12 +1088,12 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div style="display: flex; align-items: center;">
-                                    <span id="winnerنام مسابقهForLegs" style="font-weight: 600; color: #065f46; margin-right: 10px; min-width: 80px;">Winner</span>
+                                    <span id="winnerNameForLegs" style="font-weight: 600; color: #065f46; margin-right: 10px; min-width: 80px;">Winner</span>
                                     <input type="number" id="winnerLegs" min="0" max="7" style="width: 60px; padding: 6px 8px; border: 1px solid #d1d5db; text-align: center;">
                                     <span style="margin: 0 8px; color: #6b7280;">legs</span>
                                 </div>
                                 <div style="display: flex; align-items: center;">
-                                    <span id="loserنام مسابقهForLegs" style="font-weight: 600; color: #6b7280; margin-right: 10px; min-width: 80px;">Loser</span>
+                                    <span id="loserNameForLegs" style="font-weight: 600; color: #6b7280; margin-right: 10px; min-width: 80px;">Loser</span>
                                     <input type="number" id="loserLegs" min="0" max="7" value="0" style="width: 60px; padding: 6px 8px; border: 1px solid #d1d5db; text-align: center;">
                                     <span style="margin: 0 8px; color: #6b7280;">legs</span>
                                 </div>
@@ -1357,7 +1357,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                         <div class="dlg__sidebar-label">Bracket</div>
                         <div class="dlg__sidebar-value" id="undoSidebarBracket">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="undoSidebarبازیکنان">-</div>
+                        <div class="dlg__sidebar-value" id="undoSidebarPlayers">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill">Destructive</span>
@@ -1381,7 +1381,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="bracketConfirmنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="bracketConfirmName">-</div>
                         <div class="dlg__sidebar-label">Format</div>
                         <div class="dlg__sidebar-value" id="bracketConfirmFormat">-</div>
                         <div class="dlg__sidebar-label">Bracket Size</div>
@@ -1394,7 +1394,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <div class="dlg__main">
                         <h2 class="dlg__title" id="bracketConfirmTitle">Generate Bracket</h2>
                         <p class="dlg__desc">These players will be placed into the bracket. Make sure all players are registered before proceeding.</p>
-                        <div id="bracketConfirmبازیکنان" class="bracket-confirm-players"></div>
+                        <div id="bracketConfirmPlayers" class="bracket-confirm-players"></div>
                     </div>
                 </div>
                 <div class="dlg__foot">
@@ -1410,7 +1410,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="progressTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="progressTournamentName">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="progressTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
@@ -1437,7 +1437,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="resetTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="resetTournamentName">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="resetTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
@@ -1468,13 +1468,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="deleteTournamentName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentتاریخ مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="deleteTournamentDate">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="deleteTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="deleteTournamentبازیکنان">-</div>
+                        <div class="dlg__sidebar-value" id="deleteTournamentPlayers">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill dlg__pill--danger">Destructive</span>
@@ -1496,9 +1496,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="importTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="importTournamentName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="importTournamentتاریخ مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="importTournamentDate">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="importTournamentStatus">-</div>
                     </aside>
@@ -1522,15 +1522,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="importConfirmنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="importConfirmName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="importConfirmتاریخ مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="importConfirmDate">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="importConfirmStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="importConfirmMatches">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="importConfirmبازیکنان">-</div>
+                        <div class="dlg__sidebar-value" id="importConfirmPlayers">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill" id="importOldFormatPill" style="display: none;">Old format</span>
@@ -1552,9 +1552,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="loadTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="loadTournamentName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="loadTournamentتاریخ مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="loadTournamentDate">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="loadTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
@@ -1580,15 +1580,15 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="analyticsImportنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="analyticsImportName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="analyticsImportتاریخ مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="analyticsImportDate">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="analyticsImportStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
                         <div class="dlg__sidebar-value" id="analyticsImportProgress">-</div>
                         <div class="dlg__sidebar-label">بازیکنان</div>
-                        <div class="dlg__sidebar-value" id="analyticsImportبازیکنان">-</div>
+                        <div class="dlg__sidebar-value" id="analyticsImportPlayers">-</div>
                     </aside>
                     <div class="dlg__main">
                         <span class="dlg__pill" id="analyticsImportMissingSettingsPill" style="display: none;">Missing settings</span>
@@ -1610,9 +1610,9 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                 <div class="dlg__grid">
                     <aside class="dlg__sidebar">
                         <div class="dlg__sidebar-label">نام مسابقه</div>
-                        <div class="dlg__sidebar-value" id="exportTournamentنام مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="exportTournamentName">-</div>
                         <div class="dlg__sidebar-label">تاریخ مسابقه</div>
-                        <div class="dlg__sidebar-value" id="exportTournamentتاریخ مسابقه">-</div>
+                        <div class="dlg__sidebar-value" id="exportTournamentDate">-</div>
                         <div class="dlg__sidebar-label">Tournament Status</div>
                         <div class="dlg__sidebar-value" id="exportTournamentStatus">-</div>
                         <div class="dlg__sidebar-label">Progress</div>
