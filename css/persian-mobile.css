@@ -99,3 +99,41 @@ img, svg, canvas { max-width: 100%; }
   .dlg__main, .dlg__sidebar { padding-inline: 14px; }
   #tournament .bracket-viewport { height: calc(100dvh - 185px); }
 }
+
+
+/* Stage 4 — Persian bracket / draw mobile layout */
+@media (max-width: 700px) {
+  #tournament .bracket-container { padding: 6px 6px 8px; gap: 6px; }
+  #tournament .bv-header {
+    display: flex; flex-direction: column; align-items: stretch; gap: 7px;
+    padding: 7px 8px; overflow: hidden;
+  }
+  #tournament .bv-head-left,
+  #tournament .bv-head-center,
+  #tournament .bv-head-right {
+    display: flex; width: 100%; flex-wrap: wrap; align-items: center; gap: 6px;
+  }
+  #tournament .bv-head-left { order: 1; }
+  #tournament .bv-head-center { order: 2; justify-content: stretch; }
+  #tournament .bv-head-right { order: 3; justify-content: flex-start; }
+  #tournament .bv-title { max-width: 100%; font-size: 17px; }
+  #tournament .bv-nav, #tournament .bv-tools { width: 100%; gap: 5px; }
+  #tournament .bv-nav button, #tournament .bv-tools button,
+  #tournament .bv-btn, #tournament .bv-link { min-height: 40px; }
+  #tournament .bv-seg { width: 100%; display: flex; }
+  #tournament .bv-seg button { flex: 1; min-height: 40px; }
+  #tournament .bv-status-row { justify-content: flex-start; gap: 5px 12px; font-size: 12px; }
+  #tournament .bv-selbar {
+    left: 8px; right: 8px; bottom: 8px; transform: none;
+    max-width: none; font-size: 12px;
+  }
+  #tournament .bv-selbar button { min-height: 38px; }
+  #tournament .bv-marker { font-size: 11px; padding: 6px 8px; }
+}
+@media (max-width: 420px) {
+  #tournament .bracket-container { padding: 4px; }
+  #tournament .bv-title { font-size: 16px; }
+  #tournament .bv-subtitle { font-size: 11px; }
+  #tournament .bv-status-row { gap: 4px 8px; }
+  #tournament .bracket-canvas { min-width: 860px; min-height: 560px; }
+}
