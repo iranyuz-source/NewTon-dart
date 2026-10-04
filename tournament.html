@@ -252,7 +252,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <div class="bv-subtitle" id="bvSubtitle"></div>
                         </div>
                         <nav class="bv-nav">
-                            <button type="button" class="bv-btn bv-nav-btn analytics-back-btn" onclick="exitAnalyticsBracketPreview();" title="Return to Analytics">⬅ Analytics</button>
+                            <button type="button" class="bv-btn bv-nav-btn analytics-back-btn" onclick="exitAnalyticsBracketPreview();" title="بازگشت به تحلیل">⬅ تحلیل</button>
                             <span class="bv-links">
                                 <button type="button" class="bv-link bv-nav-btn" onclick="showPage('setup')" title="Return to Setup page">Setup</button>
                                 <button type="button" class="bv-link bv-nav-btn" onclick="showPage('registration')" title="Exit Tournament to edit statistics and see current results">Registration</button>
@@ -269,11 +269,11 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <div class="bv-head-right">
                         <div class="bv-tools">
                             <div class="bv-seg" id="bvFinals" hidden>
-                                <span class="bv-seglabel">Finals</span>
-                                <button type="button" data-finals="right" aria-pressed="true" onclick="BracketView.setFinals('right')">Right</button>
-                                <button type="button" data-finals="middle" aria-pressed="false" onclick="BracketView.setFinals('middle')">Middle</button>
+                                <span class="bv-seglabel">فینال‌ها</span>
+                                <button type="button" data-finals="right" aria-pressed="true" onclick="BracketView.setFinals('right')">راست</button>
+                                <button type="button" data-finals="middle" aria-pressed="false" onclick="BracketView.setFinals('middle')">وسط</button>
                             </div>
-                            <button type="button" class="bv-btn" onclick="resetZoom()" title="Fit the whole bracket">Fit all</button>
+                            <button type="button" class="bv-btn" onclick="resetZoom()" title="نمایش کامل جدول">نمایش کامل</button>
                             <div class="bv-seg bv-zoom">
                                 <button type="button" onclick="zoomOut()" title="Zoom out" aria-label="Zoom out">−</button>
                                 <output id="bvZoom">100%</output>
@@ -289,7 +289,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <span><i class="bv-sw bv-sw-ready"></i>Ready</span>
                             <span><i class="bv-sw bv-sw-done"></i>Completed</span>
                             <span><i class="bv-sw bv-sw-pending"></i>Waiting</span>
-                            <span><i class="bv-sw bv-sw-walkover"></i>Walkover</span>
+                            <span><i class="bv-sw bv-sw-walkover"></i>صعود خودکار</span>
                             <span><i class="bv-throw"></i>Throws first</span>
                         </div>
                     </div>
