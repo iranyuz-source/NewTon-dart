@@ -28,7 +28,17 @@ img, svg, canvas { max-width: 100%; }
   .st-create-row { grid-template-columns: 1fr !important; }
   .st-field, .st-text, .st-btn { min-width: 0; }
   .st-btn, .btn { min-height: 44px; }
-  .rg-add { grid-template-columns: 1fr !important; }
+  .rg-add { grid-template-columns: 1fr !important; padding-inline: 12px; }
+  .rg-next { gap: 12px; }
+  .rg-next .st-btn, .rg-next .st-link { width: 100%; min-height: 44px; }
+  .rg-plist { grid-template-columns: 1fr !important; }
+  .rg-prow { padding-inline: 12px; }
+  .rg-side { gap: 12px; }
+  .rg-pay { flex-direction: column; align-items: stretch; padding: 14px 12px; }
+  .rg-pay img { width: 120px; height: 120px; align-self: center; }
+  .rg-chips { padding-inline: 12px; }
+  .rg-chip { max-width: 100%; }
+  .rg-chip-add { min-height: 40px; }
   .rg-tools { flex-wrap: wrap; }
   .rg-scroll, .st-scroll, .newton-table-scroll, .nt-leaderboard-scroll { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .nt-leaderboard { min-width: 760px; }
