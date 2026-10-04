@@ -48,6 +48,34 @@
     'Achievements were recorded automatically from Chalker visit scores.':'دستاوردها به‌صورت خودکار از امتیازهای ثبت‌شده در چالکر ثبت شده‌اند.',
     'Review the leaderboard.':'جدول رده‌بندی را بررسی کنید.'
 
+    'Tournament Complete!':'مسابقات به پایان رسید!','Congratulations to all players!':'به همه بازیکنان تبریک می‌گوییم!',
+    'Silver':'نقره','Gold':'طلا','Bronze':'برنز','Tournament Achievements':'دستاوردهای مسابقات','Player Achievements':'دستاوردهای بازیکنان',
+    'Matches Played':'مسابقات انجام‌شده','Bracket Size':'اندازه جدول','Export Tournament Data':'خروجی اطلاعات مسابقات',
+    'Download complete tournament results as JSON file':'دانلود نتایج کامل مسابقات به‌صورت فایل JSON',
+    'Final Score (optional):':'نتیجه نهایی (اختیاری):','legs':'لگ','Confirm match winner':'تأیید برنده مسابقه',
+    'Scan Results QR':'اسکن QR نتایج','Confirm Winner':'تأیید برنده','Edit Statistics':'ویرایش آمار',
+    'Match':'مسابقه','Bracket':'جدول','Winner':'برنده','Loser':'بازنده',
+    'LIVE Matches':'مسابقات زنده','Tournament in setup mode':'مسابقه در حالت تنظیمات است',
+    'Add players and configure the tournament to generate matches.':'بازیکنان را اضافه و مسابقه را تنظیم کنید تا جدول مسابقات ایجاد شود.',
+    'Tournament Configuration':'پیکربندی مسابقات','Point Values':'امتیازها','Participation':'شرکت',
+    'High Out':'خروج بالا','Short Leg':'لگ کوتاه','Ton':'۱۰۰+','Regular Rounds':'دورهای عادی',
+    'Quarterfinal':'یک‌چهارم نهایی','Bronze Match':'مسابقه رده‌بندی','Frontside Semifinal':'نیمه‌نهایی جدول برنده‌ها',
+    'Backside Semifinal':'نیمه‌نهایی جدول بازنده‌ها','Backside Final':'فینال جدول بازنده‌ها','Grand Final':'فینال بزرگ',
+    'Available':'در دسترس','Excluded':'حذف‌شده','No matches currently active or ready to start.':'در حال حاضر مسابقه فعال یا آماده شروع وجود ندارد.',
+    'Statistics':'آمار','Quick Overview':'نمای کلی سریع','Transaction Health':'سلامت تراکنش‌ها','Match State':'وضعیت مسابقه',
+    'Player Count':'تعداد بازیکنان','Lane Usage':'استفاده از لاین','localStorage Usage':'مصرف فضای ذخیره‌سازی',
+    'Commands':'دستورات','View Transaction History':'مشاهده تاریخچه تراکنش‌ها','Manage Transaction Log':'مدیریت گزارش تراکنش‌ها',
+    'Re-render Bracket':'بازرسم جدول','Recalculate Rankings':'محاسبه مجدد رده‌بندی','Refresh All Dropdowns':'تازه‌سازی همه فهرست‌ها',
+    'Validate Everything':'اعتبارسنجی کامل','View Match Progression':'مشاهده روند مسابقات','Toggle Read-Only':'تغییر حالت فقط‌خواندنی',
+    'QR Payload Inspector':'بازرس محتوای QR','Late Registration':'ثبت‌نام دیرهنگام','Reset All Config':'بازنشانی همه تنظیمات',
+    'Last updated:':'آخرین به‌روزرسانی:','Console Output':'خروجی کنسول','Copy Log':'کپی گزارش','Clear Log':'پاک کردن گزارش',
+    'Close':'بستن','Loading...':'در حال بارگذاری...','Initializing Developer Console...':'در حال راه‌اندازی کنسول توسعه‌دهنده...',
+    'Result QR':'QR نتیجه','Scan QR Code':'اسکن کد QR','Cancel':'لغو',
+    'Dashboard':'داشبورد','Leaderboard':'جدول رده‌بندی','Full Leaderboard':'جدول رده‌بندی کامل','Latest tournaments':'آخرین مسابقات',
+    'All in the Register':'همه در ثبت‌نام','Played':'انجام‌شده','Unique':'منحصربه‌فرد','Total':'مجموع','No data yet':'هنوز داده‌ای وجود ندارد',
+    'No player data available.':'داده‌ای برای بازیکنان وجود ندارد.','Players appear after your first tournament is finalized.':'بازیکنان پس از پایان اولین مسابقه نمایش داده می‌شوند.',
+    'Loading…':'در حال بارگذاری…','Error loading players.':'خطا در بارگذاری بازیکنان.'
+
   };
   const keys=Object.keys(extra).sort((a,b)=>b.length-a.length);
   const esc=s=>s.replace(/[.*+?^()|[\\]\\]/g,'\\$&');
