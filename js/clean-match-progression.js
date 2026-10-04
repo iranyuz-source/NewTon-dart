@@ -2854,13 +2854,13 @@ function isSEQuarterfinal(matchId, bracketSize) {
 function getSERoundDisplayName(round, bracketSize) {
     const totalRounds = { 4: 3, 8: 4, 16: 5, 32: 6 };
     const total = totalRounds[bracketSize];
-    if (!total) return `Round ${round}`;
+    if (!total) return `دور ${round}`;
 
-    if (round === total) return 'Final';
-    if (round === total - 1) return 'Bronze';
-    if (round === total - 2) return 'Semifinal';
-    if (round === total - 3) return 'Quarterfinal';
-    return `Round ${round}`;
+    if (round === total) return 'فینال';
+    if (round === total - 1) return 'رده‌بندی';
+    if (round === total - 2) return 'نیمه‌نهایی';
+    if (round === total - 3) return 'یک‌چهارم نهایی';
+    return `دور ${round}`;
 }
 
 /**
