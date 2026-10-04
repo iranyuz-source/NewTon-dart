@@ -528,7 +528,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     <h3 id="cfgLeaveTitle">تغییرات ذخیره شود؟</h3>
                     <p>شما <b id="cfgLeaveCount">1 تغییر ذخیره‌نشده</b> در تنظیمات کلی. پیش از ادامه ذخیره شود؟</p>
                     <div class="cfg-acts">
-                        <button type="button" class="cfg-btn" id="cfgLeave">ماندن</button>
+                        <button type="button" class="cfg-btn" id="cfgStay">ماندن</button>
                         <button type="button" class="cfg-btn" id="cfgLeaveCount انداختن">دور انداختن و ادامه</button>
                         <button type="button" class="cfg-btn primary" id="cfgLeaveSave">ذخیره و ادامه</button>
                     </div>
@@ -636,7 +636,7 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                             <h3>مسابقات <small id="historyTournamentMeta"></small></h3>
                             <span class="an-note">Ticked tournaments are what every view counts.</span>
                         </div>
-                        <div id="historyTournamentTableContainer"></div>
+                        <div id="historyMatchTableContainer"></div>
                     </section>
 
                     <!-- All matches (flat list across the lens) -->
@@ -646,13 +646,13 @@ window.NEWTON_APP_MODE = document.body.classList.contains('mode-analytics') ? 'a
                     </section>
 
                     <!-- One tournament's matches -->
-                    <section class="st-panel" id="historyTournamentList" style="display:none;">
+                    <section class="st-panel" id="historyMatchList" style="display:none;">
                         <div class="st-panel-head">
                             <h3 id="historyTournamentListTitle"></h3>
                             <div class="an-tools" id="historyTournamentListTools"></div>
                         </div>
                         <dl class="an-facts" id="historyTournamentListMeta"></dl>
-                        <div id="historyTournamentTableContainer"></div>
+                        <div id="historyMatchTableContainer"></div>
                     </section>
 
                     <!-- مسابقه detail -->
